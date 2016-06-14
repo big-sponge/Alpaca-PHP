@@ -6,7 +6,10 @@ class ViewModel
 {    
     const VIEW_TYPE_HTML = 1;
     
-    const VIEW_TYPE_JSON = 2;
+    const VIEW_TYPE_JSON = 2;   
+
+    const VIEW_TYPE_IMAGE = 3;
+    
     
     public static $App;
     
@@ -38,10 +41,23 @@ class ViewModel
     
     public $IsJsonp = true;
         
-    public function __construct(array $data = null , $type =self::VIEW_TYPE_HTML)
+    public function __construct( $data = null , $type =self::VIEW_TYPE_HTML)
     {
-        $this->Data = $data;
-        $this->TYPE = $type;
+        if($type == self::VIEW_TYPE_JSON)
+        {
+            if(is_string($data)){
+                $data = ['json'=>$data];
+            }elseif(is_array($data)){
+                $data = ['json'=>json_encode($data,JSON_UNESCAPED_UNICODE)];
+            }    
+            $this->Data = $data;
+            
+        }else{
+            $this->setData($data);
+        }
+        
+        $this->Type = $type;
+        
         return $this;
     }
    
@@ -203,7 +219,7 @@ class ViewModel
     public function displayToJson()
     {   
         header('Content-Type: application/json;charset=utf-8');
-        if($this->IsJsonp){            
+        if($this->IsJsonp){
             $cb = isset($_GET['callback']) ? $_GET['callback'] : null;
             if($cb){                
                 echo "{$cb}(".$this->Data['json'].")";
@@ -219,7 +235,7 @@ class ViewModel
 
  
     public function displayToHtml()
-    {              
+    {
         if($this->UseLayout){
             echo $this->layout->render();
         }else{
@@ -227,6 +243,16 @@ class ViewModel
         }
     }
      
+    public function displayToImage()
+    {
+        if($this->UseLayout){
+            echo $this->layout->render();
+        }else{
+            echo $this->render();
+        }
+    }
+    
+    
     public function display()
     {
         if($this->Type ==self::VIEW_TYPE_HTML){
@@ -238,12 +264,27 @@ class ViewModel
         }
     }
     
-    public static $DefaultViewCaptureTo = "content";
     
+    public static function html( $data = null , $type = self::VIEW_TYPE_HTML)
+    {
+        return new ViewModel($data, $type);
+    }
+    
+    public static function json( $data = null , $type = self::VIEW_TYPE_JSON)
+    {
+        return new ViewModel($data, $type);
+    }
+    
+    public static function image( $data = null , $type = self::VIEW_TYPE_IMAGE)
+    {
+        return new ViewModel($data, $type);
+    }
+           
+    
+    public static $DefaultViewCaptureTo = "content";
     	
     public static $TemplatePostfix ='.phtml';
-    
-    
+        
     public static function getDefaultView($view)
     {
         return null;
@@ -279,4 +320,5 @@ class ViewModel
     {
         return self::$DefaultViewCaptureTo;
     }
+       
 }

@@ -6,7 +6,11 @@ use Alpaca\MVC\View\ViewModel;
 class IndexController
 {           
     public function indexAction()
-    {                  
-        return (new ViewModel(['json'=>json_encode(['name'=>'Bob','age'=>'18'],JSON_UNESCAPED_UNICODE)]))->setType(ViewModel::VIEW_TYPE_JSON);
+    {      
+        $data = ['name'=>'Bob中文','age'=>'18'];
+       
+        $data2 = json_encode(['name'=>'Bob中文','age'=>'18'],JSON_UNESCAPED_UNICODE);
+        
+        return ViewModel::html($data);
     }    
 }
