@@ -34,8 +34,14 @@ class Router
     public $ModuleClassName = null;
 
     public $ControllerClassName = null;
-
+    
     public $Params = Array();
+    
+    private $controllerClass = null;
+    
+    private $moduleClass = null;
+    
+    private $pathSegments = null;
     
     private static $instance;
 
@@ -43,11 +49,13 @@ class Router
     {                
         $request_url = $_SERVER['REQUEST_URI'];
 
-        $this->forward($request_url);
+        $view = $this->forward($request_url);
+        
+        $this->display($view);
     }
-
+    
     public function forward($path)
-    {
+    {        
         //处理请求路由路径，去掉参数
         $pos = stripos($path, '?');
         if ($pos) {
@@ -58,34 +66,53 @@ class Router
         $parserResult = $this->parser($path);
         if($parserResult != true)
         {
-            return;
+            return null;
         }
+        
+        //设置Module、Controller        
+        $this->controllerClass = new $this->ControllerClassName();
+        $this->controllerClass->app = $this->app;
+        $this->controllerClass->sm = ServerManager::factory();
+          
+        $this->moduleClass = new $this->ModuleClassName();
+        $this->moduleClass->app = $this->app;
+        $this->moduleClass->sm = ServerManager::factory();
         
         //执行Action之前的事件
         $initResult = $this->init();
-        if($initResult !== true){
-            return;
-        }
+                
+        var_dump($initResult);
+        echo '---------------------------------------------------------------';
         
         //分发-执行Action 获取视图模型
-        $view = $this->dispatcher();
+        if($initResult !== true && $initResult !== false){
+            $view = $initResult;
+        }elseif($initResult === false){
+            return null;
+        }else{
+            $view = $this->dispatcher();
+        }
         
+        return $view;
+    }
+    
+    public function display($view)
+    {
         //显示视图
         if($view != null){
             $view -> display();
         }
+        
         //执行分发后的事件
         $releaseResult = $this->release();
-        
-        return true;
     }
     
     public function parser($path)
     {
         $segments = array();
-        
+
         $segments = explode('/', $path);
-        
+ 
         if (empty($segments[3])) {
             array_splice($segments, 1, 0, $this->DefaultModule);
         }
@@ -93,13 +120,19 @@ class Router
         if (empty($segments[3])) {
             array_splice($segments, 2, 0, $this->DefaultController);
         }
-        
+
         if (empty($segments[3])) {
             array_splice($segments, 3, 0, $this->DefaultController);
         }
-        
+
         $this->Params = array_slice($segments, 4);
         
+        if($this->pathSegments == $segments){
+            return false;
+        }
+        
+        $this->pathSegments = $segments;
+
         // Module
         $this->Module =  ucfirst($segments[1]);
         $this->ModuleName = $this->Module.$this->ModulePostfix;
@@ -137,8 +170,9 @@ class Router
 
     public function init()
     {
-        $controllerClass = new $this->ControllerClassName();
-        $moduleClass = new $this->ModuleClassName();
+        $controllerClass = $this->controllerClass;
+        $moduleClass = $this->moduleClass;
+                       
         $init ="init";
         $initResult = null;
         
@@ -147,6 +181,10 @@ class Router
             $initResult = $moduleClass->$init();
         }
         if($initResult){
+            return $initResult;
+        }
+        
+        if($initResult === false){
             return false;
         }
         
@@ -155,20 +193,20 @@ class Router
             $initResult = $controllerClass->$init();
         }
         if($initResult){
+            return $initResult;
+        }
+
+        if($initResult === false){
             return false;
         }
-               	
+        
         return true;
     }
     
     public function dispatcher()
     {
-        $controllerClass = new $this->ControllerClassName();
-        $moduleClass = new $this->ModuleClassName();
-        $controllerClass->app = $this->app;
-        $moduleClass->app = $this->app;     
-        $controllerClass->sm = ServerManager::factory();
-        $moduleClass->sm = ServerManager::factory();
+        $controllerClass = $this->controllerClass;
+        $moduleClass = $this->moduleClass;
                         
         ViewModel::$App = $this->app;
         
@@ -254,8 +292,8 @@ class Router
   
     public function release()
     {
-        $controllerClass = new $this->ControllerClassName();
-        $moduleClass = new $this->ModuleClassName();
+        $controllerClass = $this->controllerClass;
+        $moduleClass = $this->moduleClass;
         $release ="release";
         $releaseResult = null;
         
@@ -276,6 +314,12 @@ class Router
         }
         
         return true;
+    }
+
+    public function setAsGlobal()
+    {
+        self::$instance = $this;
+        return $this;
     }
     
     public static function router()

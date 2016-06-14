@@ -34,7 +34,7 @@ class ServerManager
     }
     
     public function get($class)
-    {           
+    {
         if(empty($this->factories[$class])){
             die("Error: Factories \"{$class}\" not found!");
         }       

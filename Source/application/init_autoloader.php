@@ -8,7 +8,11 @@ spl_autoload_register(function($class){
     $className = str_replace("_", "/", $className);
     
     //加载模块modules中的类
-    $moduleNames = str_replace(",", "|", $CONFIG['application']['module']);
+    if(!empty($CONFIG['application']['module'])){
+        $moduleNames = str_replace(",", "|", $CONFIG['application']['module']);
+    }else{
+        $moduleNames = null;
+    }
     if($moduleNames){
         $preg_moduleNames ="/(^({$moduleNames}))/";
         if(preg_match($preg_moduleNames,$className)){
@@ -19,6 +23,11 @@ spl_autoload_register(function($class){
     }
 
     //加载Resources中的类
+    if(!empty($CONFIG['application']['resource'])){
+        $resourceNames = str_replace(",", "|", $CONFIG['application']['resource']);
+    }else{
+        $resourceNames = null;
+    }
     $resourceNames=str_replace(",", "|", $CONFIG['application']['resource']);
     if($resourceNames){
         $preg_resourceNames ="/(^({$resourceNames}))/";
@@ -39,6 +48,11 @@ spl_autoload_register(function($class){
     }
     
     //加载library中的类
+    if(!empty($CONFIG['application']['library'])){
+        $resourceNames = str_replace(",", "|", $CONFIG['application']['library']);
+    }else{
+        $resourceNames = null;
+    }
     $libraryNames = str_replace(",", "|", $CONFIG['application']['library']);
     if($libraryNames){
         $preg_libraryNames ="/(^({$libraryNames}))/";
@@ -47,7 +61,8 @@ spl_autoload_register(function($class){
             require_once($className);
             return;
         }   
-    }            
+    }
+    
 });
 
 //require_once("library/vendor/autoload.php");
