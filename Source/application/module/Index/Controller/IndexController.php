@@ -7,7 +7,7 @@ class IndexController
 {           
     public function init(){
        
-        return $this->app->router->forward('/index2');
+        
     }
     
     public function indexAction()

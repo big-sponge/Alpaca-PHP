@@ -80,10 +80,7 @@ class Router
         
         //执行Action之前的事件
         $initResult = $this->init();
-                
-        var_dump($initResult);
-        echo '---------------------------------------------------------------';
-        
+                     
         //分发-执行Action 获取视图模型
         if($initResult !== true && $initResult !== false){
             $view = $initResult;
