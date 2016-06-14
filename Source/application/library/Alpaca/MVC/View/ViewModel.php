@@ -122,6 +122,11 @@ class ViewModel
         return $this;
     }
     
+    public function setIsJsonp($value)
+    {
+        $this->IsJsonp = $value;
+        return $this;
+    }
     
     public function setUseLayout($value){
         $this->UseLayout = $value;
