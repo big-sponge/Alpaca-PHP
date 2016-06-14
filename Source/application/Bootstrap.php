@@ -1,7 +1,7 @@
 <?php
 
-use Alpaca\Factory\Factory;
 use Zend\Db\Adapter\Adapter;
+use Alpaca\Factory\ServerManager;
 /**
  * 所有在Bootstrap类中, 以_init开头的方法, 都会被Alpaca调用,
  */
@@ -9,44 +9,41 @@ class Bootstrap
 {
     public function _initConfig()
     {
-        var_dump($this->app);
+        ServerManager::factory()->addFactories(array(
+            'config' =>  function() {
+                return $this->app->config;
+            },
+        ));
     }
 
-    public function a_initModules()
-    {
-        $modules = Yaf_Application::app()->getModules();  
-        $factoryConfig = array();
+    public function _initModules()
+    {        
+        $modules = $this->app->getModules();           
+        if(!$modules){ return; }
+
+        $factories = array();
         foreach ($modules as $m) {
-            if ($m =="Index"){
-                continue;
-            }
-            $class = "{$m}\\Module";
-            $m = new $class();      
-            if (method_exists($m, 'getFactories')) {
-                if (! empty($m->getFactories()['factories'])) {
-                    $factoryConfig = array_merge($factoryConfig, $m->getFactories()['factories']);
+            $class = "{$m}\\Module";   
+            if(class_exists($class)){   
+                $m = new $class();
+                if (method_exists($m, 'getFactories')) {
+                    if (! empty($m->getFactories()['factories'])) {
+                        $factories = array_merge($factories, $m->getFactories()['factories']);
+                    }
                 }
             }
-        }
-        
-        Yaf_Registry::set("factoryConfig", $factoryConfig);
+        }       
+        ServerManager::factory()->addFactories($factories);
     }
 
-    public function _initDefaultName()
-    {
-        
-    }
-
-    public function a_initDefaultService()
+    public function _initDefaultService()
     {
         $factories = array(   
-                'Zend\Db\Adapter\Adapter' =>  function() {                   
-                    $config = Yaf_Registry::get("config");
+                'Zend\Db\Adapter\Adapter' =>  function($sm) {                   
+                    $config = $sm->get("config");
                     return new Adapter($config['db']);
                 },
         );
-        
-        $factoryConfig = array_merge(Yaf_Registry::get("factoryConfig"),$factories);
-        Yaf_Registry::set("factoryConfig", $factoryConfig);       
-    }
+        ServerManager::factory()->addFactories($factories);
+    }    
 }

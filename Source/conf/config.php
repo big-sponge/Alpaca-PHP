@@ -37,5 +37,5 @@ return array(
                 'serialize_handler'=>'php_serialize',
             )      
         ),
-    )
+    ),
 );

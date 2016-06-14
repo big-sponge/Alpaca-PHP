@@ -3,6 +3,7 @@ namespace Alpaca\MVC\Router;
 
 use Alpaca\MVC\Controller\AlpacaController;
 use Alpaca\MVC\View\ViewModel;
+use Alpaca\Factory\ServerManager;
 
 class Router
 {
@@ -35,6 +36,8 @@ class Router
     public $ControllerClassName = null;
 
     public $Params = Array();
+    
+    private static $instance;
 
     public function start()
     {                
@@ -163,8 +166,10 @@ class Router
         $controllerClass = new $this->ControllerClassName();
         $moduleClass = new $this->ModuleClassName();
         $controllerClass->app = $this->app;
-        $moduleClass->app = $this->app;
-                
+        $moduleClass->app = $this->app;     
+        $controllerClass->sm = ServerManager::factory();
+        $moduleClass->sm = ServerManager::factory();
+                        
         ViewModel::$App = $this->app;
         
         $action = $this->ActionName;         
@@ -271,5 +276,18 @@ class Router
         }
         
         return true;
+    }
+    
+    public static function router()
+    {
+        return self::getInstance();
+    }
+    
+    private static function getInstance()
+    {
+        if(!self::$instance){
+            self::$instance = new Router();
+        }
+        return self::$instance;
     }
 }

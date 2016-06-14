@@ -12,13 +12,13 @@ class Module
     {
         return array(
             'factories' => array(   
-                'Test\Form\TestForm' =>  function() {
+                'Test\Form\TestForm' =>  function($sm) {
                     $form = new TestForm();
                     return $form;
                 },
                 'Test\Auth\Auth' => function (){
                     $auth = new Auth();
-                    $session = Factory::get('Test\Auth\SessionManager');
+                    $session = $sm->get('Test\Auth\SessionManager');
                     $auth->session = $session;            
                     return $auth; 
                 },
@@ -37,6 +37,15 @@ class Module
                     }
                     $sessionManager = new SessionManager($sessionConfig);
                     return $sessionManager;
+                },
+                'Test\Test\Sm' => function ($sm){
+
+                    return $sm->get('Test\Test\Sm2');
+                },
+                
+                'Test\Test\Sm2' => function (){
+                
+                return "ddd 33 kk";
                 },
            ),
         );
