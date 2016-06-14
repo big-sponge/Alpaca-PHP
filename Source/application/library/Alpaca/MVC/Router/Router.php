@@ -73,10 +73,12 @@ class Router
         $this->controllerClass = new $this->ControllerClassName();
         $this->controllerClass->app = $this->app;
         $this->controllerClass->sm = ServerManager::factory();
+        $this->controllerClass->params = $this->params;
           
         $this->moduleClass = new $this->ModuleClassName();
         $this->moduleClass->app = $this->app;
         $this->moduleClass->sm = ServerManager::factory();
+        $this->moduleClass->params = $this->params;
         
         //执行Action之前的事件
         $initResult = $this->init();
