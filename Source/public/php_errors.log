@@ -1,0 +1,4 @@
+[14-Jun-2016 17:01:49 PRC] PHP Notice:  Undefined property: Alpaca\MVC\Router\Router::$params in C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php on line 76
+[14-Jun-2016 17:01:49 PRC] PHP Notice:  Undefined property: Alpaca\MVC\Router\Router::$params in C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php on line 81
+[14-Jun-2016 17:03:43 PRC] PHP Notice:  Undefined offset: 1 in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\IndexController.php on line 25
+[14-Jun-2016 17:03:49 PRC] PHP Notice:  Array to string conversion in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\IndexController.php on line 25

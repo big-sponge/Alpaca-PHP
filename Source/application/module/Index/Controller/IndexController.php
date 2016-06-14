@@ -20,9 +20,13 @@ class IndexController
     
     public function index2Action()
     {   
-               
+        
+
+        var_dump( $this->params);
         $data = ['name'=>'Big Bob','age'=>'18'];
                
         return ViewModel::json($data);
     }    
 }
+
+ 
