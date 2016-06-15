@@ -49,15 +49,13 @@ class Bootstrap
         ServerManager::factory()->addFactories($factories);
     }    
 
-     public function _initDatabase()
+    public function _initDatabase()
     {
-
-
-        global $CONFIG;
+        $config = $this->app->config;
 
         $capsule = new Capsule;
         // 创建链接
-        $capsule->addConnection($CONFIG['database']);
+        $capsule->addConnection($config['database']);
         // 设置全局静态可访问
         $capsule->setAsGlobal();
         // 启动Eloquent
