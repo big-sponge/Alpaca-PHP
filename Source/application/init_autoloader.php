@@ -40,7 +40,7 @@ spl_autoload_register(function($class){
     }
         
     //加载Service中的类
-    $serviceNames = 'service';
+    $serviceNames = 'Service';
     $preg_serviceNames ="/(^({$serviceNames}))/";
     if(preg_match($preg_serviceNames,$className)){
         $className = "/".$className.".php";

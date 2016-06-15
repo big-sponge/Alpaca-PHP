@@ -27,6 +27,15 @@ return array(
         'collation' => 'utf8_unicode_ci',
         'prefix'    => '',
     ),
+
+    'jwt' =>array(
+        "sub"=>"",
+        "iss"=>"",
+        "iat"=>time(),
+        "exp"=>time() + 3600,
+        "nbf"=>time() + 60,
+        "secret"=>"Alpaca-php"
+    ),
     
     // 推荐在php.ini中配置session，可以提升响应时间20ms左右
     'session' => array(
