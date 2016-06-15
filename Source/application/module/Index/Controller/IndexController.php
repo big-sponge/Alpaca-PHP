@@ -13,22 +13,18 @@ class IndexController
     }
     
     public function indexAction()
-    {
-         
-        $data = ['name'=>'Bob2','age'=>'18'];
-             
+    {        
+        $data = ['name'=>'Bob2','age'=>'18'];             
         return ViewModel::json($data);
     }
     
     public function index2Action()
-    {   
-        
+    {         
         $results = Capsule::select('select * from users where id = ?', array(1));        
         var_dump($results);
         die();
         // var_dump( $this->params);
-        // $data = ['name'=>'Big Bob','age'=>'18'];
-               
+        // $data = ['name'=>'Big Bob','age'=>'18'];           
         return ViewModel::json($data);
     }    
 }

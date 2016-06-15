@@ -2,30 +2,23 @@
 namespace Service\JwtAuth;
 
 use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\ValidationData;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Parser;
 use Alpaca\Factory\ServerManager;
 class JwtManager
-{
-	
+{	
 	protected $config = []; 
 	
 	protected static $instance;
 
 	function __construct()
 	{
-
-		$config = ServerManager::factory()->get('config');
-	 	
+		$config = ServerManager::factory()->get('config');	 	
 		$this->config = $config['jwt'];
-
 	}
 	 
-
 	public function creatToken($data) 
 	{  	
-
 		if (empty($data)) {
 			return false;
 		}
@@ -43,28 +36,22 @@ class JwtManager
                         ->setExpiration($this->config['exp']) // Configures the expiration time of the token (nbf claim)
                         ->sign($signer, $this->config['secret']) // creates a signature using "testing" as key
                         ->getToken(); // Retrieves the generated token
-
  
         return $token; // The string representation of the object is a JWT string (pretty easy, right?)
 	} 
 
-
 	public function parserToekn($token)
-	{
-		 
+	{		 
         $tokenInfo = (new Parser())->parse(($token)); // Parses from a string
+        $tokenInfo->getHeaders(); // Retrieves the token header
+        $tokenInfo->getClaims(); // Retrieves the token claims
 
-        if ($tokenInfo->getClaim('exp') < time()) {
-   			
+        if ($tokenInfo->getClaim('exp')>time()){	
    			return false;
         }
-        
-       
+              
     	return $tokenInfo;
-
 	}
-
-
 
 	public static function jwt()
     {
@@ -74,7 +61,7 @@ class JwtManager
     private static function getInstance()
     {
         if(!self::$instance){
-            self::$instance = new jwtManager();
+            self::$instance = new JwtManager();
         }
         return self::$instance;
     }
