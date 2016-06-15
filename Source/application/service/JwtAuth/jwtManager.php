@@ -6,7 +6,7 @@ use Lcobucci\JWT\ValidationData;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Parser;
 use Alpaca\Factory\ServerManager;
-class jwtManager
+class JwtManager
 {
 	
 	protected $config = []; 
@@ -53,10 +53,8 @@ class jwtManager
 	{
 		 
         $tokenInfo = (new Parser())->parse(($token)); // Parses from a string
-        $tokenInfo->getHeaders(); // Retrieves the token header
-        $tokenInfo->getClaims(); // Retrieves the token claims
 
-        if ($tokenInfo->getClaim('exp')>time()) {
+        if ($tokenInfo->getClaim('exp') < time()) {
    			
    			return false;
         }

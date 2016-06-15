@@ -115,3 +115,20 @@ Stack trace:
 [15-Jun-2016 15:40:00 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Index/Controller/Parser.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 21
 [15-Jun-2016 15:41:10 PRC] PHP Warning:  require_once(module/Index/Controller/Parser.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 21
 [15-Jun-2016 15:41:10 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Index/Controller/Parser.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 21
+[15-Jun-2016 15:58:27 PRC] PHP Notice:  Undefined offset: 0 in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 25
+[15-Jun-2016 16:00:38 PRC] PHP Notice:  Undefined offset: 0 in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 25
+[15-Jun-2016 16:00:38 PRC] PHP Notice:  Undefined offset: 0 in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 30
+[15-Jun-2016 16:01:02 PRC] PHP Notice:  Undefined offset: 0 in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 30
+[15-Jun-2016 16:01:19 PRC] PHP Notice:  Undefined offset: 0 in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 32
+[15-Jun-2016 16:02:07 PRC] PHP Parse error:  syntax error, unexpected ';' in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 27
+[15-Jun-2016 16:06:22 PRC] PHP Fatal error:  Call to a member function getClaim() on boolean in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 69
+[15-Jun-2016 16:07:40 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:07:56 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:08:26 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:09:03 PRC] PHP Notice:  Undefined index: token in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 57
+[15-Jun-2016 16:09:03 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:09:15 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:09:46 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:09:47 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:09:48 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 16:09:58 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
