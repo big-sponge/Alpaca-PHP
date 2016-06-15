@@ -1,5 +1,52 @@
 [
     {
+        "name": "zendframework/zendxml",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/ZendXml.git",
+            "reference": "d60d429ef870ab9bd67aab10b531edd808669509"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/zendframework/ZendXml/d60d429ef870ab9bd67aab10b531edd808669509.zip",
+            "reference": "d60d429ef870ab9bd67aab10b531edd808669509",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.3.3 || ^7.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^3.7 || ^4.0",
+            "squizlabs/php_codesniffer": "^1.5"
+        },
+        "time": "2016-03-05 20:48:47",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "ZendXml\\": "library/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Utility library for XML usage, best practices, and security in PHP",
+        "homepage": "http://packages.zendframework.com/",
+        "keywords": [
+            "security",
+            "xml",
+            "zf2"
+        ]
+    },
+    {
         "name": "symfony/polyfill-mbstring",
         "version": "v1.2.0",
         "version_normalized": "1.2.0.0",
@@ -62,17 +109,17 @@
     },
     {
         "name": "symfony/translation",
-        "version": "v3.0.6",
-        "version_normalized": "3.0.6.0",
+        "version": "v3.1.0",
+        "version_normalized": "3.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/translation.git",
-            "reference": "f7a07af51ea067745a521dab1e3152044a2fb1f2"
+            "reference": "0e67031c9ef0ad681932d2b24f4fd0ec8a6679ff"
         },
         "dist": {
             "type": "zip",
-            "url": "https://packagist.phpcomposer.com/files/symfony/translation/f7a07af51ea067745a521dab1e3152044a2fb1f2.zip",
-            "reference": "f7a07af51ea067745a521dab1e3152044a2fb1f2",
+            "url": "https://packagist.phpcomposer.com/files/symfony/translation/0e67031c9ef0ad681932d2b24f4fd0ec8a6679ff.zip",
+            "reference": "0e67031c9ef0ad681932d2b24f4fd0ec8a6679ff",
             "shasum": ""
         },
         "require": {
@@ -93,11 +140,11 @@
             "symfony/config": "",
             "symfony/yaml": ""
         },
-        "time": "2016-03-25 01:41:20",
+        "time": "2016-05-12 18:19:29",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "3.0-dev"
+                "dev-master": "3.1-dev"
             }
         },
         "installation-source": "dist",
@@ -176,50 +223,200 @@
         ]
     },
     {
-        "name": "zendframework/zendxml",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "name": "illuminate/support",
+        "version": "v4.2.17",
+        "version_normalized": "4.2.17.0",
+        "target-dir": "Illuminate/Support",
         "source": {
             "type": "git",
-            "url": "https://github.com/zendframework/ZendXml.git",
-            "reference": "d60d429ef870ab9bd67aab10b531edd808669509"
+            "url": "https://github.com/illuminate/support.git",
+            "reference": "db61f3f6d507ce417ca993e1f93585db7efd8b12"
         },
         "dist": {
             "type": "zip",
-            "url": "https://packagist.phpcomposer.com/files/zendframework/ZendXml/d60d429ef870ab9bd67aab10b531edd808669509.zip",
-            "reference": "d60d429ef870ab9bd67aab10b531edd808669509",
+            "url": "https://packagist.phpcomposer.com/files/illuminate/support/db61f3f6d507ce417ca993e1f93585db7efd8b12.zip",
+            "reference": "db61f3f6d507ce417ca993e1f93585db7efd8b12",
             "shasum": ""
         },
         "require": {
-            "php": "^5.3.3 || ^7.0"
+            "php": ">=5.4.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "^3.7 || ^4.0",
-            "squizlabs/php_codesniffer": "^1.5"
+            "jeremeamia/superclosure": "~1.0.1",
+            "patchwork/utf8": "~1.1"
         },
-        "time": "2016-03-05 20:48:47",
+        "time": "2015-01-27 20:51:43",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.0-dev"
+                "dev-master": "4.2-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
-                "ZendXml\\": "library/"
+                "Illuminate\\Support": ""
+            },
+            "files": [
+                "Illuminate/Support/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ]
+    },
+    {
+        "name": "illuminate/container",
+        "version": "v4.2.17",
+        "version_normalized": "4.2.17.0",
+        "target-dir": "Illuminate/Container",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/container.git",
+            "reference": "bf0be54be5f10cfa66deba5666db68922452d587"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/illuminate/container/bf0be54be5f10cfa66deba5666db68922452d587.zip",
+            "reference": "bf0be54be5f10cfa66deba5666db68922452d587",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2015-01-29 16:04:27",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Container": ""
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-3-Clause"
+            "MIT"
         ],
-        "description": "Utility library for XML usage, best practices, and security in PHP",
-        "homepage": "http://packages.zendframework.com/",
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ]
+    },
+    {
+        "name": "illuminate/events",
+        "version": "v4.2.17",
+        "version_normalized": "4.2.17.0",
+        "target-dir": "Illuminate/Events",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/events.git",
+            "reference": "a8471d3f6c3e87c50e25e18f13908fffaef159df"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/illuminate/events/a8471d3f6c3e87c50e25e18f13908fffaef159df.zip",
+            "reference": "a8471d3f6c3e87c50e25e18f13908fffaef159df",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "4.2.*",
+            "illuminate/support": "4.2.*",
+            "php": ">=5.4.0"
+        },
+        "time": "2014-10-02 19:49:50",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Events": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ]
+    },
+    {
+        "name": "illuminate/database",
+        "version": "v4.2.17",
+        "version_normalized": "4.2.17.0",
+        "target-dir": "Illuminate/Database",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/database.git",
+            "reference": "ced28a1f1074b0767a3f0bfbcd7b95be0728be1f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/illuminate/database/ced28a1f1074b0767a3f0bfbcd7b95be0728be1f.zip",
+            "reference": "ced28a1f1074b0767a3f0bfbcd7b95be0728be1f",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "4.2.*",
+            "illuminate/events": "4.2.*",
+            "illuminate/support": "4.2.*",
+            "nesbot/carbon": "~1.0",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "illuminate/cache": "4.2.*",
+            "illuminate/console": "4.2.*",
+            "illuminate/filesystem": "4.2.*",
+            "illuminate/pagination": "4.2.*"
+        },
+        "time": "2015-02-11 20:10:47",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Database": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
         "keywords": [
-            "security",
-            "xml",
-            "zf2"
+            "database",
+            "laravel",
+            "orm",
+            "sql"
         ]
     }
 ]

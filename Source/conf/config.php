@@ -16,6 +16,17 @@ return array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         )
     ),
+
+    'database'=>array(
+        'driver'    => 'mysql',
+        'host'      => 'localhost',
+        'database'  => 'demo',
+        'username'  => 'root',
+        'password'  => 'root',
+        'charset'   => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix'    => '',
+    ),
     
     // 推荐在php.ini中配置session，可以提升响应时间20ms左右
     'session' => array(
