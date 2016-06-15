@@ -38,11 +38,12 @@ spl_autoload_register(function($class){
             return;
         }
     }
-        
+            
     //加载Service中的类
     $serviceNames = 'Service';
     $preg_serviceNames ="/(^({$serviceNames}))/";
-    if(preg_match($preg_serviceNames,$className)){
+    if(preg_match($preg_serviceNames,$className)){       
+        $className = lcfirst($className);        
         $className = "/".$className.".php";
         require_once($className);
         return;
