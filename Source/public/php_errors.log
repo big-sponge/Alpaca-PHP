@@ -132,3 +132,13 @@ Stack trace:
 [15-Jun-2016 16:09:47 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
 [15-Jun-2016 16:09:48 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
 [15-Jun-2016 16:09:58 PRC] PHP Notice:  Undefined variable: toekn in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 59
+[15-Jun-2016 17:02:54 PRC] PHP Fatal error:  Uncaught exception 'OutOfBoundsException' with message 'Requested claim is not configured' in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Token.php:173
+Stack trace:
+#0 C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php(72): Lcobucci\JWT\Token->getClaim('issuer')
+#1 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(213): Index\Controller\PassportController->checkAction()
+#2 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(92): Alpaca\MVC\Router\Router->dispatcher()
+#3 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(52): Alpaca\MVC\Router\Router->forward('/index/passport...')
+#4 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Application.php(26): Alpaca\MVC\Router\Router->start()
+#5 C:\lideshun\www\Alpaca-php\Source\public\index.php(23): Alpaca\MVC\Application->run()
+#6 {main}
+  thrown in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Token.php on line 173

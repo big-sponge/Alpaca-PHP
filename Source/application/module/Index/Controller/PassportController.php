@@ -59,11 +59,9 @@ class PassportController
        
 
         $tokenInfo = jwtManager::jwt()->parserToekn($token);
+        
 
-
-        var_dump($tokenInfo);
-        die();
-         
+        
         if (!$tokenInfo) {
             $this->return_data['return_code'] = 0;
             $this->return_data['return_message'] = "token不存在或者过期";
@@ -72,8 +70,8 @@ class PassportController
 
 
         $this->return_data['return_code'] = 1;
-        $this->return_data['return_message'] = "已经登录";
-        $this->return_data['return_toekn'] = $tokenInfo->getClaim('issuer');
+        $this->return_data['return_message'] = "登录中";
+        $this->return_data['return_toekn'] = $tokenInfo->getClaim('iss');
 
         return ViewModel::json($this->return_data);
 
