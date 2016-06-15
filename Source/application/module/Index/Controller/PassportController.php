@@ -16,14 +16,9 @@ class PassportController
        
         
     }
-    
- 
-    
-    public function indexAction()
-    {   
         
-
-
+    public function indexAction()
+    {           
         $data =array(
             'issuer'=>1,
             'audience'=>'pay.1010shuju.com',
@@ -42,9 +37,7 @@ class PassportController
     }
 
     public function checkAction()
-    {
-        
-
+    {        
         //获取token
         $token = $this->params[0];
         $tokenInfo = jwtManager::jwt()->parserToekn($token);
@@ -54,17 +47,9 @@ class PassportController
             $this->return_data['return_code'] = 0;
             $this->return_data['return_message'] = "token不存在或者过期";
             return ViewModel::json($this->return_data);
-        }
-         
-
-
-       
+        }               
     }
-
- 
-
- 
-
+    
 }
 
  
