@@ -5,7 +5,8 @@
         "php": ">=5.3.23",
         "nesbot/carbon": "~1.14",
         "zendframework/zendxml": "~1.0-dev",
-        "illuminate/database": "~4.2"
+        "illuminate/database": "~4.2",
+    "lcobucci/jwt": "^3.1"
     }
 
 

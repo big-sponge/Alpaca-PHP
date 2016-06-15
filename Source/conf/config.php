@@ -2,7 +2,7 @@
 return array(   
     'application' => array(
         "directory" => APP_PATH."/application/",
-        "module" => 'Index,Test,Test2',
+        "module" => 'Index',
         "resource" => 'Model',
         "library" => 'Alpaca,Zend',
      ), 
@@ -19,8 +19,8 @@ return array(
 
     'database'=>array(
         'driver'    => 'mysql',
-        'host'      => 'localhost',
-        'database'  => 'demo',
+        'host'      => '123.56.190.70',
+        'database'  => 'db_passport',
         'username'  => 'root',
         'password'  => 'root',
         'charset'   => 'utf8',

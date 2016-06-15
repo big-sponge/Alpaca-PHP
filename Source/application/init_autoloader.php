@@ -14,6 +14,7 @@ spl_autoload_register(function($class){
         $moduleNames = null;
     }
     if($moduleNames){
+ 
         $preg_moduleNames ="/(^({$moduleNames}))/";
         if(preg_match($preg_moduleNames,$className)){
             $className = "module/".$className.".php";

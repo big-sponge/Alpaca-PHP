@@ -28,3 +28,22 @@
 [15-Jun-2016 09:45:01 PRC] PHP Notice:  Use of undefined constant CONFIG - assumed 'CONFIG' in C:\lideshun\www\Alpaca-php\Source\application\Bootstrap.php on line 54
 [15-Jun-2016 09:45:22 PRC] PHP Parse error:  syntax error, unexpected 'global' (T_GLOBAL) in C:\lideshun\www\Alpaca-php\Source\application\Bootstrap.php on line 54
 [15-Jun-2016 09:45:22 PRC] PHP Parse error:  syntax error, unexpected 'global' (T_GLOBAL) in C:\lideshun\www\Alpaca-php\Source\application\Bootstrap.php on line 54
+[15-Jun-2016 11:15:21 PRC] PHP Warning:  require_once(module/Test/Module.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 20
+[15-Jun-2016 11:15:21 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Test/Module.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 20
+[15-Jun-2016 11:15:21 PRC] PHP Warning:  require_once(module/Test/Module.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 20
+[15-Jun-2016 11:15:21 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Test/Module.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 20
+[15-Jun-2016 11:16:17 PRC] PHP Warning:  require_once(module/Test/Module.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:16:17 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Test/Module.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:16:17 PRC] PHP Warning:  require_once(module/Test/Module.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:16:17 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Test/Module.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:17:44 PRC] PHP Warning:  require_once(module/Test/Module.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:17:44 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Test/Module.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:17:44 PRC] PHP Warning:  require_once(module/Test/Module.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:17:44 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Test/Module.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 23
+[15-Jun-2016 11:19:53 PRC] PHP Notice:  Undefined variable: data in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\passportController.php on line 21
+[15-Jun-2016 11:45:55 PRC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'demo.tb_user' doesn't exist' in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php:299
+Stack trace:
+#0 C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php(299): PDO->prepare('select * from `...')
+#1 C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php(617): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'select * from `...', Array)
+#2 C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php(581): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connect in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php on line 625
