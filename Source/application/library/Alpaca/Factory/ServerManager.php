@@ -26,8 +26,7 @@ class ServerManager
         array_push($this->formEvent, $formEvent);
         return $this;
     }
-    
-    
+        
     public function setFactories($factories)
     {
         $this->factories = $factories;
@@ -76,7 +75,5 @@ class ServerManager
         }
         return self::$instance;
     }
-    
+        
 }
-
-
