@@ -43,8 +43,29 @@ class jwtManager
                         ->setExpiration($this->config['exp']) // Configures the expiration time of the token (nbf claim)
                         ->sign($signer, $this->config['secret']) // creates a signature using "testing" as key
                         ->getToken(); // Retrieves the generated token
-        return $token;
-	}   
+
+ 
+        return $token; // The string representation of the object is a JWT string (pretty easy, right?)
+	} 
+
+
+	public function parserToekn($token)
+	{
+		 
+        $tokenInfo = (new Parser())->parse(($token)); // Parses from a string
+        $tokenInfo->getHeaders(); // Retrieves the token header
+        $tokenInfo->getClaims(); // Retrieves the token claims
+
+        if ($tokenInfo->getClaim('exp')>time()) {
+   			
+   			return false;
+        }
+        
+       
+    	return $tokenInfo;
+
+	}
+
 
 
 	public static function jwt()

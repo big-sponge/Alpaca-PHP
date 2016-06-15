@@ -254,6 +254,17 @@ class Token
             $data .= '.';
         }
 
+
+        return $data;
+    }
+
+    public function getToeknString()
+    {
+         $data = implode('.', $this->payload);
+
+        if ($this->signature === null) {
+            $data .= '.';
+        }
         return $data;
     }
 }

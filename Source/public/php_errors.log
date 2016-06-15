@@ -86,3 +86,32 @@ Stack trace:
 [15-Jun-2016 15:13:39 PRC] PHP Notice:  Undefined variable: audience in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Builder.php on line 83
 [15-Jun-2016 15:18:13 PRC] PHP Notice:  Undefined index: id in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\jwtManager.php on line 40
 [15-Jun-2016 15:18:25 PRC] PHP Parse error:  syntax error, unexpected '=', expecting ')' in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 29
+[15-Jun-2016 15:22:55 PRC] PHP Fatal error:  Cannot use object of type Lcobucci\JWT\Token as array in C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\View\ViewModel.php on line 227
+[15-Jun-2016 15:24:54 PRC] PHP Fatal error:  Call to undefined method Lcobucci\JWT\Token::getToken() in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 33
+[15-Jun-2016 15:25:09 PRC] PHP Parse error:  syntax error, unexpected '$token' (T_VARIABLE) in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\jwtManager.php on line 47
+[15-Jun-2016 15:25:58 PRC] PHP Fatal error:  Uncaught exception 'OutOfBoundsException' with message 'Requested claim is not configured' in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Token.php:173
+Stack trace:
+#0 C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php(35): Lcobucci\JWT\Token->getClaim('uid')
+#1 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(213): Index\Controller\PassportController->indexAction()
+#2 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(92): Alpaca\MVC\Router\Router->dispatcher()
+#3 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(52): Alpaca\MVC\Router\Router->forward('/index/passport...')
+#4 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Application.php(26): Alpaca\MVC\Router\Router->start()
+#5 C:\lideshun\www\Alpaca-php\Source\public\index.php(23): Alpaca\MVC\Application->run()
+#6 {main}
+  thrown in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Token.php on line 173
+[15-Jun-2016 15:26:54 PRC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 36
+[15-Jun-2016 15:27:06 PRC] PHP Fatal error:  Uncaught exception 'OutOfBoundsException' with message 'Requested claim is not configured' in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Token.php:173
+Stack trace:
+#0 C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php(35): Lcobucci\JWT\Token->getClaim('uid')
+#1 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(213): Index\Controller\PassportController->indexAction()
+#2 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(92): Alpaca\MVC\Router\Router->dispatcher()
+#3 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Router\Router.php(52): Alpaca\MVC\Router\Router->forward('/index/passport...')
+#4 C:\lideshun\www\Alpaca-php\Source\application\library\Alpaca\MVC\Application.php(26): Alpaca\MVC\Router\Router->start()
+#5 C:\lideshun\www\Alpaca-php\Source\public\index.php(23): Alpaca\MVC\Application->run()
+#6 {main}
+  thrown in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Token.php on line 173
+[15-Jun-2016 15:33:44 PRC] PHP Fatal error:  Cannot use [] for reading in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\lcobucci\jwt\src\Builder.php on line 274
+[15-Jun-2016 15:40:00 PRC] PHP Warning:  require_once(module/Index/Controller/Parser.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 21
+[15-Jun-2016 15:40:00 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Index/Controller/Parser.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 21
+[15-Jun-2016 15:41:10 PRC] PHP Warning:  require_once(module/Index/Controller/Parser.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 21
+[15-Jun-2016 15:41:10 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Index/Controller/Parser.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 21
