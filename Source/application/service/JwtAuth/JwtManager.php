@@ -2,7 +2,6 @@
 namespace Service\JwtAuth;
 
 use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\ValidationData;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Parser;
 use Alpaca\Factory\ServerManager;
@@ -53,8 +52,10 @@ class JwtManager
 	{
 		 
         $tokenInfo = (new Parser())->parse(($token)); // Parses from a string
+        $tokenInfo->getHeaders(); // Retrieves the token header
+        $tokenInfo->getClaims(); // Retrieves the token claims
 
-        if ($tokenInfo->getClaim('exp') < time()) {
+        if ($tokenInfo->getClaim('exp')>time()) {
    			
    			return false;
         }
@@ -74,7 +75,7 @@ class JwtManager
     private static function getInstance()
     {
         if(!self::$instance){
-            self::$instance = new jwtManager();
+            self::$instance = new JwtManager();
         }
         return self::$instance;
     }
