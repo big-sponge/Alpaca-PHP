@@ -5,7 +5,10 @@ class ServerManager
 {    
     private $factories = array();
     
+    private $formEvent = array();
+    
     private static $instance;
+
     
     public function __construct(array $factories = null)
     {
@@ -15,6 +18,12 @@ class ServerManager
     public function setAsGlobal()
     {
         self::$instance = $this;
+        return $this;
+    }
+
+    public function addFormEvent($formEvent)
+    {
+        array_push($this->formEvent, $formEvent);
         return $this;
     }
         
@@ -40,7 +49,20 @@ class ServerManager
         }       
         return $this->factories[$class](self::factory());
     }
+       
+    public function form($form)
+    {
+        $class = new $form();
+        
+        if(!empty($this->formEvent)){
+            foreach ($this->formEvent as $key => $value){               
+                $class->$key = $value;
+            }
+        }
     
+        return $class;
+    }
+       
     public static function factory(array $factories = null)
     {
         return self::getInstance($factories);
@@ -53,7 +75,5 @@ class ServerManager
         }
         return self::$instance;
     }
-    
+        
 }
-
-
