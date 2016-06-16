@@ -46,7 +46,10 @@ class JwtManager
         $tokenInfo->getHeaders(); // Retrieves the token header
         $tokenInfo->getClaims(); // Retrieves the token claims
 
-        if ($tokenInfo->getClaim('exp')>time()){	
+
+     
+
+        if ($tokenInfo->getClaim('exp') < time()){	
    			return false;
         }
               
