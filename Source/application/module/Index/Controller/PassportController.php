@@ -33,14 +33,7 @@ class PassportController
 
         $user_data = User::where('user_name',$user_name);
 
-        if (empty($user_data)) {
-            
-        }
-
-        
-
         $token = JwtManager::jwt()->creatToken($data);
-        
         $toekn = $token->getToeknString();
         
         $this->return_data['return_code'] = 1;
