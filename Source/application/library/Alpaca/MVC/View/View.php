@@ -2,7 +2,7 @@
 namespace Alpaca\MVC\View;
 
 
-class ViewModel
+class View
 {    
     const VIEW_TYPE_HTML = 1;
     
@@ -270,17 +270,17 @@ class ViewModel
     
     public static function html( $data = null , $type = self::VIEW_TYPE_HTML)
     {
-        return new ViewModel($data, $type);
+        return new View($data, $type);
     }
     
     public static function json( $data = null , $type = self::VIEW_TYPE_JSON)
     {
-        return new ViewModel($data, $type);
+        return new View($data, $type);
     }
     
     public static function image( $data = null , $type = self::VIEW_TYPE_IMAGE)
     {
-        return new ViewModel($data, $type);
+        return new View($data, $type);
     }
            
     
@@ -295,7 +295,7 @@ class ViewModel
     	
     public static function getDefaultViewCaptureTo()
     {
-        return Alpaca.ViewModel.DefaultViewCaptureTo;
+        return Alpaca.View.DefaultViewCaptureTo;
     }
     	
     public static function getDefaultViewTemplate()
@@ -309,7 +309,7 @@ class ViewModel
     	
     public static function getDefaultLayout($layout)
     {
-        return new ViewModel();
+        return new View();
     }
     	
     public static function getDefaultLayoutTemplate()
