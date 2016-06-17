@@ -9,17 +9,10 @@ use Index\Form\PassportForm;
 use Alpaca\Factory\ServerManager;
 
 class IndexController
-{           
-    public function init()
-    {
-        $form = ServerManager::factory()->form('Index\form\PassportForm');
-        $form->test();
-        die;
-    }
-    
+{               
     public function indexAction()
     {        
-        $data = ['name'=>'Bob2','age'=>'18'];             
+        die('Welcome !');         
         return ViewModel::json($data);
     }
     
