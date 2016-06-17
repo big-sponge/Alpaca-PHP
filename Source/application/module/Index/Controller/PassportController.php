@@ -1,7 +1,7 @@
 <?php
 namespace Index\Controller;
 
-use Alpaca\MVC\View\ViewModel;
+use Alpaca\MVC\View\View;
 use Service\JwtAuth\JwtManager;
 use Model\User;
 use Model\Relation;
@@ -20,7 +20,7 @@ class PassportController
         if (empty($this->params)||empty($this->params[0])) {
             $this->return_data['return_code'] = 0;
             $this->return_data['return_message'] = "账户必须填写";
-            return ViewModel::json($this->return_data); 
+            return View::json($this->return_data); 
         }
 
         $user_name = $this->params[0];
@@ -40,7 +40,7 @@ class PassportController
         $this->return_data['return_toekn'] = $toekn;
         $this->return_data['return_bind_domain']="";
 
-        return ViewModel::json($this->return_data);
+        return View::json($this->return_data);
     }
 
     public function checkAction()
@@ -52,18 +52,18 @@ class PassportController
         if (!$tokenInfo) {
             $this->return_data['return_code'] = 0;
             $this->return_data['return_message'] = "token不存在或者过期";
-            return ViewModel::json($this->return_data);
+            return View::json($this->return_data);
         }
 
         $this->return_data['return_code'] = 1;
         $this->return_data['return_message'] = "登录中";
         $this->return_data['return_user_name'] = $tokenInfo->getClaim('iss');
 
-        return ViewModel::json($this->return_data);
+        return View::json($this->return_data);
     }
     public function bindAccountAction()
     {
-        return ViewModel::html();
+        return View::html();
     }
    
 }
