@@ -13,17 +13,7 @@ class IndexController
     public function indexAction()
     {        
         die('Welcome !');         
-        return ViewModel::json($data);
-    }
-    
-    public function index2Action()
-    {         
-        $results = Capsule::select('select * from users where id = ?', array(1));        
-        var_dump($results);
-        die();
-        // var_dump( $this->params);
-        // $data = ['name'=>'Big Bob','age'=>'18'];           
-        return ViewModel::json($data);
+        return ViewModel::json();
     }    
 }
 
