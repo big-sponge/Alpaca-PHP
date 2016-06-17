@@ -44,7 +44,7 @@ spl_autoload_register(function($class){
     $preg_serviceNames ="/(^({$serviceNames}))/";
     if(preg_match($preg_serviceNames,$className)){       
         $className = lcfirst($className);        
-        $className = "/".$className.".php";
+        $className = $className.".php";
         require_once($className);
         return;
     }
