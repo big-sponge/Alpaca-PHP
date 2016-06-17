@@ -2,7 +2,7 @@
 namespace Alpaca\MVC\Router;
 
 use Alpaca\MVC\Controller\AlpacaController;
-use Alpaca\MVC\View\ViewModel;
+use Alpaca\MVC\View\View;
 use Alpaca\Factory\ServerManager;
 
 class Router
@@ -207,7 +207,7 @@ class Router
         $controllerClass = $this->controllerClass;
         $moduleClass = $this->moduleClass;
                         
-        ViewModel::$App = $this->app;
+        View::$App = $this->app;
         
         $action = $this->ActionName;         
         $view = $controllerClass->$action();
@@ -232,7 +232,7 @@ class Router
             }else if(method_exists($moduleClass, $getDefaultViewTemplate)){
                 $view->Template = $moduleClass->$getDefaultViewTemplate();
             }else{
-                $view->Template = ViewModel::getDefaultViewTemplate();
+                $view->Template = View::getDefaultViewTemplate();
             }
         }
         	
@@ -244,7 +244,7 @@ class Router
             }else if(method_exists($moduleClass, $getDefaultViewCaptureTo)){
                 $view->CaptureTo = $moduleClass->$getDefaultViewCaptureTo();
             }else{
-                $view->CaptureTo =ViewModel::getDefaultViewCaptureTo();
+                $view->CaptureTo =View::getDefaultViewCaptureTo();
             }
         }
         
@@ -258,7 +258,7 @@ class Router
                 }else if(method_exists($moduleClass, $getDefaultLayout)){
                     $view->Layout = $moduleClass->$getDefaultLayout();
                 }else{
-                    $view->Layout =ViewModel::$getDefaultLayout();
+                    $view->Layout =View::$getDefaultLayout();
                 }
             }
         
@@ -270,7 +270,7 @@ class Router
                 }else if(method_exists($moduleClass, $getDefaultLayoutTemplate)){
                     $view->Layout->Template = $moduleClass->$getDefaultLayoutTemplate();
                 }else{
-                    $view->Layout->Template =ViewModel::$getDefaultLayoutTemplate();
+                    $view->Layout->Template =View::$getDefaultLayoutTemplate();
                 }
             }
         }
