@@ -9,28 +9,11 @@ use Index\Form\PassportForm;
 use Alpaca\Factory\ServerManager;
 
 class IndexController
-{           
-    public function init()
-    {
-        $form = ServerManager::factory()->form('Index\form\PassportForm');
-        $form->test();
-        die;
-    }
-    
+{               
     public function indexAction()
     {        
-        $data = ['name'=>'Bob2','age'=>'18'];             
-        return ViewModel::json($data);
-    }
-    
-    public function index2Action()
-    {         
-        $results = Capsule::select('select * from users where id = ?', array(1));        
-        var_dump($results);
-        die();
-        // var_dump( $this->params);
-        // $data = ['name'=>'Big Bob','age'=>'18'];           
-        return ViewModel::json($data);
+        die('Welcome !');         
+        return ViewModel::json();
     }    
 }
 
