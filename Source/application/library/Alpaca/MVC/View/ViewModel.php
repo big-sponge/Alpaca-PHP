@@ -130,8 +130,11 @@ class ViewModel
         return $this;
     }
     
-    public function setData(array $data)
-    {
+    public function setData(array $data =null )
+    {   
+        if (empty( $data )) {
+            return $this;
+        }
         foreach ($data as $key => $value) {
             $this->setDataOne($key, $value);
         }

@@ -24,7 +24,6 @@ class PassportController
         }
 
         $user_name = $this->params[0];
-     
         $data =array(
             'issuer'=> $user_name,
             'audience'=>$_SERVER["HTTP_HOST"],
@@ -42,7 +41,6 @@ class PassportController
         $this->return_data['return_bind_domain']="";
 
         return ViewModel::json($this->return_data);
-
     }
 
     public function checkAction()
@@ -62,6 +60,10 @@ class PassportController
         $this->return_data['return_user_name'] = $tokenInfo->getClaim('iss');
 
         return ViewModel::json($this->return_data);
+    }
+    public function bindAccountAction()
+    {
+        return ViewModel::html();
     }
    
 }
