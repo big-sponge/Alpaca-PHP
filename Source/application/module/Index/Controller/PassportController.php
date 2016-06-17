@@ -65,6 +65,32 @@ class PassportController
     {
         return View::html();
     }
+    public function postbindAccountAction()
+    {   
+
+        $bind_user_name = $_POST['bind_user_name'];
+        $bind_user_domain = $_POST['bind_user_domain'];
+        $be_bind_user_name = $_POST['be_bind_user_name'];
+        $be_bind_user_domain = $_POST['be_bind_user_domain'];
+
+        $relationData = Relation::where("bind_account",$bind_user_name)->first();
+        $user_id;
+        if (empty($relationData)) {
+            $User = new User();
+            $User->user_name = $bind_user_name;
+            $user_id = empty($User->save())?0:$User->id;
+
+            
+
+
+        }else{
+
+
+
+       }
+
+        return View::html();
+    }
    
 }
 

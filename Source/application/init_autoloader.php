@@ -1,5 +1,6 @@
 <?php
 spl_autoload_register(function($class){
+ 
     global $CONFIG;
         
     //有命名空间
