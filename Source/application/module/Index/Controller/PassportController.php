@@ -79,48 +79,14 @@ class PassportController
     {
         return View::html();
     }
+    
     public function postbindAccountAction()
     {   
-        
-        $checkData = $this->checkPost($this->request_data);
-
-        if ($checkData['return_code'] != 1) {
-           return View::json($checkData);
-        }
-        
         $form = $this->sm->form('Index\Form\PassportForm');
-        $data = $form->bindAccount($_POST);
-
+        $data = $form->bindAccount($this->request_data);
         return View::json($data);
     }
-
-    private function checkPost($data)
-    {   
-
-        $return_data = array();
-        $return_data['return_code'] = 0;
-
-        if (empty($data['bind_user_name'])) {
-            $return_data['return_message'] = "bind_user_name不能为空";
-            return $return_data;
-        } 
-        if (empty($data['bind_user_domain'])) {
-            $return_data['return_message'] = "bind_user_domain不能为空";
-            return $return_data; 
-        } 
-        if (empty($data['be_bind_user_name'])) {
-            $return_data['return_message'] = "be_bind_user_name不能为空";
-            return $return_data; 
-        }
-        if (empty($data['be_bind_user_domain'])) {
-            $return_data['return_message'] = "be_bind_user_domain不能为空";
-            return $return_data;
-        }
-        $return_data['return_code'] =1;
-        return $return_data;
-
-    }
-   
+  
 }
 
  
