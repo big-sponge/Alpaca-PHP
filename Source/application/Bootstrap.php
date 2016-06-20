@@ -1,9 +1,8 @@
 <?php
-
 use Zend\Db\Adapter\Adapter;
-use Alpaca\Factory\ServerManager;
-use Illuminate\Container\Container;  
-use Illuminate\Database\Capsule\Manager as Capsule;//如果你不喜欢这个名称，as DB;就好 
+use Alpaca\Factory\ServerManager; 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 /**
  * 所有在Bootstrap类中, 以_init开头的方法, 都会被Alpaca调用,
  */
@@ -52,7 +51,7 @@ class Bootstrap
     public function _initDatabase()
     {
         $config = $this->app->config;
-
+        
         $capsule = new Capsule;
         // 创建链接
         $capsule->addConnection($config['database']);
