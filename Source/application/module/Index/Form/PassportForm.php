@@ -1,6 +1,6 @@
 <?php
 namespace Index\Form;
-
+use Service\JwtAuth\JwtManager;
 use Alpaca\MVC\Form\AlpacaForm;
 use Model\User;
 use Model\Relation;
@@ -107,6 +107,56 @@ class PassportForm extends AlpacaForm
         $return_data['return_code'] =1;
         return $return_data;
     
+    }
+
+
+
+    public function createJwt($data)
+    {   
+        $return_data = array();
+        if (empty($data)||empty($data[0])) {
+            $return_data['return_code'] = 0;
+            $return_data['return_message'] = "账户必须填写";
+            return View::json($return_data); 
+        }
+
+        $user_name = $data[0];
+        $data =array(
+            'issuer'=> $user_name,
+            'audience'=>$_SERVER["HTTP_HOST"],
+            'id'=>mt_rand(0,100000)*mt_rand(0,100000),
+        );
+
+        $user_data = User::where('user_name',$user_name);
+
+        $token = JwtManager::jwt()->creatToken($data);
+        $toekn = $token->getToeknString();
+        
+        $return_data['return_code'] = 1;
+        $return_data['return_message'] = "生成成功";
+        $return_data['return_toekn'] = $toekn;
+        $return_data['return_bind_domain']="";
+        return $return_data;
+    }
+
+    public function parserJwt($token)
+    {   
+
+        $return_data = array();
+
+        $tokenInfo = jwtManager::jwt()->parserToekn($token);
+
+        if (!$tokenInfo) {
+            $return_data['return_code'] = 0;
+            $return_data['return_message'] = "token不存在或者过期";
+            return $return_data;
+        }
+
+        $return_data['return_code'] = 1;
+        $return_data['return_message'] = "登录中";
+        $return_data['return_user_name'] = $tokenInfo->getClaim('iss');
+
+        return $return_data;
     }
 }
 
