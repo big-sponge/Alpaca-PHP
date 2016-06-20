@@ -3,8 +3,7 @@ namespace Index\Controller;
 
 use Alpaca\MVC\View\View;
 use Service\JwtAuth\JwtManager;
-use Model\User;
-use Model\Relation;
+use Alpaca\Tools\Validate;
 class PassportController
 {   
 
@@ -67,29 +66,44 @@ class PassportController
     }
     public function postbindAccountAction()
     {   
+        
+        $checkData = $this->checkPost($_POST);
 
-        $bind_user_name = $_POST['bind_user_name'];
-        $bind_user_domain = $_POST['bind_user_domain'];
-        $be_bind_user_name = $_POST['be_bind_user_name'];
-        $be_bind_user_domain = $_POST['be_bind_user_domain'];
+        if ($checkData['return_code'] != 1) {
+           return View::json($checkData);
+        }
+        
+        $form = $this->sm->form('Index\Form\PassportForm');
+        $data = $form->bindAccount($_POST);
 
-        $relationData = Relation::where("bind_account",$bind_user_name)->first();
-        $user_id;
-        if (empty($relationData)) {
-            $User = new User();
-            $User->user_name = $bind_user_name;
-            $user_id = empty($User->save())?0:$User->id;
+        return View::json($data);
+    }
 
-            
+    private function checkPost($data)
+    {   
 
+        $return_data = array();
+        $return_data['return_code'] = 0;
 
-        }else{
+        if (empty($data['bind_user_name'])) {
+            $return_data['return_message'] = "bind_user_name不能为空";
+            return $return_data;
+        } 
+        if (empty($data['bind_user_domain'])) {
+            $return_data['return_message'] = "bind_user_domain不能为空";
+            return $return_data; 
+        } 
+        if (empty($data['be_bind_user_name'])) {
+            $return_data['return_message'] = "be_bind_user_name不能为空";
+            return $return_data; 
+        }
+        if (empty($data['be_bind_user_domain'])) {
+            $return_data['return_message'] = "be_bind_user_domain不能为空";
+            return $return_data;
+        }
+        $return_data['return_code'] =1;
+        return $return_data;
 
-
-
-       }
-
-        return View::html();
     }
    
 }
