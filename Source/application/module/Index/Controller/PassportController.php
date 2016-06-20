@@ -8,11 +8,26 @@ class PassportController
 {   
 
     protected $return_data = [];
+    
+    protected $request_data = [];
 
-    public function init(){
-              
+    public function init()
+    {
+        $this->dataFilter();
     }
    
+    //处理POST数据
+    private function dataFilter()
+    {        
+        if(empty($_POST)){
+            return;
+        }
+        foreach ($_POST as $name => $value){
+            $this->request_data[$name] = addslashes(htmlspecialchars(trim($value)));
+        }
+
+    }
+     
     public function indexAction()
     {       
         
@@ -67,7 +82,7 @@ class PassportController
     public function postbindAccountAction()
     {   
         
-        $checkData = $this->checkPost($_POST);
+        $checkData = $this->checkPost($this->request_data);
 
         if ($checkData['return_code'] != 1) {
            return View::json($checkData);
