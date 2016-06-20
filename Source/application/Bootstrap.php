@@ -43,8 +43,7 @@ class Bootstrap
         $factories = $modelConfig->getFactories()['factories'];       
         ServerManager::factory()->addFactories($factories);
     }
-
-      
+   
     public function _initForm()
     {
         ServerManager::factory()->addFormEvents(ServerManager::factory()->get('Model\Table\LoadAllTables'));

@@ -1,7 +1,7 @@
 <?php 
 namespace Model\Model;
-use Application\Common\Constant;
-use Application\Common\ResultMsg;
+use Model\Common\Constant;
+use Model\Common\ResultMsg;
 
 class User
 { 
