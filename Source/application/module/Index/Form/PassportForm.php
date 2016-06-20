@@ -127,7 +127,26 @@ class PassportForm extends AlpacaForm
             'id'=>mt_rand(0,100000)*mt_rand(0,100000),
         );
 
-        $user_data = User::where('user_name',$user_name);
+        $user_data = Relation::where('bind_account',$user_name)->first();
+        $return_data['return_bind_domain']=""; 
+        if (!empty($user_data)) {
+            $dataResult = DB::select("SELECT B.domain from tb_relation as A 
+                        LEFT JOIN tb_domain as B 
+                        on A.domain_id = B.id
+                        where A.relation_account = ?",array($user_data->relation_account));
+
+            if (!empty($dataResult)) {
+                $domain = array();
+
+                for ($i=0; $i <count($dataResult); $i++) { 
+ 
+                    $domain[$i] = $dataResult[$i]["domain"];
+                }
+             
+                $return_data['return_bind_domain']=$domain; 
+            }
+
+        }
 
         $token = JwtManager::jwt()->creatToken($data);
         $toekn = $token->getToeknString();
@@ -135,7 +154,7 @@ class PassportForm extends AlpacaForm
         $return_data['return_code'] = 1;
         $return_data['return_message'] = "生成成功";
         $return_data['return_toekn'] = $toekn;
-        $return_data['return_bind_domain']="";
+         
         return $return_data;
     }
 

@@ -257,3 +257,21 @@ Stack trace:
 #1 C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php(617): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `tb...', Array)
 #2 C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php(581): Illuminate\Database\Connection->runQueryCallback('insert into `tb...', Array, Object(Closure))
 #3 C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connecti in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php on line 625
+[20-Jun-2016 15:18:21 PRC] PHP Parse error:  syntax error, unexpected '}' in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 136
+[20-Jun-2016 15:21:29 PRC] PHP Catchable fatal error:  Argument 1 passed to Illuminate\Database\Connection::prepareBindings() must be of the type array, string given, called in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php on line 301 and defined in C:\lideshun\www\Alpaca-php\Source\application\library\vendor\illuminate\database\Illuminate\Database\Connection.php on line 419
+[20-Jun-2016 15:22:59 PRC] PHP Fatal error:  Call to a member function get() on array in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 138
+[20-Jun-2016 15:27:31 PRC] PHP Notice:  Undefined index: domian in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 141
+[20-Jun-2016 15:27:31 PRC] PHP Notice:  Undefined index: domian in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 141
+[20-Jun-2016 15:27:31 PRC] PHP Notice:  Undefined index: issuer in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 31
+[20-Jun-2016 15:27:31 PRC] PHP Notice:  Undefined index: audience in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 32
+[20-Jun-2016 15:27:31 PRC] PHP Notice:  Undefined index: id in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 33
+[20-Jun-2016 15:28:15 PRC] PHP Notice:  Undefined index: domian in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 143
+[20-Jun-2016 15:28:15 PRC] PHP Notice:  Undefined index: domian in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 143
+[20-Jun-2016 15:30:23 PRC] PHP Notice:  Undefined index: domian in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 143
+[20-Jun-2016 15:30:23 PRC] PHP Notice:  Undefined index: domian in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Form\PassportForm.php on line 143
+[20-Jun-2016 15:30:23 PRC] PHP Notice:  Undefined index: issuer in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 31
+[20-Jun-2016 15:30:23 PRC] PHP Notice:  Undefined index: audience in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 32
+[20-Jun-2016 15:30:23 PRC] PHP Notice:  Undefined index: id in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 33
+[20-Jun-2016 15:30:52 PRC] PHP Notice:  Undefined index: issuer in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 31
+[20-Jun-2016 15:30:52 PRC] PHP Notice:  Undefined index: audience in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 32
+[20-Jun-2016 15:30:52 PRC] PHP Notice:  Undefined index: id in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 33
