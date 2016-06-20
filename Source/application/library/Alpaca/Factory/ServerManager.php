@@ -5,7 +5,11 @@ class ServerManager
 {    
     private $factories = array();
     
-    private $formEvent = array();
+    private $formEvent = [];
+    
+    private $classEvent = [];
+    
+    private $serviceEvent = [];
     
     private static $instance;
 
@@ -21,12 +25,57 @@ class ServerManager
         return $this;
     }
 
-    public function addFormEvent($formEvent)
+    public function addClassEvent($name,$event)
     {
-        array_push($this->formEvent, $formEvent);
+        $this->classEvent[(string) $name] = $event;
         return $this;
     }
-        
+    
+    public function addClassEvents(array $events)
+    {
+        if (empty( $events )) {
+            return $this;
+        }
+        foreach ($events as $key => $value) {
+            $this->addClassEvent($key, $value);
+        }
+        return $this;
+    }
+
+    public function addFormEvent($name,$event)
+    {
+        $this->formEvent[(string) $name] = $event;
+        return $this;
+    }
+    
+    public function addFormEvents(array $events)
+    {
+        if (empty( $events )) {
+            return $this;
+        }
+        foreach ($events as $key => $value) {
+            $this->addFormEvent($key, $value);
+        }
+        return $this;
+    }
+    
+    public function addServiceEvent($name,$event)
+    {
+        $this->serviceEvent[(string) $name] = $event;
+        return $this;
+    }
+    
+    public function addServiceEvents(array $events)
+    {
+        if (empty( $events )) {
+            return $this;
+        }
+        foreach ($events as $key => $value) {
+            $this->addServiceEvent($key, $value);
+        }
+        return $this;
+    }
+    
     public function setFactories($factories)
     {
         $this->factories = $factories;
@@ -62,6 +111,20 @@ class ServerManager
     
         return $class;
     }
+    
+    public function create($className)
+    {
+        $class = new $className();
+        
+        if(!empty($this->classEvent)){
+            foreach ($this->classEvent as $key => $value){
+                $class->$key = $value;
+            }
+        }
+        
+        return $class;
+    }
+    
        
     public static function factory(array $factories = null)
     {

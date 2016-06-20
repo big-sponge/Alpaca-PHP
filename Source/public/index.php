@@ -17,7 +17,7 @@ $CONFIG = $config;
 
 /* 加载 AutoLoader */
 require APP_PATH . '/application/init_autoloader.php';
- 
+
 /* 启动Alpaca */
 $app =  Alpaca\MVC\Application::app($config);
 $app->bootstrap()->run();

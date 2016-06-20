@@ -17,26 +17,15 @@ class Bootstrap
         ));
     }
 
-    public function _initModules()
-    {        
-        $modules = $this->app->getModules();           
-        if(!$modules){ return; }
-
-        $factories = array();
-        foreach ($modules as $m) {
-            $class = "{$m}\\Module";   
-            if(class_exists($class)){   
-                $m = new $class();
-                if (method_exists($m, 'getFactories')) {
-                    if (! empty($m->getFactories()['factories'])) {
-                        $factories = array_merge($factories, $m->getFactories()['factories']);
-                    }
-                }
-            }
-        }       
-        ServerManager::factory()->addFactories($factories);
+    public function _initDatabase()
+    {
+        $config = $this->app->config;
+        $capsule = new Capsule;
+        $capsule->addConnection($config['database']);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
     }
-
+    
     public function _initDefaultService()
     {
         $factories = array(   
@@ -47,20 +36,25 @@ class Bootstrap
         );
         ServerManager::factory()->addFactories($factories);
     }    
+    
+    public function _initResource()
+    {        
+        $modelConfig  =  ServerManager::factory()->create('Model\ModelConfig');     
+        $factories = $modelConfig->getFactories()['factories'];       
+        ServerManager::factory()->addFactories($factories);
+    }
 
-    public function _initDatabase()
+      
+    public function _initForm()
     {
-        $config = $this->app->config;
-        
-        $capsule = new Capsule;
-        // 创建链接
-        $capsule->addConnection($config['database']);
-        // 设置全局静态可访问
-        $capsule->setAsGlobal();
-        // 启动Eloquent
-        $capsule->bootEloquent();
- 
-    }    
-
-
+        ServerManager::factory()->addFormEvents(ServerManager::factory()->get('Model\Table\LoadAllTables'));
+        ServerManager::factory()->addFormEvent('adapter',ServerManager::factory()->get('Zend\Db\Adapter\Adapter'));                    
+    }
+    
+    public function _initService()
+    {
+        ServerManager::factory()->addServiceEvents(ServerManager::factory()->get('Model\Table\LoadAllTables'));
+        ServerManager::factory()->addFormEvent('adapter',ServerManager::factory()->get('Zend\Db\Adapter\Adapter'));
+    }
+    
 }
