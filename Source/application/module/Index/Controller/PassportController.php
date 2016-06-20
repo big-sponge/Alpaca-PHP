@@ -19,13 +19,10 @@ class PassportController
     //处理POST数据
     private function dataFilter()
     {        
-        if(empty($_POST)){
-            return;
-        }
+        if(empty($_POST)){ return;}
         foreach ($_POST as $name => $value){
             $this->request_data[$name] = addslashes(htmlspecialchars(trim($value)));
         }
-
     }
      
     public function indexAction()
