@@ -1,6 +1,4 @@
 {
-
-
   "require": {
         "php": ">=5.3.23",
         "nesbot/carbon": "~1.14",
@@ -8,11 +6,4 @@
         "illuminate/database": "~4.2",
     	"lcobucci/jwt": "^3.1" 
     }
-
-
-
-
-
-
-
 }
