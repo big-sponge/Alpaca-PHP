@@ -123,14 +123,6 @@ class User
         }
 
 
-
-
-
-
-
-
-
-
         if($this->status == Constant::USER_STATUS_OPEN){
             $this->status_text = ResultMsg::getMsg("user_normal");
         }
