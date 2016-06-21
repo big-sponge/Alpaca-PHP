@@ -3,7 +3,6 @@ namespace Index\Controller;
 
 use Alpaca\MVC\View\View;
  
-use Alpaca\Tools\Validate;
 class PassportController
 {   
 
