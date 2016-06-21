@@ -275,3 +275,7 @@ Stack trace:
 [20-Jun-2016 15:30:52 PRC] PHP Notice:  Undefined index: issuer in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 31
 [20-Jun-2016 15:30:52 PRC] PHP Notice:  Undefined index: audience in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 32
 [20-Jun-2016 15:30:52 PRC] PHP Notice:  Undefined index: id in C:\lideshun\www\Alpaca-php\Source\application\service\JwtAuth\JwtManager.php on line 33
+[21-Jun-2016 14:20:49 PRC] PHP Notice:  Undefined variable: keys in C:\lideshun\www\Alpaca-php\Source\application\module\Index\view\Passport\bindAccount.phtml on line 4
+[21-Jun-2016 14:21:42 PRC] PHP Parse error:  syntax error, unexpected '=', expecting ')' in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\PassportController.php on line 46
+[21-Jun-2016 14:21:49 PRC] PHP Notice:  Undefined variable: keys in C:\lideshun\www\Alpaca-php\Source\application\module\Index\view\Passport\bindAccount.phtml on line 4
+[21-Jun-2016 14:31:14 PRC] PHP Notice:  Undefined variable: Data in C:\lideshun\www\Alpaca-php\Source\application\module\Index\view\Passport\bindAccount.phtml on line 4

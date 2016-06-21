@@ -38,12 +38,12 @@ class PassportController
         
         $form = $this->sm->form('Index\Form\PassportForm');
         $data = $form->parserJwt($token);
-
+        
         return View::json($data);
     }
     public function bindAccountAction()
     {
-        return View::html();
+        return View::html(array('keys'=>'asdasdd'));
     }
     
     public function postbindAccountAction()
