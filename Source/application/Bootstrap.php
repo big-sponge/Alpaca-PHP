@@ -35,25 +35,5 @@ class Bootstrap
                 },
         );
         ServerManager::factory()->addFactories($factories);
-    }    
-    
-    public function _initResource()
-    {        
-        $modelConfig  =  ServerManager::factory()->create('Model\ModelConfig');     
-        $factories = $modelConfig->getFactories()['factories'];       
-        ServerManager::factory()->addFactories($factories);
-    }
-   
-    public function _initForm()
-    {
-        ServerManager::factory()->addFormEvents(ServerManager::factory()->get('Model\Table\LoadAllTables'));
-        ServerManager::factory()->addFormEvent('adapter',ServerManager::factory()->get('Zend\Db\Adapter\Adapter'));                    
-    }
-    
-    public function _initService()
-    {
-        ServerManager::factory()->addServiceEvents(ServerManager::factory()->get('Model\Table\LoadAllTables'));
-        ServerManager::factory()->addFormEvent('adapter',ServerManager::factory()->get('Zend\Db\Adapter\Adapter'));
-    }
-    
+    }        
 }
