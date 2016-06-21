@@ -28,8 +28,8 @@ class Bootstrap
     
     public function _initDefaultService()
     {
-        $factories = array(   
-                'Zend\Db\Adapter\Adapter' =>  function($sm) {                   
+        $factories = array(
+                'Zend\Db\Adapter\Adapter' =>  function($sm) {
                     $config = $sm->get("config");
                     return new Adapter($config['db']);
                 },
