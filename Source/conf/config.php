@@ -2,7 +2,7 @@
 return array(   
     'application' => array(
         "directory" => APP_PATH."/application/",
-        "module" => 'Index',
+        "module" => 'Index,Crontab',
         "resource" => 'Model',
         "library" => 'Alpaca,Zend',
      ), 
