@@ -7,7 +7,7 @@ use Model\Relation;
 use Model\Domain;
 use Illuminate\Database\Capsule\Manager as DB;
 
-class PassportForm extends AlpacaForm
+class PassportForm 
 {
     public function bindAccount($post)
     {
@@ -117,7 +117,7 @@ class PassportForm extends AlpacaForm
         if (empty($data)||empty($data[0])) {
             $return_data['return_code'] = 0;
             $return_data['return_message'] = "账户必须填写";
-            return View::json($return_data); 
+            return $return_data; 
         }
 
         $user_name = $data[0];
