@@ -133,17 +133,25 @@ class Router
         $this->pathSegments = $segments;
 
         // Module
-        $this->Module =  ucfirst($segments[1]);
+        $this->Module = str_replace(array('.', '-', '_'), ' ', $segments[1]);
+        $this->Module = ucwords($this->Module);
+        $this->Module = str_replace(' ', '', $this->Module);              
         $this->ModuleName = $this->Module.$this->ModulePostfix;
         $this->ModuleClassName = $this->Module.'\\Module';
-        
+                               
         // Controller
-        $this->Controller = ucfirst($segments[2]);
+        $this->Controller = str_replace(array('.', '-', '_'), ' ', $segments[2]);
+        $this->Controller = ucwords($this->Controller);
+        $this->Controller = str_replace(' ', '', $this->Controller);   
         $this->ControllerName = $this->Controller.$this->ControllerPostfix;
         $this->ControllerClassName = $this->Module.'\\Controller\\'.$this->ControllerName;
         
         // Action
         $this->Action = $segments[3];
+        $this->Action = str_replace(array('.', '-', '_'), ' ', $segments[3]);
+        $this->Action = ucwords($this->Action);
+        $this->Action = str_replace(' ', '', $this->Action);
+        $this->Action = lcfirst($this->Action);        
         $this->ActionName = $this->Action.$this->ActionPostfix;
                         
         if(!class_exists($this->ModuleClassName)){
