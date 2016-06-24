@@ -40,6 +40,8 @@ class View
     public $Html = null;
     
     public $IsJsonp = true;
+    
+    public $Final = false;
         
     public function __construct( $data = null , $type =self::VIEW_TYPE_HTML)
     {
@@ -144,6 +146,11 @@ class View
     public function setIsJsonp($value)
     {
         $this->IsJsonp = $value;
+        return $this;
+    }
+    
+    public function setFinal($value){
+        $this->Final = $value;
         return $this;
     }
     

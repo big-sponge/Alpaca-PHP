@@ -283,6 +283,11 @@ class Router
             }
         }
         
+        
+        if($view->Final == true){
+            return $view;
+        }
+        
         //执行控制器onDisplay方法，如果该方法存在
         $onDisplay = "onDisplay";
         if(method_exists($controllerClass, $onDisplay)){
