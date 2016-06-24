@@ -153,8 +153,9 @@ class View
     }
     
     public function setLayout($layout)
-    {
+    {        
         $this->Layout= $layout;
+        $this->Layout->addChild($this); 
         return $this;
     }
     
@@ -240,7 +241,7 @@ class View
     public function displayToHtml()
     {
         if($this->UseLayout){
-            echo $this->layout->render();
+            echo $this->Layout->render();
         }else{
             echo $this->render();
         }
@@ -249,7 +250,7 @@ class View
     public function displayToImage()
     {
         if($this->UseLayout){
-            echo $this->layout->render();
+            echo $this->Layout->render();
         }else{
             echo $this->render();
         }
@@ -307,7 +308,7 @@ class View
         return APP_PATH."/application/module/{$module}/view/{$controller}/{$action}{$templatePostfix}";
     }
     	
-    public static function getDefaultLayout($layout)
+    public static function getDefaultLayout()
     {
         return new View();
     }

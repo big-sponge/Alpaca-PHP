@@ -262,11 +262,11 @@ class Router
             if(!$view->Layout){
                 $getDefaultLayout ="getDefaultLayout";
                 if(method_exists($controllerClass, $getDefaultLayout)){
-                    $view->Layout = $controllerClass->$getDefaultLayout();
-                }else if(method_exists($moduleClass, $getDefaultLayout)){
-                    $view->Layout = $moduleClass->$getDefaultLayout();
+                    $view->setLayout( $controllerClass->$getDefaultLayout() );
+                }else if(method_exists($moduleClass, $getDefaultLayout) ){
+                    $view->setLayout( $moduleClass->$getDefaultLayout() );
                 }else{
-                    $view->Layout =View::$getDefaultLayout();
+                    $view->setLayout( View::$getDefaultLayout() );
                 }
             }
         
@@ -291,7 +291,7 @@ class Router
         	
         //执行模块onDisplay方法，如果该方法存在
         if(method_exists($controllerClass, $onDisplay)){
-            $view = $controllerClass->$onDisplay();
+            $view = $controllerClass->$onDisplay($view);
         }
            
         return $view;
