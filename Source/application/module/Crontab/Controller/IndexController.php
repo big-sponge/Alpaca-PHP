@@ -47,25 +47,29 @@ class IndexController
     //查看定时任务
     public function listTaskAction()
     {
-        Crontab::crontab()->listTask();
+        $result = Crontab::crontab()->listTask();
+        var_dump($result);           
     }
     
     //添加定时任务
     public function addTaskAction()
     {
-        Crontab::crontab()->addTask();
+        $result = Crontab::crontab()->addTask();
+        var_dump($result);
     }
     
     //编辑定时任务
     public function editTaskAction()
     {
-        Crontab::crontab()->editTask();
+        $result = Crontab::crontab()->editTask();
+        var_dump($result);
     }
 
     //删除定时任务
     public function removeTaskAction()
     {
-        Crontab::crontab()->removeTask();
+        $result = Crontab::crontab()->removeTask();
+        var_dump($result);
     }
     
     //定时任务
