@@ -36,7 +36,7 @@ class Worker
             $out .=$data;
             fwrite($fp, $out);
             fclose($fp);
-        }
+        }       
         return 'worker!';
     }       
 }

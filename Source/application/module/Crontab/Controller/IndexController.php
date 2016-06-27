@@ -70,7 +70,7 @@ class IndexController
     
     //定时任务
     public function taskAction()
-    {        
+    {
         Crontab::crontab()->task();
     }
 }

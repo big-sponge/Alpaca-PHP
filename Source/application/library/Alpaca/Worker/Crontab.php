@@ -34,47 +34,35 @@ class Crontab
     //查看定时任务
     public function listTask()
     {
-        $data = json_decode(file_get_contents($this->task_json));
-        var_dump($data);
+        $tasks = json_decode(file_get_contents($this->task_json));
+        return $tasks;
     }
 
     //添加定时任务
-    public function addTask()
+    public function addTask($task)
     {
         $tasks = json_decode(file_get_contents($this->task_json),true);
-        var_dump($tasks);
-        $tasks[count($tasks)] = array(
-            'NAME'=>'',                             //NAME
-            'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
-            'TYPE'=>'2',                            // 1-ONCE,      2-LOOP
-            'INTERVAL'=>'+5 minute',                //year（年），month（月），hour（小时）minute（分），second（秒）
-            'BEGIN_TIME'=>date("Y-m-d H:i:s",time()),   //开始时间
-            'NEXT_TIME'=>'',       //下次执行时间
-            'LAST_TIME'=>'',       //上次执行时间
-            'ACTION'=>'/worker',   //执行的ACTION
-        );
-    
+        $tasks[count($tasks)] = $task;    
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
-        var_dump($tasks);
+        return $tasks;
     }
 
     //编辑定时任务
-    public function editTask()
+    public function editTask($index,$task)
     {
         $tasks = json_decode(file_get_contents($this->task_json));
-        var_dump($tasks);
+        $tasks[$index] = $task;
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
-        var_dump($tasks);
+        return $tasks;
     }
 
     //删除定时任务
-    public function removeTask()
+    public function removeTask($index)
     {
         $tasks = json_decode(file_get_contents($this->task_json));
-        var_dump($tasks);
-        array_splice($tasks, 2, 1);
+        array_splice($tasks, $index, 1);
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
-        var_dump($tasks);
+        return $tasks;
     }
 
     //定时任务
@@ -111,7 +99,6 @@ class Crontab
                 continue;
             }
     
-    
             if($task['TYPE'] == 1 && (strtotime($now)<=strtotime($task['NEXT_TIME'])))
             {
                 $task['LAST_TIME']= $task['NEXT_TIME'];
@@ -131,11 +118,10 @@ class Crontab
                     $task['LAST_TIME']= $task['NEXT_TIME'];
                     $task['NEXT_TIME']= date('Y-m-d H:i:s',strtotime($task['INTERVAL'],strtotime($task['NEXT_TIME'])));
                     //do Action
-                }
-    
+                }    
                 continue;
             }
         }
-        var_dump($tasks);
+        return $tasks;
     }
 }
