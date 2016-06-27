@@ -54,21 +54,42 @@ class IndexController
     //添加定时任务
     public function addTaskAction()
     {
-        $result = Crontab::crontab()->addTask();
+         $task= array(
+         'NAME'=>'',                             //NAME
+         'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
+         'TYPE'=>'2',                            // 1-ONCE,      2-LOOP
+         'INTERVAL'=>'+5 minute',                //year（年），month（月），hour（小时）minute（分），second（秒）
+         'BEGIN_TIME'=>date("Y-m-d H:i:s",time()),   //开始时间
+         'NEXT_TIME'=>'',       //下次执行时间
+         'LAST_TIME'=>'',       //上次执行时间
+         'ACTION'=>'/worker',   //执行的ACTION
+        ); 
+        
+        $result = Crontab::crontab()->addTask($task);
         var_dump($result);
     }
     
     //编辑定时任务
     public function editTaskAction()
     {
-        $result = Crontab::crontab()->editTask();
+        $task= array(
+            'NAME'=>'EDIT',                             //NAME
+            'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
+            'TYPE'=>'2',                            // 1-ONCE,      2-LOOP
+            'INTERVAL'=>'+5 minute',                //year（年），month（月），hour（小时）minute（分），second（秒）
+            'BEGIN_TIME'=>date("Y-m-d H:i:s",time()),   //开始时间
+            'NEXT_TIME'=>'',       //下次执行时间
+            'LAST_TIME'=>'',       //上次执行时间
+            'ACTION'=>'/worker',   //执行的ACTION
+        );
+        $result = Crontab::crontab()->editTask(1,$task);
         var_dump($result);
     }
 
     //删除定时任务
     public function removeTaskAction()
     {
-        $result = Crontab::crontab()->removeTask();
+        $result = Crontab::crontab()->removeTask(0);
         var_dump($result);
     }
     
