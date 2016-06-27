@@ -15,11 +15,11 @@ class WorkerController
     //index
     public function indexAction()
     {
-        Log::add("Start Work ... Welcome Worker index A"); 
+        Log::add("Start Work ... Welcome Worker index A");
         sleep(5);
         Log::add("Start Work ... Welcome Worker index B");
-        
-        die('Welcome Worker index !'); 
+
+        die('Welcome Worker index !');
         return View::json();
     }   
 }
