@@ -19,7 +19,7 @@ class IndexController
     //index
     public function indexAction()
     {
-//        die('Welcome !');
+        die('Welcome !');
         return View::json();
     }
     
