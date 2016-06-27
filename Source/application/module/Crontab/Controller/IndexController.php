@@ -35,6 +35,12 @@ class IndexController
     
     public function startAction()
     {
+        $events = ['0'=>function(){
+            Worker::worker()->action(['REQUEST_URI'=>"/crontab/index/task"]);
+        }];
+        
+        Daemon::deamon()->setEvents($events);
+
         Daemon::deamon()->start();
     }
         
@@ -58,11 +64,11 @@ class IndexController
          'NAME'=>'',                             //NAME
          'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
          'TYPE'=>'2',                            // 1-ONCE,      2-LOOP
-         'INTERVAL'=>'+5 minute',                //year（年），month（月），hour（小时）minute（分），second（秒）
+         'INTERVAL'=>'+10 second',                //year（年），month（月），hour（小时）minute（分），second（秒）
          'BEGIN_TIME'=>date("Y-m-d H:i:s",time()),   //开始时间
          'NEXT_TIME'=>'',       //下次执行时间
          'LAST_TIME'=>'',       //上次执行时间
-         'ACTION'=>'/worker',   //执行的ACTION
+         'ACTION'=>'/crontab/index/job',   //执行的ACTION
         ); 
         
         $result = Crontab::crontab()->addTask($task);
@@ -76,11 +82,11 @@ class IndexController
             'NAME'=>'EDIT',                             //NAME
             'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
             'TYPE'=>'2',                            // 1-ONCE,      2-LOOP
-            'INTERVAL'=>'+5 minute',                //year（年），month（月），hour（小时）minute（分），second（秒）
+            'INTERVAL'=>'+30 second',                //year（年），month（月），hour（小时）minute（分），second（秒）
             'BEGIN_TIME'=>date("Y-m-d H:i:s",time()),   //开始时间
             'NEXT_TIME'=>'',       //下次执行时间
             'LAST_TIME'=>'',       //上次执行时间
-            'ACTION'=>'/worker',   //执行的ACTION
+            'ACTION'=>'/crontab/index/job',   //执行的ACTION
         );
         $result = Crontab::crontab()->editTask(1,$task);
         var_dump($result);
@@ -96,7 +102,16 @@ class IndexController
     //定时任务
     public function taskAction()
     {
-        Crontab::crontab()->task();
+        Log::add("task ... ");
+        $result = Crontab::crontab()->doTask();
+        die;
+    }
+    
+    //定时任务
+    public function jobAction()
+    {
+        Log::add("hahah jobs ... ");
+        die();
     }
 }
 

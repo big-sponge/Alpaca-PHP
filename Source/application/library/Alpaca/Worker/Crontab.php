@@ -57,12 +57,11 @@ class Crontab
     //定时任务
     public function doTask()
     {
-        $tasks = json_decode(file_get_contents($this->task_json));      
+        $tasks = json_decode(file_get_contents($this->task_json) ,true);      
         if(empty($tasks)){ return ;}
     
-        foreach ($tasks as &$task){
-    
-            $now = date('Y-m-d H:i:s',time());
+        $now = date('Y-m-d H:i:s',time());
+        foreach ($tasks as &$task){   
             if(empty($task['STATUS']) || empty($task['TYPE'])  || empty($task['BEGIN_TIME']) || empty($task['ACTION']) )
             {
                 continue;
@@ -88,12 +87,12 @@ class Crontab
                 continue;
             }
     
-            if($task['TYPE'] == 1 && (strtotime($now)<=strtotime($task['NEXT_TIME'])))
+            if($task['TYPE'] == 1 && (strtotime($now)>=strtotime($task['NEXT_TIME'])))
             {
-                $task['LAST_TIME']= $task['NEXT_TIME'];
+                $task['LAST_TIME']= $now;
                 $task['NEXT_TIME']='END';
                 $task['STATUS']=2;
-                //do Action
+                Worker::worker()->action(['REQUEST_URI'=>"{$task['ACTION']}"]);
                 continue;
             }
              
@@ -103,14 +102,16 @@ class Crontab
                     $task['NEXT_TIME'] = $task['BEGIN_TIME'];
                 }
     
-                if(strtotime($now)<=strtotime($task['NEXT_TIME'])){
-                    $task['LAST_TIME']= $task['NEXT_TIME'];
-                    $task['NEXT_TIME']= date('Y-m-d H:i:s',strtotime($task['INTERVAL'],strtotime($task['NEXT_TIME'])));
-                    //do Action
-                }    
+                if(strtotime($now)>=strtotime($task['NEXT_TIME'])){
+                    $task['LAST_TIME']= $now;
+                    $task['NEXT_TIME']= date('Y-m-d H:i:s',strtotime($task['INTERVAL']) );                    
+                    Worker::worker()->action(['REQUEST_URI'=>"{$task['ACTION']}"]);
+                }
                 continue;
             }
         }
+        
+        file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
         return $tasks;
     }
 }
