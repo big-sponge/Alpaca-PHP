@@ -1,35 +1,64 @@
 <html>
 <head>
     <script src="/webCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="/webCJI/easyUI/jquery.easyui.min.js" type="text/javascript"></script>
+    <link href="/webCJI/easyUI/themes/blove/easyui.css" media="screen" rel="stylesheet" type="text/css"/>
+    <link href="/webCJI/easyUI/themes/icon.css" media="screen" rel="stylesheet" type="text/css"/>
     <script>
-        $(document).ready(function () {
-            $.ajax({
-                method: "POST",
-                url: "/crontab/index/listtask",
-                data:"",
-                timeout: 20000,// 超时时间
-                beforeSend: function () {
-                },
-                success: function (data) {
-                    for(var i = 0; i < data.length; i++){
-                        console.log(data[i]['ID']);
-                        console.log(data[i]['NAME']);
-                    }
-                },
-                complete: function () {
-                },
-                error: function () {
-                    alert("请求出错了,请稍候再试");
-                }
-            });
-        });
+//        $(document).ready(function () {
+//            $.ajax({
+//                method: "POST",
+//                url: "/crontab/index/listtask",
+//                data:"",
+//                timeout: 20000,// 超时时间
+//                beforeSend: function () {
+//                },
+//                success: function (data) {
+//                    for(var i = 0; i < data.length; i++){
+//                        console.log(data[i]['STATUS']);
+//                        console.log(data[i]['NAME']);
+//                    }
+//                },
+//                complete: function () {
+//                },
+//                error: function () {
+//                    alert("请求出错了,请稍候再试");
+//                }
+//            });
+//        });
+        function edit(val, row, index)
+        {
+            return "<a href='/admin/down-log?file_name="+row['file_name']+"'>下载</a>";
+        }
     </script>
 </head>
 <body>
-<table>
+<table id="dg" title=" " class="easyui-datagrid"
+       style="width: 900px; height: 680px"
+       url="/crontab/index/listtask"
+       method="post"
+       isJsonStr="true"
+       toolbar="#toolbar"
+       rownumbers="true"
+       fitColumns="true"
+       singleSelect="true"
+       idField="NAME"
+       pagination="true"
+       panelHeader="false">
+    <thead>
+    <tr>
+        <th field="ck" checkbox="true"></th>
+        <th field="NAME" sortable="true" width="40%">名称</th>
+        <th field="STATUS" sortable="true" width="40%">状态</th>
+        <th field="operation" sortable="true" width="15%" data-options="formatter: edit">操作</th>
+    </tr>
+    </thead>
+</table>
+<!--<table>-->
     <!--        --><?php //foreach($this->result as $key=>$value){ ?>
     <!--            <tr><td>--><?php //$value; ?><!--</td></tr>-->
     <!--        --><?php //} ?>
-</table>
+
+<!--</table>-->
 </body>
 </html>
