@@ -1,0 +1,182 @@
+*{
+    font-family:"微软雅黑";
+    font-weight:500;
+}
+body{
+    margin:0;
+    padding:0;
+}
+.time_margin{
+    margin:0 20px;
+    padding:10px 0;
+}
+.time_title{
+    background-color:#2a8de9;
+    width:100%;
+    padding-top:40px;
+    padding-bottom:40px;
+
+}
+.time_btn{
+    width:200px;
+    height:50px;
+    background-color:#43a5ff;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    border:none;
+    color:#fff;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:18px;
+    display: block;
+}
+.time_content{
+    width:100%;
+    background-color:#f6f6f6;
+}
+.time_list{
+    width:1200px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#fff;
+    height:100%;
+}
+.time_tab{
+     margin: 0;
+     padding: 0;
+     border-collapse: collapse;
+     width: 100%;
+     color: #666;
+     font-family: "微软雅黑";
+     font-size: 14px;
+     border: 1px solid #03979d;
+    display: flex;
+ }
+td{
+    white-space:nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+.list_log td{
+    height:68px;
+    font-size:16px;
+}
+ .list_log{
+     background-color: #e2f1f2;
+     font-size: 14px;
+     color: #222;
+     font-weight: bold;
+ }
+ .list_con{
+     border-bottom: 1px dashed #e2f1f2;
+     cursor: pointer;
+     height:50px;
+ }
+.list_con:active{
+    background-color: #f5f5f5;
+}
+.list_con span{
+    margin-left:8px;
+}
+
+/*分割线*/
+.detail{
+    background-color:#eee;
+}
+.show_pay_content{
+    width:100%;
+}
+.show_pay_content_box{
+    width:950px;
+    margin:0 auto;
+}
+.oder_details{
+    padding:20px 20px;
+}
+.oder_details_main{
+    overflow: hidden;
+}
+.oder_details div{
+    color:#323232;
+    line-height:28px;
+    overflow: hidden;
+}
+.oder_details_main div{
+    font-size:14px;
+}
+.oder_details_main_list{
+    font-size:14px;
+}
+.oder_details_main_btn{
+    float: right;
+    font-size:14px;
+}
+.m_word{
+    float: left;
+    height:50px;
+}
+.choose{
+    width:440px;
+    height: 36px;
+}
+.input{
+    padding:0 8px;
+}
+.m_word span{
+    font-size:24px;
+    color:#fc760c;
+}
+.m_label{
+    float: left;
+    width: 76px;
+    text-align: right;
+    margin-right: 14px;
+}
+.oder_details .m_xq{
+    color:#0099cc;
+    font-size:12px;
+    cursor: pointer;
+}
+.oder_details_de_list{
+
+}
+.oder_details_de{
+    overflow: hidden;
+}
+.oder_details_de div{
+    font-size:13px;
+}
+.alert_body{
+    opacity: 0;
+    background-color: #000;
+    position:fixed;
+    top:0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+}
+.alert_cont{
+    width:600px;
+    background-color:#fff;
+    mso-border-shadow: 10px red;
+    z-index: 999;
+    position: absolute;
+    top:50%;
+    left:50%;
+    box-shadow: 1px 1px 24px #888888;
+}
+.alert_title{
+    overflow: hidden;
+    padding:10px 20px;
+    background-color:#2a8de9;
+    color:#fff;
+}
+.title_word{
+    float: left;
+}
+.close_btn{
+   width:16px;
+    float: right;
+}

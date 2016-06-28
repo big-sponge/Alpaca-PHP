@@ -4,6 +4,7 @@ namespace Alpaca\MVC\Router;
 use Alpaca\MVC\Controller\AlpacaController;
 use Alpaca\MVC\View\View;
 use Alpaca\Factory\ServerManager;
+use Alpaca\MVC\View\Redirect;
 
 class Router
 {
@@ -47,11 +48,21 @@ class Router
 
     public function start()
     {                
-        $request_url = $_SERVER['REQUEST_URI'];
-
+        $request_url = $_SERVER['REQUEST_URI'];       
+        $this->toRouter($request_url);
+    }
+    
+    public function toRouter($url)
+    {
+        $request_url = $url;
         $view = $this->forward($request_url);
-        
         $this->display($view);
+    }
+    
+    public function toUrl($url)
+    {        
+        header("Location: {$url}");
+        exit;
     }
     
     public function forward($path)
@@ -68,37 +79,36 @@ class Router
         {
             return null;
         }
-        
-        //设置Module、Controller        
-        $this->controllerClass = new $this->ControllerClassName();
-        $this->controllerClass->app = $this->app;
-        $this->controllerClass->sm = ServerManager::factory();
-        $this->controllerClass->params = $this->Params;
-          
-        $this->moduleClass = new $this->ModuleClassName();
-        $this->moduleClass->app = $this->app;
-        $this->moduleClass->sm = ServerManager::factory();
-        $this->moduleClass->params = $this->Params;
-        
-        //执行Action之前的事件
-        $initResult = $this->init();
-                     
-        //分发-执行Action 获取视图模型
-        if($initResult !== true && $initResult !== false){
-            $view = $initResult;
-        }elseif($initResult === false){
+
+        //执行Action之前的init事件
+        $initResult = $this->init();        
+        if($initResult === false){
             return null;
-        }else{
-            $view = $this->dispatcher();
         }
+        if($initResult instanceof Redirect){
+            return $initResult;
+        }
+
+        //分发-执行Action 获取视图模型
+        $view = $this->dispatcher();
         
         return $view;
     }
     
     public function display($view)
     {
+        //如果重定向
+        if($view instanceof Redirect){        
+            if($view->type == Redirect::REDIRECT_TYPE_ROUTER){
+                return $this->toRouter($view->path);
+            }
+            if($view->type == Redirect::REDIRECT_TYPE_URL){
+                return $this->toUrl($view->path);
+            }
+        }
+        
         //显示视图
-        if($view != null){
+        if($view instanceof View){
             $view -> display();
         }
         
@@ -172,6 +182,20 @@ class Router
             $alpacaController->actionNotFoundAction();
             return false;
         }
+        
+        //设置Module、Controller
+        $this->moduleClass = ServerManager::factory()->module($this->ModuleClassName);
+        $this->moduleClass->app = $this->app;
+        $this->moduleClass->sm = ServerManager::factory();
+        $this->moduleClass->params = $this->Params;   
+        $this->moduleClass->redirect = Redirect::redirect();
+        
+        $this->controllerClass = ServerManager::factory()->controller($this->ControllerClassName);
+        $this->controllerClass->app = $this->app;
+        $this->controllerClass->sm = ServerManager::factory();
+        $this->controllerClass->params = $this->Params;
+        $this->controllerClass->redirect = Redirect::redirect();
+               
         return true;
     }
 
@@ -219,6 +243,10 @@ class Router
         
         $action = $this->ActionName;         
         $view = $controllerClass->$action();
+
+        if($view instanceof Redirect){
+            return $view;
+        }
         
         //View
         if(!$view){            
