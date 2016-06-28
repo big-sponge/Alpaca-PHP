@@ -11,6 +11,10 @@ class ServerManager
     
     private $serviceEvent = [];
     
+    private $controllerEvent = [];
+    
+    private $moduleEvent = [];
+    
     private static $instance;
 
     
@@ -98,7 +102,29 @@ class ServerManager
         }       
         return $this->factories[$class](self::factory());
     }
-       
+
+    public function module($module)
+    {
+        $class = new $module();    
+        if(!empty($this->moduleEvent)){
+            foreach ($this->moduleEvent as $key => $value){
+                $class->$key = $value;
+            }
+        } 
+        return $class;
+    }
+    
+    public function controller($controller)
+    {
+        $class = new $controller();
+        if(!empty($this->controllerEvent)){
+            foreach ($this->controllerEvent as $key => $value){
+                $class->$key = $value;
+            }
+        }
+        return $class;
+    }
+        
     public function form($form)
     {
         $class = new $form();
@@ -120,11 +146,9 @@ class ServerManager
             foreach ($this->classEvent as $key => $value){
                 $class->$key = $value;
             }
-        }
-        
+        }       
         return $class;
     }
-    
        
     public static function factory(array $factories = null)
     {
