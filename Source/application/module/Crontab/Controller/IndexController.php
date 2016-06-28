@@ -54,7 +54,12 @@ class IndexController
     public function listTaskAction()
     {
         $result = Crontab::crontab()->listTask();
-        var_dump($result);           
+//        var_dump($result);
+        return View::json($result);
+    }
+
+    public function  checkTaskAction(){
+        return View::html();
     }
     
     //添加定时任务
