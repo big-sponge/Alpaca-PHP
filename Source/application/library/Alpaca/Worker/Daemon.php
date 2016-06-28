@@ -7,7 +7,7 @@ class Daemon
     
     private static $instance;
     
-    private $onClass = [];
+    private $events = [];
     
     public static function deamon()
     {
@@ -25,6 +25,12 @@ class Daemon
     public function setDeamon($deamon_json)
     {
         $this->deamon_json = $deamon_json;
+        return $this;
+    }
+    
+    public function setEvents(array $events)
+    {
+        $this->events = $events;
         return $this;
     }
 
@@ -67,9 +73,15 @@ class Daemon
                 break;
             }
 
+            if(!empty($this->events)){
+                foreach ($this->events as $e){
+                    $e();
+                }
+            }
+                        
             $data['message'] = date("Y-m-d H:i:s" ,time())." : Working ...";
             file_put_contents($this->deamon_json, json_encode($data), LOCK_EX);
-            sleep(5);
+            sleep(1);
         }
         $this->stop();
     }
