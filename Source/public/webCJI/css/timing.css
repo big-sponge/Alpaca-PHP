@@ -1,0 +1,19 @@
+ .time_tab{
+     margin: 0;
+     padding: 0;
+     border-collapse: collapse;
+     width: 100%;
+     color: #666;
+     font-family: "微软雅黑";
+     font-size: 14px;
+     border: 1px solid #03979d;
+ }
+ .list_log{
+     background-color: #e2f1f2;
+     font-size: 14px;
+     color: #666;
+     font-weight: bold;
+ }
+ .list_con{
+     border-bottom: 1px dashed #e2f1f2;
+ }
