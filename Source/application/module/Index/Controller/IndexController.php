@@ -7,8 +7,8 @@ class IndexController
 {
     public function indexAction()
     {
-        die('Welcome !');
-        return View::json();
+
+        return View::html();
     }
 }
 
