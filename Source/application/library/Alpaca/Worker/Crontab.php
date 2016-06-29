@@ -31,7 +31,7 @@ class Crontab
     public function addTask($task)
     {
         $tasks = json_decode(file_get_contents($this->task_json),true);
-        $tasks[count($tasks)] = $task;    
+        $tasks[count($tasks)] = $task;
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
         return $tasks;
     }
