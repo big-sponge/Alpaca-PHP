@@ -2,8 +2,33 @@
 <head>
     <link href="/webCJI/css/timing.css" rel="stylesheet" type="text/css" />
     <script src="/webCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="/webCJI/dotjs/dot.js" type="text/javascript"></script>
 </head>
 <body>
+<script id="cronTabCell" type="text/x-dot-template">
+    <table class="time_tab m_time_tab">
+        <tr class="list_log">
+            <td>任务名称</td>
+            <td>类型</td>
+            <td>间隔</td>
+            <td>开始时间</td>
+            <td>结束时间</td>
+            <td>执行任务</td>
+            <td>状态</td>
+        </tr>
+        {{ for(var key in it) { }}
+        <tr class="list_con">
+            <td>{{=it[key].NAME}}</td>
+            <td>{{=it[key].TYPE}}</td>
+            <td>{{=it[key].INTERVAL}}</td>
+            <td>{{=it[key].BEGIN_TIME}}</td>
+            <td>{{=it[key].NEXT_TIME}}</td>
+            <td>{{=it[key].LAST_TIME}}</td>
+            <td>{{=it[key].STATUS}}</td>
+        </tr>
+        {{ } }}
+    </table>
+</script>
 <div class="time_title">
     <div class="time_title_box">
         <div class="time_title_btn">
@@ -15,198 +40,8 @@
 </div>
 <div class="time_content">
     <div class="time_list">
-        <div class="time_margin">
-            <table class="time_tab m_time_tab">
-                <tr class="list_log">
-                    <td>任务名称</td>
-                    <td>类型</td>
-                    <td>间隔</td>
-                    <td>开始时间</td>
-                    <td>结束时间</td>
-                    <td>执行任务</td>
-                    <td>状态</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>启动</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-                <tr class="list_con">
-                    <td>次日付款任务</td>
-                    <td>执行一次</td>
-                    <td>循环执行</td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>2016/06/28<span>13:55:08</span></td>
-                    <td>代填</td>
-                    <td>停止</td>
-                </tr>
-            </table>
+        <div class="time_margin" id="cronTabList">
+
         </div>
     </div>
     <!--弹出框-->
@@ -271,7 +106,7 @@
     $(".close").click(function(){
         $("#id_alert").fadeOut();
         $("#mask").hide();
-    })
+    });
     $(".list_con").click(function(){
         $("#mask").show();
         $(".title_word").html("修改任务")
@@ -279,16 +114,37 @@
         $(".list_con").css({"background-color":"#fff","color":"#666"});
         $(this).css({"background-color":"#43a5ff","color":"#fff"});
 
-    })
+    });
     $("#id_time_btn").click(function(){
         $("#mask").show();
         $(".title_word").html("创建任务")
         $("#id_alert").fadeIn();
-    })
+    });
     $("#id_sure_btn").click(function(){
         $("#id_alert").fadeOut();
         $("#mask").hide();
-    })
+    });
+
+    $().ready(function () {
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/listtask",
+            data:"",
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var cronTabCellText = doT.template($("#cronTabCell").text());
+                $("#cronTabList").html(cronTabCellText(data));
+                console.log(data);
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    });
 </script>
 </body>
 </html>
