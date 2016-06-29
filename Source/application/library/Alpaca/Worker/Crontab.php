@@ -3,8 +3,8 @@ namespace Alpaca\Worker;
 
 class Crontab
 {        
-    private $task_json = __DIR__.'\crontab.json';
-    private $task_log = __DIR__.'\task_log.log';
+    private $task_json = __DIR__.'/crontab.json';
+    private $task_log = __DIR__.'/task_log.log';
     private static $instance;
     
     public static function crontab()
