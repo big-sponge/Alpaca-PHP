@@ -1,8 +1,9 @@
 <head>
     <link href="/webCJI/css/timing.css" rel="stylesheet" type="text/css" />
+    <script src="/webCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
 </head>
 <div class="time_title">
-    <button class="time_btn">创建任务</button>
+    <div class="time_title_box"><button id="id_time_btn" class="time_btn">创建任务</button></div>
 </div>
 <div class="time_content">
     <div class="time_list">
@@ -34,14 +35,13 @@
         </div>
     </div>
     <!--弹出框-->
-    <div class="alert_cont" style="margin-left:-300px; margin-top:-200px;">
+    <div id="id_alert" class="alert_cont" style="margin-left:-300px; margin-top:-200px;">
         <div class="alert_title">
-            <div class="title_word">创建开机任务</div>
-            <div id="close"><img src="/webCJI/img/btn_close_layer.png" class="close_btn" /></div>
+            <div class="title_word"></div>
+            <div class="close"><img src="/webCJI/img/btn_close_layer.png" class="close_btn" /></div>
         </div>
         <div class="detail">
             <div class="oder_details">
-                <div class="oder_details_main">
                     <div class="oder_details_main_list">
                         <div class="m_label">名字：</div>
                         <div class="m_word">
@@ -65,26 +65,27 @@
                             </select>
                         </div>
                     </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">时间间隔：</div>
+                    <div class="m_word">
+                        <select class="choose">
+                            <option>now</option>
+                            <option>明天</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="oder_details_de">
-                    <div class="oder_details_de_list">
-                        <div class="m_label">时间间隔:</div>
-                        <div class="m_word">
-                            <select class="choose">
-                                <option>now</option>
-                                <option>明天</option>
-                            </select>
-                        </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">结束时间：</div>
+                    <div class="m_word">
+                        <select class="choose">
+                            <option>now</option>
+                            <option>明天</option>
+                        </select>
                     </div>
-                    <div class="oder_details_de_list">
-                        <div class="m_label">结束时间:</div>
-                        <div class="m_word">
-                            <select class="choose">
-                                <option>now</option>
-                                <option>明天</option>
-                            </select>
-                        </div>
-                    </div>
+                </div>
+                <div class="alert_btn_box">
+                    <button class="sure_btn" id="id_sure_btn">确定</button>
+                    <button class="close">取消</button>
                 </div>
             </div>
         </div>
@@ -92,7 +93,22 @@
     <div class="alert_body" id="mask"></div>
 </div>
 <script>
-    $("#close").click(function(){
-
+    $(".close").click(function(){
+        $("#id_alert").fadeOut();
+        $("#mask").hide();
+    })
+    $(".list_con").click(function(){
+        $("#mask").show();
+        $(".title_word").html("修改任务")
+        $("#id_alert").fadeIn();
+    })
+    $("#id_time_btn").click(function(){
+        $("#mask").show();
+        $(".title_word").html("创建任务")
+        $("#id_alert").fadeIn();
+    })
+    $("#id_sure_btn").click(function(){
+        $("#id_alert").fadeOut();
+        $("#mask").hide();
     })
 </script>
