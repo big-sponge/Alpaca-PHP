@@ -8,7 +8,9 @@ body{
 }
 .time_margin{
     margin:0 20px;
-    padding:10px 0;
+    height: 800px;
+    overflow: auto;
+    border: 1px solid #03979d;
 }
 .time_title{
     background-color:#2a8de9;
@@ -42,13 +44,14 @@ body{
 .time_content{
     width:100%;
     background-color:#f6f6f6;
+    position: relative;
 }
 .time_list{
     width:1200px;
-    margin-left:auto;
-    margin-right:auto;
+    margin:0 auto;
     background-color:#fff;
-    height:100%;
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 .time_tab{
      margin: 0;
@@ -58,9 +61,11 @@ body{
      color: #666;
      font-family: "微软雅黑";
      font-size: 14px;
-     border: 1px solid #03979d;
-    display: flex;
  }
+.m_time_tab{
+    height:800px;
+    overflow: auto;
+}
 td{
     white-space:nowrap;
     -ms-text-overflow: ellipsis;
@@ -210,11 +215,12 @@ td{
     margin-left: 18px;
     border:none;
     cursor: pointer;
+    background-color:#c7ccd1;
 }
 .alert_btn_box button:active{
     background-color:#84909c;
 }
-.sure_btn{
+.alert_btn_box .sure_btn{
     background-color:#2a8de9;
     border:none;
     color:#fff;
