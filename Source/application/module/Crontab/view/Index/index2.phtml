@@ -1,7 +1,9 @@
 <html>
 <head>
     <link href="/webCJI/css/timing.css" rel="stylesheet" type="text/css" />
+    <link href="/webCJI/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <script src="/webCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="/webCJI/js/jquery.datetimepicker.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="time_title">
@@ -218,36 +220,30 @@
         </div>
         <div class="detail">
             <div class="oder_details">
-                    <div class="oder_details_main_list">
-                        <div class="m_label">名字：</div>
-                        <div class="m_word">
-                            <input class="choose input" type="text"/>
-                        </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">名字：</div>
+                    <div class="m_word">
+                        <input class="choose input" type="text"/>
                     </div>
-                    <div class="oder_details_main_list">
-                        <div class="m_label">类型：</div>
-                        <div class="m_word">
-                            <select class="choose">
-                                <option>定时关机</option>
-                            </select>
-                        </div>
+                </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">类型：</div>
+                    <div class="m_word">
+                        <select class="choose">
+                            <option>执行一次</option>
+                        </select>
                     </div>
-                    <div class="oder_details_main_list">
-                        <div class="m_label">开始时间：</div>
-                        <div class="m_word">
-                            <select class="choose">
-                                <option>now</option>
-                                <option>明天</option>
-                            </select>
-                        </div>
-                    </div>
+                </div>
                 <div class="oder_details_main_list">
                     <div class="m_label">时间间隔：</div>
                     <div class="m_word">
-                        <select class="choose">
-                            <option>now</option>
-                            <option>明天</option>
-                        </select>
+                        <input class="choose">
+                    </div>
+                </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">开始时间：</div>
+                    <div class="m_word">
+                        <input class="choose" type="text" value="2016/06/29 17:00" id="datetimepicker4" />
                     </div>
                 </div>
                 <div class="oder_details_main_list">
@@ -268,6 +264,9 @@
     </div>
     <div class="alert_body" id="mask"></div>
 </div>
+<script>
+    $('#datetimepicker4').datetimepicker();  //日期插件
+</script>
 <script>
     $(".close").click(function(){
         $("#id_alert").fadeOut();
