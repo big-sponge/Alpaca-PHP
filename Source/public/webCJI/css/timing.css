@@ -160,7 +160,6 @@ td{
 .alert_cont{
     width:600px;
     background-color:#fff;
-    mso-border-shadow: 10px red;
     z-index: 999;
     position: absolute;
     top:50%;
