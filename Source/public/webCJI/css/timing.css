@@ -24,19 +24,28 @@ body{
     height: 80px;
     padding-top: 60px;
 }
+.time_title_btn{
+    float: right;
+
+}
 .time_btn{
-    width:200px;
+    width:180px;
     height:50px;
-    background-color:#43a5ff;
+    background-color:#46b3ff;
     -webkit-border-radius:10px;
     -moz-border-radius:10px;
     border-radius:10px;
     border:none;
     color:#fff;
-    font-size:18px;
-    display: block;
+    font-size:16px;
     box-shadow:0 2px 4px #216fb8;
     cursor: pointer;
+    margin-left: 10px;
+    vertical-align: bottom;
+}
+.time_btn_samll{
+    width: 110px;
+    height: 40px;
 }
 .time_btn:hover,.time_btn:active{
     background-color:#4f9ded;
@@ -51,7 +60,7 @@ body{
     margin:0 auto;
     background-color:#fff;
     padding-top: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
 }
 .time_tab{
      margin: 0;
@@ -62,10 +71,6 @@ body{
      font-family: "微软雅黑";
      font-size: 14px;
  }
-.m_time_tab{
-    height:800px;
-    overflow: auto;
-}
 td{
     white-space:nowrap;
     -ms-text-overflow: ellipsis;
