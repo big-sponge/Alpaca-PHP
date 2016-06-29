@@ -3,7 +3,7 @@ namespace Alpaca\Worker;
 
 class Daemon
 {
-    private $deamon_json = __DIR__.'\deamon.json';
+    private $deamon_json = __DIR__.'/deamon.json';
     
     private static $instance;
     
