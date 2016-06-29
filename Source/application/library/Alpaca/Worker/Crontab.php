@@ -30,10 +30,13 @@ class Crontab
     //添加定时任务
     public function addTask($task)
     {
+        $result["result_code"] = "1";
+        $result["result_message"] = "添加成功";
+
         $tasks = json_decode(file_get_contents($this->task_json),true);
         $tasks[count($tasks)] = $task;
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
-        return $tasks;
+        return $result;
     }
 
     //编辑定时任务
