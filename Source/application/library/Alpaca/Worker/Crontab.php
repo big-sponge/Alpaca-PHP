@@ -49,12 +49,15 @@ class Crontab
     }
 
     //删除定时任务
-    public function removeTask($index)
+    public function removeTask($data)
     {
+        $result_data["result_code"] = "1";
+        $result_data["result_message"] = "删除任务【".$data->index."】成功";
+        $index = $data->index;
         $tasks = json_decode(file_get_contents($this->task_json));
         array_splice($tasks, $index, 1);
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
-        return $tasks;
+        return $result_data;
     }
 
     //定时任务

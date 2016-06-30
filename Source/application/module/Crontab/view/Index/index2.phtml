@@ -33,7 +33,7 @@
                     <div class="checkbox"></div>
                 </label>
             </td>
-            <td class="delete">删除</td>
+            <td class="delete" onclick="deleteTask({{=key}})">删除</td>
         </tr>
         {{ } }}
     </table>
@@ -42,9 +42,9 @@
     <div class="time_title_box">
         <img src="/webCJI/img/logo.png" class="logo">
         <div class="time_title_btn">
-            <button id="id_time_btn" class="time_btn">创建任务</button>
-            <button id="id_time_btn" class="time_btn time_btn_samll" style="background-color:#4fca72;">开始</button>
-            <button id="id_time_btn" class="time_btn time_btn_samll" style="background-color:#de5f5f;">停止</button>
+            <button id="add_task_btn" class="time_btn">创建任务</button>
+            <button id="cron_tab_status_run" class="time_btn time_btn_samll" style="background-color:#4fca72;">开始</button>
+            <button id="cron_tab_status_stop" class="time_btn time_btn_samll" style="background-color:#de5f5f;">停止</button>
         </div>
     </div>
 </div>
@@ -95,6 +95,12 @@
                         <input class="choose" type="text" id="endTime" />
                     </div>
                 </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">ACTION：</div>
+                    <div class="m_word">
+                        <input class="choose" type="text" id="action" placeholder="/crontab/index/job" />
+                    </div>
+                </div>
                 <div class="alert_btn_box">
                     <button class="sure_btn" id="id_sure_btn">确定</button>
                     <button class="close">取消</button>
@@ -121,7 +127,8 @@
         $(this).css({"background-color":"#43a5ff","color":"#fff"});
 
     });
-    $("#id_time_btn").click(function(){
+    $("#add_task_btn").click(function(){
+        changeType();
         $("#mask").show();
         $(".title_word").html("创建任务")
         $("#id_alert").fadeIn();
@@ -180,14 +187,15 @@
 
     function addTask(){
         var json={
-            "NAME":"task",
+            "NAME":$("#name").val(),
+            "TYPE":$("#taskType").val(),
+            "INTERVAL":$("#interval").val(),//秒为单位
+            "BEGIN_TIME":$("#startTime").val(),
+            "END_TIME":$("#endTime").val(),
+            "ACTION":$("#action").val(),// /crontab/index/job
             "STATUS":"1",
-            "TYPE":"2",
-            "INTERVAL":"+10 second",//秒为单位
-            "BEGIN_TIME":"2016-06-29 17:00:00",
             "NEXT_TIME":"",
-            "LAST_TIME":"",
-            "ACTION":"/crontab/index/job"
+            "LAST_TIME":""
         };
         $.ajax({
             method: "POST",
@@ -216,20 +224,13 @@
         });
     }
 
-    function deleteTask(){
+    function deleteTask(key){
         var json={
-            "NAME":"task",
-            "STATUS":"1",
-            "TYPE":"2",
-            "INTERVAL":"+10 second",//秒为单位
-            "BEGIN_TIME":"2016-06-29 17:00:00",
-            "NEXT_TIME":"",
-            "LAST_TIME":"",
-            "ACTION":"/crontab/index/job"
+            "index":key
         };
         $.ajax({
             method: "POST",
-            url: "/crontab/index/addtask",
+            url: "/crontab/index/removetask",
             data:JSON.stringify(json),
             timeout: 20000,
             beforeSend: function () {
@@ -238,8 +239,6 @@
                 var code = data.result_code;
                 var msg = data.result_message;
                 if(code == 1){
-                    $("#id_alert").fadeOut();
-                    $("#mask").hide();
                     //刷新task列表
                     loadTaskList();
                 }else{
@@ -254,7 +253,6 @@
         });
     }
 
-    
 </script>
 </body>
 </html>
