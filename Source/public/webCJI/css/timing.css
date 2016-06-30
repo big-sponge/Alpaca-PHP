@@ -61,14 +61,14 @@ body{
     color:#fff;
     font-size: 14px;
 }
-.time_btn_samll:hover{
+.time_btn_samll:active{
     opacity: 0.8;
 }
 .light_box{
     display: inline-block;
     vertical-align: middle;
     margin-right: 20px;
-    cursor: not-allowed;
+    cursor: default;
 }
 .small_light{
     width:14px;

@@ -135,6 +135,9 @@
     $("#endTime").datetimepicker();
 </script>
 <script>
+
+    var g_isStart = 0; //0 - 未启动 ， 1-启动
+
     $(".close").click(function(){
         $("#id_alert").fadeOut();
         $("#mask").hide();
@@ -160,6 +163,42 @@
         addTask();
     });
 
+    $("#system_switch").click(function(){
+    	system_switch();
+    });
+
+    function system_switch(){
+    	var url = '';     
+    	if(g_isStart == 0){
+        	//没有启动 , 点击后启动
+    		url = "/crontab/index/start";
+        }else if(g_isStart == 1){
+            //启动状态, 点击后停止
+        	url = "/crontab/index/stop";
+        }else{
+            return;
+        }
+
+   	    $.ajax({
+         method: "POST",
+         url: url,
+         data:'',
+         timeout: 20000,
+         beforeSend: function () {
+         },
+         success: function (data) {
+             start();
+         },
+         complete: function () {
+         },
+         error: function () {
+             alert("请求出错了,请稍候再试");
+         }
+        });
+           
+    };
+    
+    
     function changeType(){
         if($("#cronTabType").val() == "1"){
             $("#intervalDiv").css("display", "none");
@@ -209,10 +248,15 @@
     }
 
     $().ready(function () {
-        loadTaskList();
-        getStatus();
+    	start();
     });
 
+    function start(){
+        loadTaskList();
+        getStatus();
+    };
+
+    
     function getStatus(){
         $.ajax({
             method: "POST",
@@ -226,14 +270,20 @@
                 var x = data.code;
                 //data.code=1001   未启动
                 //data.code=1000   启动   其他是系统错误
+
+                
                 if(x==1001){
+                	g_isStart = 0;
                     $("#system_switch").removeClass("time_btn_red");
-                    $("#system_switch").val("启动");
+                    $("#system_switch").html("启动");
                     $(".small_light").removeClass("small_light_full");
                     $("#id_light_tip").html("未运行");//启动按钮变灰
                 }else if(x==1000){
+
+                	g_isStart = 1;
+                    
                     $("#system_switch").addClass("time_btn_red");
-                    $("#system_switch").val("停止");
+                    $("#system_switch").html("停止");
                     $(".small_light").addClass("small_light_full");
                     $("#id_light_tip").html("运行中");//启动按钮变灰
                 }else{
@@ -314,7 +364,7 @@
                     $("#id_alert").fadeOut();
                     $("#mask").hide();
                     //刷新task列表
-                    loadTaskList();
+                    start();
                 }else{
                     alert(msg);
                 }
