@@ -32,9 +32,14 @@
             <td>{{=it[key].END_TIME}}</td>
             <td>{{=it[key].ACTION}}</td>
             <td>
-                <label class="label_switch">
-                    <input type="checkbox" class="chooser">
-                    <div class="checkbox"></div>
+                <label class="label_switch" id="status_switch">
+                    {{? it[key].STATUS == 1 }}
+                    <input type="checkbox" class="chooser" onchange="statusChange(this, {{=key}})">
+                    <div class="checkbox bg_checkbox change move" id="statusDiv"></div>
+                    {{??}}
+                    <input type="checkbox" class="chooser" checked onchange="statusChange(this, {{=key}})">
+                    <div class="checkbox" id="statusDiv"></div>
+                    {{?}}
                 </label>
             </td>
             <td class="delete" onclick="deleteTask({{=key}})">删除</td>
@@ -152,9 +157,46 @@
         }
     }
 
+    function statusChange(chooser, key){
+        var open;
+        //按钮开关事件
+        console.log(chooser.checked);
+        if(chooser.checked){
+            open = false;
+            chooser.nextElementSibling.classList.remove("bg_checkbox", "change", "move");
+        } else {
+            open = true;
+            chooser.nextElementSibling.classList.add("bg_checkbox", "change", "move");
+        }
+        var json = {
+            "index" : key,
+            "status" : open?1:0
+        };
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/changetaskstatus",
+            data:JSON.stringify(json),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                if(code != 1){
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
     $().ready(function () {
         loadTaskList();
-        getStatus();      
+        getStatus();
     });
 
     function getStatus(){
@@ -188,16 +230,14 @@
                 var cronTabCellText = doT.template($("#cronTabCell").text());
                 $("#cronTabList").html(cronTabCellText(data));
                 console.log(data);
-
-                //按钮开关事件
-                $(".chooser").change(function(){
-                    console.log($(this)[0].checked);
-                    if($(this)[0].checked){
-                        $(this).next(".checkbox").addClass("bg_checkbox change move ");
-                    }else{
-                        $(this).next(".checkbox").removeClass("bg_checkbox change move ");
-                    }
-                });
+//                $(".chooser").change(function(){
+//                    console.log($(this)[0].checked);
+//                    if($(this)[0].checked){
+//                        $(this).next(".checkbox").addClass("bg_checkbox change move ");
+//                    }else{
+//                        $(this).next(".checkbox").removeClass("bg_checkbox change move ");
+//                    }
+//                });
             },
             complete: function () {
             },

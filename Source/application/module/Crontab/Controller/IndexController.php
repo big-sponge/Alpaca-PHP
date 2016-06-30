@@ -127,6 +127,12 @@ class IndexController
         var_dump($result);
     }
 
+    public function changeTaskStatusAction()
+    {
+        $result = Crontab::crontab()->editTaskStatus($this->request_data->index, $this->request_data->status);
+        return View::json($result);
+    }
+
     //删除定时任务
     public function removeTaskAction()
     {
