@@ -272,7 +272,7 @@
                 if(x==1001){
                 	g_isStart = 0;
                     $("#system_switch").removeClass("time_btn_red");
-                    $("#system_switch").val("启动");
+                    $("#system_switch").html("启动");
                     $(".small_light").removeClass("small_light_full");
                     $("#id_light_tip").html("未运行");//启动按钮变灰
                 }else if(x==1000){
@@ -280,7 +280,7 @@
                 	g_isStart = 1;
                     
                     $("#system_switch").addClass("time_btn_red");
-                    $("#system_switch").val("停止");
+                    $("#system_switch").html("停止");
                     $(".small_light").addClass("small_light_full");
                     $("#id_light_tip").html("运行中");//启动按钮变灰
                 }else{
