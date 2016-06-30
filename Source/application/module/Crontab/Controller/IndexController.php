@@ -129,8 +129,21 @@ class IndexController
     //删除定时任务
     public function removeTaskAction()
     {
+        $result = [];
+        if(empty($this->params[0]))
+        {
+            $result['code'] = '0';
+            $result['message'] = "请指定要删除任务的ID";
+            return View::json($result);
+        }
+        $id  = $this->params[0];
+        
+        
         $result = Crontab::crontab()->removeTask(0);
-        var_dump($result);
+        
+        $result['code'] = '1';
+        $result['message'] = "任务[{$id}]删除。";
+        return View::json($result);
     }
     
     //定时任务
