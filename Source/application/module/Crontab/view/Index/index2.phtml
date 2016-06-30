@@ -4,7 +4,7 @@
     <link href="/webCJI/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <script src="/webCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="/webCJI/js/jquery.datetimepicker.js" type="text/javascript"></script>
-    <script src="/webCJI/dotjs/dot.js" type="text/javascript"></script>
+    <script src="/webCJI/dotjs/dot.js" type="text/javascript"></script>    
 </head>
 <body>
 <script id="cronTabCell" type="text/x-dot-template">
@@ -156,7 +156,7 @@
             "NAME":"task",
             "STATUS":"1",
             "TYPE":"2",
-            "INTERVAL":"10",//秒为单位
+            "INTERVAL":"+10 second",//秒为单位
             "BEGIN_TIME":"2016-06-29 17:00:00",
             "NEXT_TIME":"",
             "LAST_TIME":"",
@@ -188,6 +188,46 @@
             }
         });
     }
+
+    function deleteTask(){
+        var json={
+            "NAME":"task",
+            "STATUS":"1",
+            "TYPE":"2",
+            "INTERVAL":"+10 second",//秒为单位
+            "BEGIN_TIME":"2016-06-29 17:00:00",
+            "NEXT_TIME":"",
+            "LAST_TIME":"",
+            "ACTION":"/crontab/index/job"
+        };
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/addtask",
+            data:JSON.stringify(json),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                if(code == 1){
+                    $("#id_alert").fadeOut();
+                    $("#mask").hide();
+                    //刷新task列表
+                    loadTaskList();
+                }else{
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
+    
 </script>
 </body>
 </html>
