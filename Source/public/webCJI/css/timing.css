@@ -1,3 +1,6 @@
+html{
+    font-size:82px;!important;
+}
 *{
     font-family:"微软雅黑";
     font-weight:500;
@@ -240,3 +243,77 @@ td{
     border:none;
     color:#fff;
 }
+/*按钮开关样式-----开始*/
+.label_switch{
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.6rem;
+    height: 0.34rem;
+}
+.label_switch input{
+    width:0.2rem;
+    display: none;
+}
+.checkbox{
+    width:0.6rem;
+    height:0.34rem;
+    background-color:#e5e5e5;
+    -webkit-border-radius:0.34rem;
+    -moz-border-radius:0.34rem;
+    border-radius:0.34rem;
+    z-index:0;
+    margin:0;
+    padding:0;
+    border:none;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition-duration: 300ms;
+    -moz-transition-duration: 300ms;
+    -ms-transition-duration: 300ms;
+    -o-transition-duration: 300ms;
+    transition-duration: 300ms;
+}
+.bg_checkbox{
+    background-color:#4cd964;
+}
+.checkbox:before{
+    content:"";
+    width: 0.54rem;
+    height: 0.28rem;
+    background-color: #fff;
+    border: 1px solid #fff;
+    position: absolute;
+    z-index:1;
+    top: 0.02rem;
+    left: 0.02rem;
+    border-radius: 0.5rem;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.checkbox.change:before{
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.checkbox:after{
+    content:"";
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 0.32rem;
+    box-shadow: 0 0.02rem 0.06rem rgba(0, 0, 0, 0.4);
+    position: absolute;
+    background-color: #fff;
+    top: 0.02rem;
+    left: 0.02rem;
+    z-index:99;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+}
+.checkbox.move:after{
+    -webkit-transform: translateX(0.28rem);
+    transform: translateX(0.28rem);
+}
+/*按钮开关样式-----结束*/
