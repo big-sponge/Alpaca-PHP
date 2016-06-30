@@ -116,22 +116,30 @@ class IndexController
     public function editTaskAction()
     {
         $task= array(
-            'NAME'=>'EDIT',                             //NAME
+            'NAME'=>$this->request_data->NAME,                             //NAME
             'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
-            'TYPE'=>'2',                            // 1-ONCE,      2-LOOP
-            'INTERVAL'=>'+30 second',                //year（年），month（月），hour（小时）minute（分），second（秒）
-            'BEGIN_TIME'=>date("Y-m-d H:i:s",time()),   //开始时间
+            'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
+            'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
+            'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间
             'NEXT_TIME'=>'',       //下次执行时间
             'LAST_TIME'=>'',       //上次执行时间
-            'ACTION'=>'/crontab/index/job',   //执行的ACTION
+            'ACTION'=>$this->request_data->ACTION,   //执行的ACTION
+            'END_TIME'=>$this->request_data->END_TIME,   //执行的ACTION
         );
-        $result = Crontab::crontab()->editTask(1,$task);
-        var_dump($result);
+        $result = Crontab::crontab()->editTask($this->request_data->INDEX,$task);
+        return View::json($result);
     }
 
     public function changeTaskStatusAction()
     {
         $result = Crontab::crontab()->editTaskStatus($this->request_data->index, $this->request_data->status);
+        return View::json($result);
+    }
+
+    public function getIndexTaskAction()
+    {
+        $index = $this->request_data->index;
+        $result = Crontab::crontab()->getIndexTask($index);
         return View::json($result);
     }
 

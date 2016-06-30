@@ -20,7 +20,7 @@
             <td>删除</td>
         </tr>
         {{ for(var key in it) { }}
-        <tr class="list_con">
+        <tr class="list_con" onclick="editTask(this, {{=key}})">
             <td>{{=it[key].NAME}}</td>
             {{? it[key].TYPE == 1 }}
                 <td>执行一次</td>
@@ -126,6 +126,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="commitIndex">
     </div>
     <div class="alert_body" id="mask"></div>
 </div>
@@ -141,21 +142,23 @@
         $("#id_alert").fadeOut();
         $("#mask").hide();
     });
-    $(".list_con").click(function(){
-        $("#mask").show();
-        $(".title_word").html("修改任务")
-        $("#id_alert").fadeIn();
-        $(".list_con").css({"background-color":"#fff","color":"#666"});
-        $(this).css({"background-color":"#43a5ff","color":"#fff"});
 
-    });
     $("#add_task_btn").click(function(){
+        $("#name").val("");
+        $("#cronTabType").val("1");
+        $("#startTime").val("");
+        $("#endTime").val("");
+        $("#action").val("");
+        $("#intervalNum").val("");
+        $("#intervalType").val("year");
         changeType();
         $("#mask").show();
         $(".title_word").html("创建任务")
         $("#id_alert").fadeIn();
+
+        $("#commitIndex").val("-999");
     });
-    
+
     $("#id_sure_btn").click(function(){
         addTask();
     });
@@ -225,7 +228,7 @@
         }
         var json = {
             "index" : key,
-            "status" : open?1:0
+            "status" : open?1:2
         };
         $.ajax({
             method: "POST",
@@ -331,8 +334,9 @@
         if($("#cronTabType").val() != "1"){
             interval = "+" + $("#intervalNum").val() + " " + $("#intervalType").val()
         }
-
+        var index = $("#commitIndex").val();
         var json={
+            "INDEX":index,
             "NAME":$("#name").val(),
             "TASK_TYPE":$("#cronTabType").val(),
             "INTERVAL":interval,//秒为单位
@@ -343,9 +347,14 @@
             "NEXT_TIME":"",
             "LAST_TIME":""
         };
+
+        var url = "/crontab/index/addtask";
+        if(index != -999){
+            url = "/crontab/index/edittask";
+        }
         $.ajax({
             method: "POST",
-            url: "/crontab/index/addtask",
+            url: url,
             data:JSON.stringify(json),
             timeout: 20000,
             beforeSend: function () {
@@ -397,6 +406,96 @@
                 alert("请求出错了,请稍候再试");
             }
         });
+    }
+
+    function editTask(tr, index){
+        var indexJson = {
+            "index":index
+        };
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/getindextask",
+            data:JSON.stringify(indexJson),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                var value = data.result_data;
+                if(code == 1){
+                    //修改弹出页面数值
+                    var interval = value.INTERVAL;
+                    if(interval != null && interval != ""){
+                        var temp = interval.split(" ");
+                        var iNumTemp = temp[0];
+                        var iType = temp[1];
+                        var iNum = iNumTemp.replace("+", "");
+                        $("#intervalNum").val(iNum);
+                        $("#intervalType").val(iType);
+                    }
+                    $("#name").val(value.NAME);
+                    $("#cronTabType").val(value.TYPE);
+                    $("#startTime").val(value.BEGIN_TIME);
+                    $("#endTime").val(value.END_TIME);
+                    $("#action").val(value.ACTION);
+
+                    changeType();
+                    //显示
+                    $("#mask").show();
+                    $(".title_word").html("修改任务");
+                    $("#id_alert").fadeIn();
+                    $(".list_con").css({"background-color":"#fff","color":"#666"});
+                    tr.style.backgroundColor = "#43a5ff";
+                    tr.style.color = "#fff";
+
+                    $("#commitIndex").val(index);
+                }else{
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
+    function timeToStr(interval, intervalTd){
+        var result;
+        if(interval == null || interval == ""){
+            result = "";
+        }
+        else {
+            var temp = interval.split(" ");
+            var iNumTemp = temp[0];
+            var iType = temp[1];
+            var iNum = iNumTemp.replace("+", "");
+            var str = "";
+            switch (iType){
+                case "year":
+                    str = "（年）";
+                    break;
+                case "month":
+                    str = "（月）";
+                    break;
+                case "hour":
+                    str = "（小时）";
+                    break;
+                case "minute":
+                    str = "（分）";
+                    break;
+                case "second":
+                    str = "（秒）";
+                    break;
+                default:
+                    break;
+            }
+            result = iNum + str;
+        }
+        intervalTd.html(result);
+        console.log(result);
     }
 
 </script>
