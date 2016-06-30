@@ -1,1 +1,1 @@
-[]
+[{"NAME":"task","STATUS":"1","TYPE":"2","INTERVAL":"10","BEGIN_TIME":"2016-06-29 17:00:00","NEXT_TIME":"","LAST_TIME":"","ACTION":"\/crontab\/index\/job"}]
