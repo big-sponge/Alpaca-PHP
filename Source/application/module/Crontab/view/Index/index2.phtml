@@ -150,8 +150,28 @@
 
     $().ready(function () {
         loadTaskList();
+        getStatus();      
     });
 
+    function getStatus(){
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/status",
+            data:"",
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+            	console.log(data);
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+    
     function loadTaskList(){
         $.ajax({
             method: "POST",
@@ -181,8 +201,6 @@
                 alert("请求出错了,请稍候再试");
             }
         });
-
-
     }
 
     function addTask(){

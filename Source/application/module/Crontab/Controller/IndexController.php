@@ -51,7 +51,8 @@ class IndexController
     
     public function statusAction()
     {
-        Daemon::deamon()->status();
+        $result = Daemon::deamon()->status();
+        return View::json($result);
     }
                
     public function stopAction()
