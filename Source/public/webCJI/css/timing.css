@@ -92,7 +92,7 @@ body{
     color:#fff;
 }
 .create_task{
-    margin-left:50px;
+    margin-left:70px;
 }
 .create_task:hover,.create_task:active{
     opacity: 0.8;
