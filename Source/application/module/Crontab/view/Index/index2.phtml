@@ -40,19 +40,22 @@
 </script>
 <div class="time_title">
     <div class="time_title_box">
-        <img src="/webCJI/img/logo.png" class="logo">
-        <div class="time_title_btn">
-            <button id="id_time_btn" class="time_btn">创建任务</button>
-            <button id="id_time_btn" class="time_btn time_btn_samll">开始</button>
-            <button id="id_time_btn" class="time_btn time_btn_samll time_btn_red">停止</button>
+        <div class="time_title_left">
+            <img src="/webCJI/img/logo.png" class="logo">
+            <button id="id_time_btn" class="time_btn create_task">创建任务</button>
+        </div>
+        <div class="time_title_right">
+            <div class="light_box">
+                <i class="small_light"></i>
+                <span class="light_tip" id="id_light_tip">未运行</span>
+            </div>
+            <button id="system_switch" class="time_btn time_btn_samll">启动</button>
         </div>
     </div>
 </div>
 <div class="time_content">
     <div class="time_list">
-        <div class="time_margin" id="cronTabList">
-
-        </div>
+        <div class="time_margin" id="cronTabList"></div>
     </div>
     <!--弹出框-->
     <div id="id_alert" class="alert_cont" style="margin-left:-300px; margin-top:-200px;">
@@ -163,12 +166,22 @@
             },
             success: function (data) {
             	console.log(data);
+                var x = data.code;
                 //data.code=1001   未启动
                 //data.code=1000   启动   其他是系统错误
-                if()
-
-
-
+                if(x==1001){
+                    $("#system_switch").removeClass("time_btn_red");
+                    $("#system_switch").val("启动");
+                    $(".small_light").removeClass("small_light_full");
+                    $("#id_light_tip").html("未运行");//启动按钮变灰
+                }else if(x==1000){
+                    $("#system_switch").addClass("time_btn_red");
+                    $("#system_switch").val("停止");
+                    $(".small_light").addClass("small_light_full");
+                    $("#id_light_tip").html("运行中");//启动按钮变灰
+                }else{
+                    alert("系统错误！");
+                }
             },
             complete: function () {
             },

@@ -4,6 +4,7 @@ html{
 *{
     font-family:"微软雅黑";
     font-weight:500;
+    font-size:14px;
 }
 body{
     margin:0;
@@ -25,15 +26,18 @@ body{
     margin-right:auto;
     width:1200px;
     overflow: hidden;
+    padding-bottom: 20px;
     padding-top: 20px;
-    padding-bottom: 20px
 }
 .logo{
+    vertical-align: bottom;
+}
+.time_title_left{
     float: left;
 }
-.time_title_btn{
+.time_title_right{
     float: right;
-    margin-top: 10px;
+    margin-top: 16px;
 }
 .time_btn{
     width:180px;
@@ -48,24 +52,50 @@ body{
     box-shadow:0 2px 4px #216fb8;
     cursor: pointer;
     margin-left: 10px;
-    vertical-align: bottom;
+    vertical-align: middle;
 }
 .time_btn_samll{
-    width: 110px;
+    width: 80px;
     height: 40px;
-    background-color:#8ea7bf;
-    color:#d1d1d1;
+    background-color:#4fca72;
+    color:#fff;
+    font-size: 14px;
+}
+.time_btn_samll:hover{
+    opacity: 0.8;
+}
+.light_box{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    cursor: not-allowed;
+}
+.small_light{
+    width:14px;
+    height:14px;
+    border-radius: 14px;
+    background-color:#b1b1b1;
+    display: inline-block;
+    vertical-align: middle;
+}
+.small_light_full{
+    background-color:#54ff00;
+}
+.light_tip{
+    color:#dedede;
+    margin-left:6px;
+    vertical-align: middle;
+    font-size: 14px;
 }
 .time_btn_red{
     background-color:#de5f5f;
     color:#fff;
 }
-.time_btn_green{
-    background-color:#4fca72;
-    color:#fff;
+.create_task{
+    margin-left:50px;
 }
-.time_btn:hover,.time_btn:active{
-    background-color:#4f9ded;
+.create_task:hover,.create_task:active{
+    opacity: 0.8;
 }
 .time_content{
     width:100%;
