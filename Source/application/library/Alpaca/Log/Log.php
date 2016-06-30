@@ -3,34 +3,47 @@ namespace Alpaca\Log;
 
 class Log
 {
-    static $basePath=APP_PATH."/logs/";
-    
+    static $basePath = APP_PATH . "/logs/";
+
     public static function add($string)
-    {   
-        $date = date("Y-m-d H:i:s",time());        
-        $logStr = "{$date} info: {$string} \n";    
-        $logFileName = date("Y-m-d",time()).".log";          
-        file_put_contents(self::$basePath.$logFileName,$logStr,FILE_APPEND|LOCK_EX);
+    {
+        $logger = new \Zend\Log\Logger();
+        $date = date("Y-m-d H:i:s", time());
+        $logFileName = date("Y-m-d", time()) . ".log";
+        $writer = new \Zend\Log\Writer\Stream(self::$basePath . $logFileName);
+        $logger->addWriter($writer);
+        $logger->info($string);
     }
-    
+
+    public static function addName($string, $name)
+    {
+        $logger = new \Zend\Log\Logger();
+        $date = date("Y-m-d H:i:s", time());
+        $logFileName = date("Y-m-d", time()) . $name . ".log";
+        $writer = new \Zend\Log\Writer\Stream(self::$basePath . $logFileName);
+        $logger->addWriter($writer);
+        $logger->info($string);
+    }
+
     public static function error($string)
     {
-        if (!empty($_SERVER['APPLICATION_ENV']) && $_SERVER['APPLICATION_ENV'] == 'development') {
-            $date = date("Y-m-d H:i:s",time());
-            $logStr = "{$date} info: {$string} \n";
-            $logFileName = date("Y-m-d",time())."_error.log";
-            file_put_contents(self::$basePath.$logFileName,$logStr,FILE_APPEND|LOCK_EX);
-        }
+        $logger = new \Zend\Log\Logger();
+        $date = date("Y-m-d H:i:s", time());
+        $logFileName = date("Y-m-d", time()) . "_error" . ".log";
+        $writer = new \Zend\Log\Writer\Stream(self::$basePath . $logFileName);
+        $logger->addWriter($writer);
+        $logger->info($string);
     }
-    
+
     public static function debug($string)
     {
-        if (!empty($_SERVER['APPLICATION_ENV']) && $_SERVER['APPLICATION_ENV'] == 'development') {
-            $date = date("Y-m-d H:i:s",time());
-            $logStr = "{$date} info: {$string} \n";
-            $logFileName = date("Y-m-d",time())."_debug.log";
-            file_put_contents(self::$basePath.$logFileName,$logStr,FILE_APPEND|LOCK_EX);
+        if ($_SERVER['APPLICATION_ENV'] == 'development') {
+            $logger = new \Zend\Log\Logger();
+            $date = date("Y-m-d H:i:s", time());
+            $logFileName = date("Y-m-d", time()) . "_debug" . ".log";
+            $writer = new \Zend\Log\Writer\Stream(self::$basePath . $logFileName);
+            $logger->addWriter($writer);
+            $logger->debug($string);
         }
     }
-    
 }

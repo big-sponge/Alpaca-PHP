@@ -131,7 +131,7 @@ class Router
         }
 
         if (empty($segments[3])) {
-            array_splice($segments, 3, 0, $this->DefaultController);
+            array_splice($segments, 3, 0, $this->DefaultAction);
         }
 
         $this->Params = array_slice($segments, 4);
