@@ -137,12 +137,12 @@ class IndexController
             return View::json($result);
         }
         $id  = $this->params[0];
-        
-        
-        $result = Crontab::crontab()->removeTask(0);
+               
+        $deleteResult = Crontab::crontab()->removeTask($id);
         
         $result['code'] = '1';
         $result['message'] = "任务[{$id}]删除。";
+        $result['data'] = $deleteResult;
         return View::json($result);
     }
     
