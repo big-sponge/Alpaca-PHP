@@ -27,7 +27,12 @@
             <td>{{=it[key].BEGIN_TIME}}</td>
             <td>{{=it[key].NEXT_TIME}}</td>
             <td>{{=it[key].LAST_TIME}}</td>
-            <td>{{=it[key].STATUS}}</td>
+            <td>
+                <label class="label_switch">
+                    <input type="checkbox" class="chooser">
+                    <div class="checkbox"></div>
+                </label>
+            </td>
             <td class="delete">删除</td>
         </tr>
         {{ } }}
@@ -142,6 +147,16 @@
                 var cronTabCellText = doT.template($("#cronTabCell").text());
                 $("#cronTabList").html(cronTabCellText(data));
                 console.log(data);
+
+                //按钮开关事件
+                $(".chooser").change(function(){
+                    console.log($(this)[0].checked);
+                    if($(this)[0].checked){
+                        $(this).next(".checkbox").addClass("bg_checkbox change move ");
+                    }else{
+                        $(this).next(".checkbox").removeClass("bg_checkbox change move ");
+                    }
+                });
             },
             complete: function () {
             },
@@ -149,6 +164,8 @@
                 alert("请求出错了,请稍候再试");
             }
         });
+
+
     }
 
     function addTask(){
