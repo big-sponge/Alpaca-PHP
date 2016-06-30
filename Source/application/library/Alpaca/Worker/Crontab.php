@@ -41,10 +41,12 @@ class Crontab
     //编辑定时任务
     public function editTask($index,$task)
     {
+        $result["result_code"] = "1";
+        $result["result_message"] = "修改成功";
         $tasks = json_decode(file_get_contents($this->task_json));
         $tasks[$index] = $task;
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
-        return $tasks;
+        return $result;
     }
 
     //编辑定时任务状态
@@ -55,6 +57,15 @@ class Crontab
         $tasks = json_decode(file_get_contents($this->task_json));
         $tasks[$index]->STATUS = $status;
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
+        return $result_data;
+    }
+
+    public function getIndexTask($index)
+    {
+        $result_data["result_code"] = "1";
+        $result_data["result_message"] = "获取任务成功【".$index."】";
+        $tasks = json_decode(file_get_contents($this->task_json));
+        $result_data["result_data"] = $tasks[$index];
         return $result_data;
     }
 
