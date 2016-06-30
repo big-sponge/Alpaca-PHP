@@ -61,7 +61,7 @@ body{
     color:#fff;
     font-size: 14px;
 }
-.time_btn_samll:hover{
+.time_btn_samll:active{
     opacity: 0.8;
 }
 .light_box{
