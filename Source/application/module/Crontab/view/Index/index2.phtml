@@ -22,11 +22,15 @@
         {{ for(var key in it) { }}
         <tr class="list_con">
             <td>{{=it[key].NAME}}</td>
-            <td>{{=it[key].TYPE}}</td>
+            {{? it[key].TYPE == 1 }}
+                <td>执行一次</td>
+            {{??}}
+                <td>循环执行</td>
+            {{?}}
             <td>{{=it[key].INTERVAL}}</td>
             <td>{{=it[key].BEGIN_TIME}}</td>
-            <td>{{=it[key].NEXT_TIME}}</td>
-            <td>{{=it[key].LAST_TIME}}</td>
+            <td>{{=it[key].END_TIME}}</td>
+            <td>{{=it[key].ACTION}}</td>
             <td>
                 <label class="label_switch">
                     <input type="checkbox" class="chooser">
@@ -112,7 +116,7 @@
 </div>
 <script>
     $('#startTime').datetimepicker();  //日期插件
-    $("endTime").datetimepicker();
+    $("#endTime").datetimepicker();
 </script>
 <script>
     $(".close").click(function(){
@@ -188,7 +192,7 @@
     function addTask(){
         var json={
             "NAME":$("#name").val(),
-            "TYPE":$("#taskType").val(),
+            "TASK_TYPE":$("#cronTabType").val(),
             "INTERVAL":$("#interval").val(),//秒为单位
             "BEGIN_TIME":$("#startTime").val(),
             "END_TIME":$("#endTime").val(),

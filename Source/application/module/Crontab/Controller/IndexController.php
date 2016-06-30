@@ -94,17 +94,18 @@ class IndexController
     public function addTaskAction()
     {
          $task= array(
-         'NAME'=>'',                             //NAME
+         'NAME'=>$this->request_data->NAME,                             //NAME
          'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
-         'TYPE'=>'2',                            // 1-ONCE,      2-LOOP
-         'INTERVAL'=>'+10 second',                //year（年），month（月），hour（小时）minute（分），second（秒）
-         'BEGIN_TIME'=>date("Y-m-d H:i:s",time()),   //开始时间
+         'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
+         'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
+         'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间
          'NEXT_TIME'=>'',       //下次执行时间
          'LAST_TIME'=>'',       //上次执行时间
-         'ACTION'=>'/crontab/index/job',   //执行的ACTION
+         'ACTION'=>$this->request_data->ACTION,   //执行的ACTION
+         'END_TIME'=>$this->request_data->END_TIME,   //执行的ACTION
         );
 
-        $result = Crontab::crontab()->addTask($this->request_data);
+        $result = Crontab::crontab()->addTask($task);
         return View::json($result);
     }
     
