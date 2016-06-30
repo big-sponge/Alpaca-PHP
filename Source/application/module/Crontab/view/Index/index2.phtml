@@ -123,11 +123,14 @@
         $("#id_alert").fadeIn();
     });
     $("#id_sure_btn").click(function(){
-        $("#id_alert").fadeOut();
-        $("#mask").hide();
+        addTask();
     });
 
     $().ready(function () {
+        loadTaskList();
+    });
+
+    function loadTaskList(){
         $.ajax({
             method: "POST",
             url: "/crontab/index/listtask",
@@ -146,7 +149,45 @@
                 alert("请求出错了,请稍候再试");
             }
         });
-    });
+    }
+
+    function addTask(){
+        var json={
+            "NAME":"task",
+            "STATUS":"1",
+            "TYPE":"2",
+            "INTERVAL":"10",//秒为单位
+            "BEGIN_TIME":"2016-06-29 17:00:00",
+            "NEXT_TIME":"",
+            "LAST_TIME":"",
+            "ACTION":"/crontab/index/job"
+        };
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/addtask",
+            data:JSON.stringify(json),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                if(code == 1){
+                    $("#id_alert").fadeOut();
+                    $("#mask").hide();
+                    //刷新task列表
+                    loadTaskList();
+                }else{
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
 </script>
 </body>
 </html>

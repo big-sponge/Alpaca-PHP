@@ -10,10 +10,36 @@ use Alpaca\Worker\Daemon;
 class IndexController
 {    
     private $crontab_json = __DIR__.'\crontab.json';
+
+    protected $request_str = '';
+
+    protected $request_data = [];
+
+    protected $return_data = [];
     
     public function init()
     {
-        
+        //过滤输入数据
+        $this->dataFilter();
+    }
+
+    //处理POST数据 - JSON
+    private function dataFilter()
+    {
+        $this->request_str = file_get_contents("php://input");
+        $this->request_data = new \stdClass();
+
+        if(empty($this->request_str)){
+            return;
+        }
+
+        $tempClass=json_decode($this->request_str);
+        if(!empty($tempClass)){
+            foreach ($tempClass as $name => $value){
+                $this->request_data->$name = addslashes(htmlspecialchars($value));
+            }
+        }
+        $this->request_str = addslashes(htmlspecialchars($this->request_str));
     }
     
     //index
@@ -77,10 +103,10 @@ class IndexController
          'NEXT_TIME'=>'',       //下次执行时间
          'LAST_TIME'=>'',       //上次执行时间
          'ACTION'=>'/crontab/index/job',   //执行的ACTION
-        ); 
-        
-        $result = Crontab::crontab()->addTask($task);
-        var_dump($result);
+        );
+
+        $result = Crontab::crontab()->addTask($this->request_data);
+        return View::json($result);
     }
     
     //编辑定时任务
