@@ -51,7 +51,8 @@ class IndexController
     
     public function statusAction()
     {
-        Daemon::deamon()->status();
+        $result = Daemon::deamon()->status();
+        return View::json($result);
     }
                
     public function stopAction()
@@ -80,7 +81,6 @@ class IndexController
     public function listTaskAction()
     {
         $result = Crontab::crontab()->listTask();
-//        var_dump($result);
         return View::json($result);
     }
 
@@ -129,20 +129,7 @@ class IndexController
     //删除定时任务
     public function removeTaskAction()
     {
-        $result = [];
-        if(empty($this->params[0]))
-        {
-            $result['code'] = '0';
-            $result['message'] = "请指定要删除任务的ID";
-            return View::json($result);
-        }
-        $id  = $this->params[0];
-        
-        
-        $result = Crontab::crontab()->removeTask(0);
-        
-        $result['code'] = '1';
-        $result['message'] = "任务[{$id}]删除。";
+        $result = Crontab::crontab()->removeTask($this->request_data);
         return View::json($result);
     }
     

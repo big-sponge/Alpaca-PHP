@@ -49,12 +49,15 @@ class Crontab
     }
 
     //删除定时任务
-    public function removeTask($index)
+    public function removeTask($data)
     {
+        $result_data["result_code"] = "1";
+        $result_data["result_message"] = "删除任务【".$data->index."】成功";
+        $index = $data->index;
         $tasks = json_decode(file_get_contents($this->task_json));
         array_splice($tasks, $index, 1);
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
-        return $tasks;
+        return $result_data;
     }
 
     //定时任务
@@ -64,7 +67,7 @@ class Crontab
         if(empty($tasks)){ return ;}
     
         $now = date('Y-m-d H:i:s',time());
-        foreach ($tasks as &$task){   
+        foreach ($tasks as &$task){
             if(empty($task['STATUS']) || empty($task['TYPE'])  || empty($task['BEGIN_TIME']) || empty($task['ACTION']) )
             {
                 continue;
@@ -104,7 +107,7 @@ class Crontab
                 if(empty($task['NEXT_TIME'])){
                     $task['NEXT_TIME'] = $task['BEGIN_TIME'];
                 }
-    
+
                 if(strtotime($now)>=strtotime($task['NEXT_TIME'])){
                     $task['LAST_TIME']= $now;
                     $task['NEXT_TIME']= date('Y-m-d H:i:s',strtotime($task['INTERVAL']) );                    
