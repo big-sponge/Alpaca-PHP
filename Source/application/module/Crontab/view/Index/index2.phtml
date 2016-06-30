@@ -164,8 +164,7 @@
     	system_switch();
     });
 
-    function system_switch(){  
-
+    function system_switch(){
     	var url = '';     
     	if(g_isStart == 0){
         	//没有启动 , 点击后启动
@@ -185,15 +184,14 @@
          beforeSend: function () {
          },
          success: function (data) {
+             start();
          },
          complete: function () {
          },
          error: function () {
              alert("请求出错了,请稍候再试");
          }
-       });
-
-        start();
+        });
            
     };
     
