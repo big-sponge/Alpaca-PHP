@@ -3,8 +3,8 @@ namespace Alpaca\Log;
 
 class Log
 {
-    static $basePath = APP_PATH . "/logs/";
-
+    private static $basePath = APP_PATH . "/logs/";
+        
     public static function add($string)
     {
         $logger = new \Zend\Log\Logger();
