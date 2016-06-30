@@ -153,7 +153,6 @@ class IndexController
     //定时任务
     public function taskAction()
     {
-        Log::add("task ... ");
         $result = Crontab::crontab()->doTask();
         die;
     }
@@ -161,7 +160,7 @@ class IndexController
     //定时任务
     public function jobAction()
     {
-        Log::add("hahah jobs ... ");
+        Log::add("hahah jobs ... jj");
         die();
     }
 }
