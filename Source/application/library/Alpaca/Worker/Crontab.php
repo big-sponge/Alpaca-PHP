@@ -64,7 +64,7 @@ class Crontab
         if(empty($tasks)){ return ;}
     
         $now = date('Y-m-d H:i:s',time());
-        foreach ($tasks as &$task){   
+        foreach ($tasks as &$task){
             if(empty($task['STATUS']) || empty($task['TYPE'])  || empty($task['BEGIN_TIME']) || empty($task['ACTION']) )
             {
                 continue;
@@ -104,7 +104,7 @@ class Crontab
                 if(empty($task['NEXT_TIME'])){
                     $task['NEXT_TIME'] = $task['BEGIN_TIME'];
                 }
-    
+
                 if(strtotime($now)>=strtotime($task['NEXT_TIME'])){
                     $task['LAST_TIME']= $now;
                     $task['NEXT_TIME']= date('Y-m-d H:i:s',strtotime($task['INTERVAL']) );                    
