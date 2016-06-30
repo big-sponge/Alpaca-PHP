@@ -196,6 +196,14 @@ td{
     width:440px;
     height: 36px;
 }
+.interval{
+    width: 100px;
+    height: 36px;
+}
+.intervalType{
+    width: 120px;
+    height: 36px;
+}
 .input{
     padding:0 8px;
 }
