@@ -24,6 +24,12 @@ class Crontab
     public function listTask()
     {
         $tasks = json_decode(file_get_contents($this->task_json));
+        $i = 0;
+        foreach ($tasks as $task)
+        {
+            $tasks[$i]->INTERVAL = $this->timeToStr($tasks[$i]->INTERVAL);
+            $i++;
+        }
         return $tasks;
     }
 
@@ -140,5 +146,38 @@ class Crontab
         
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
         return $tasks;
+    }
+
+    private function timeToStr($interval)
+    {
+        $result = "";
+        if($interval != null && $interval != ""){
+            $temp = explode(" ", $interval);
+            $iNumTemp = $temp[0];
+            $iType = $temp[1];
+            $iNum = str_replace("+", "", $iNumTemp);
+            $str = "";
+            switch ($iType){
+                case "year":
+                    $str = "（年）";
+                    break;
+                case "month":
+                    $str = "（月）";
+                    break;
+                case "hour":
+                    $str = "（小时）";
+                    break;
+                case "minute":
+                    $str = "（分）";
+                    break;
+                case "second":
+                    $str = "（秒）";
+                    break;
+                default:
+                    break;
+            }
+           $result = $iNum. $str;
+        }
+        return $result;
     }
 }
