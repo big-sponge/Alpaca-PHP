@@ -56,27 +56,29 @@ class IndexController
     }
                
     public function stopAction()
-    {
-        Daemon::deamon()->stop();
+    {        
+        $result =  Daemon::deamon()->stop();        
+        return View::json($result);
     }
-    
+        
     public function startAction()
+    {
+        Worker::worker()->action(['REQUEST_URI'=>"/crontab/index/start-daemon"]);
+        $result["result_code"] = "1";
+        $result["result_message"] = "操作成功";
+        return View::json($result);
+    }
+        
+    public function startDaemonAction()
     {
         $events = ['0'=>function(){
             Worker::worker()->action(['REQUEST_URI'=>"/crontab/index/task"]);
         }];
-        
         Daemon::deamon()->setEvents($events);
-
         Daemon::deamon()->start();
+        die;
     }
-        
-    //异步调用
-    public function workerAction()
-    {
-        Worker::worker()->doWorker(['REQUEST_DTAT'=>"ccc",'REQUEST_URI'=>"/crontab/worker/index",]);
-    }
-        
+              
     //查看定时任务
     public function listTaskAction()
     {

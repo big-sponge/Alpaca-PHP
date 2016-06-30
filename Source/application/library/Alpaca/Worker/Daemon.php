@@ -46,7 +46,10 @@ class Daemon
         $data->code="1001";
         $data->message="Stop at:".date("Y-m-d H:i:s" ,time());
         file_put_contents($this->deamon_json,json_encode($data),LOCK_EX);
-        die($data->message);
+        
+        $result["result_code"] = "1";
+        $result["result_message"] = "操作成功";
+        return $result;
     }
         
     public function start()

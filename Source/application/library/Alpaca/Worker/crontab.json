@@ -1,1 +1,1 @@
-[{"NAME":"001","INTERVAL":"","BEGIN_TIME":"2016\/06\/30 14:00","END_TIME":"","ACTION":"\/crontab\/index\/job","STATUS":"1","NEXT_TIME":"","LAST_TIME":""}]
+[{"NAME":"001","INTERVAL":"","BEGIN_TIME":"2016\/06\/30 14:00","END_TIME":"","ACTION":"\/crontab\/index\/job","STATUS":"1","NEXT_TIME":"","LAST_TIME":""},{"NAME":"TEST","STATUS":"1","TYPE":"2","INTERVAL":"+10 second","BEGIN_TIME":"2016\/06\/17 16:19","NEXT_TIME":"2016-06-30 16:56:47","LAST_TIME":"2016-06-30 16:56:37","ACTION":"\/test\/test","END_TIME":"2016\/06\/29 16:19"}]
