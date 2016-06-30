@@ -51,7 +51,7 @@
     <div class="time_title_box">
         <img src="/webCJI/img/logo.png" class="logo">
         <div class="time_title_btn">
-            <button id="id_time_btn" class="time_btn">创建任务</button>
+            <button id="add_task_btn" class="time_btn">创建任务</button>
             <button id="id_time_btn" class="time_btn time_btn_samll">开始</button>
             <button id="id_time_btn" class="time_btn time_btn_samll time_btn_red">停止</button>
         </div>
@@ -89,7 +89,14 @@
                 <div class="oder_details_main_list" id="intervalDiv">
                     <div class="m_label">时间间隔：</div>
                     <div class="m_word">
-                        <input class="choose" id="interval">
+                        <input class="interval" id="intervalNum">
+                        <select class="intervalType" id="intervalType" onchange="">
+                            <option value="year">年（year）</option>
+                            <option value="month">月（month）</option>
+                            <option value="hour">小时（hour）</option>
+                            <option value="minute">分（minute）</option>
+                            <option value="second">秒（second）</option>
+                        </select>
                     </div>
                 </div>
                 <div class="oder_details_main_list">
@@ -248,10 +255,15 @@
     }
 
     function addTask(){
+        var interval = "";
+        if($("#cronTabType").val() != "1"){
+            interval = "+" + $("#intervalNum").val() + " " + $("#intervalType").val()
+        }
+
         var json={
             "NAME":$("#name").val(),
             "TASK_TYPE":$("#cronTabType").val(),
-            "INTERVAL":$("#interval").val(),//秒为单位
+            "INTERVAL":interval,//秒为单位
             "BEGIN_TIME":$("#startTime").val(),
             "END_TIME":$("#endTime").val(),
             "ACTION":$("#action").val(),// /crontab/index/job
