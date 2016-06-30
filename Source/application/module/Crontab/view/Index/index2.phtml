@@ -51,7 +51,7 @@
     <div class="time_title_box">
         <div class="time_title_left">
             <img src="/webCJI/img/logo.png" class="logo">
-            <button id="id_time_btn" class="time_btn create_task">创建任务</button>
+            <button id="add_task_btn" class="time_btn create_task">创建任务</button>
         </div>
         <div class="time_title_right">
             <div class="light_box">
@@ -127,6 +127,9 @@
     $("#endTime").datetimepicker();
 </script>
 <script>
+
+    var g_isStart = 0; //0 - 未启动 ， 1-启动
+
     $(".close").click(function(){
         $("#id_alert").fadeOut();
         $("#mask").hide();
@@ -215,12 +218,18 @@
                 var x = data.code;
                 //data.code=1001   未启动
                 //data.code=1000   启动   其他是系统错误
+
+                
                 if(x==1001){
+                	g_isStart = 0;
                     $("#system_switch").removeClass("time_btn_red");
                     $("#system_switch").val("启动");
                     $(".small_light").removeClass("small_light_full");
                     $("#id_light_tip").html("未运行");//启动按钮变灰
                 }else if(x==1000){
+
+                	g_isStart = 1;
+                    
                     $("#system_switch").addClass("time_btn_red");
                     $("#system_switch").val("停止");
                     $(".small_light").addClass("small_light_full");
