@@ -68,7 +68,7 @@ body{
     display: inline-block;
     vertical-align: middle;
     margin-right: 20px;
-    cursor: not-allowed;
+    cursor: default;
 }
 .small_light{
     width:14px;
@@ -194,6 +194,14 @@ td{
 }
 .choose{
     width:440px;
+    height: 36px;
+}
+.interval{
+    width: 100px;
+    height: 36px;
+}
+.intervalType{
+    width: 120px;
     height: 36px;
 }
 .input{
