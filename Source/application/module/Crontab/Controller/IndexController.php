@@ -80,7 +80,6 @@ class IndexController
     public function listTaskAction()
     {
         $result = Crontab::crontab()->listTask();
-//        var_dump($result);
         return View::json($result);
     }
 
