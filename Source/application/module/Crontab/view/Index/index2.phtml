@@ -182,11 +182,16 @@
          data:'',
          timeout: 20000,
          beforeSend: function () {
+             $("#system_switch").html("启动中");
+             $("#system_switch").addClass("time_btn_gray");
+             $("#system_switch").attr("disabled","disabled");
          },
          success: function (data) {
              start();
          },
          complete: function () {
+             $("#system_switch").removeAttr("disabled","disabled");
+             $("#system_switch").removeClass("time_btn_gray");
          },
          error: function () {
              alert("请求出错了,请稍候再试");
@@ -267,8 +272,6 @@
                 var x = data.code;
                 //data.code=1001   未启动
                 //data.code=1000   启动   其他是系统错误
-
-                
                 if(x==1001){
                 	g_isStart = 0;
                     $("#system_switch").removeClass("time_btn_red");
@@ -278,7 +281,6 @@
                 }else if(x==1000){
 
                 	g_isStart = 1;
-                    
                     $("#system_switch").addClass("time_btn_red");
                     $("#system_switch").html("停止");
                     $(".small_light").addClass("small_light_full");
