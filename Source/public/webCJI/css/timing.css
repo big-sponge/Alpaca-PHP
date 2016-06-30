@@ -53,6 +53,16 @@ body{
 .time_btn_samll{
     width: 110px;
     height: 40px;
+    background-color:#8ea7bf;
+    color:#d1d1d1;
+}
+.time_btn_red{
+    background-color:#de5f5f;
+    color:#fff;
+}
+.time_btn_green{
+    background-color:#4fca72;
+    color:#fff;
 }
 .time_btn:hover,.time_btn:active{
     background-color:#4f9ded;
@@ -213,6 +223,7 @@ td{
 }
 .title_word{
     float: left;
+    font-size:16px;
 }
 .close_btn{
    width:16px;

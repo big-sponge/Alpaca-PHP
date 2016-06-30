@@ -46,9 +46,9 @@
     <div class="time_title_box">
         <img src="/webCJI/img/logo.png" class="logo">
         <div class="time_title_btn">
-            <button id="add_task_btn" class="time_btn">创建任务</button>
-            <button id="cron_tab_status_run" class="time_btn time_btn_samll" style="background-color:#4fca72;">开始</button>
-            <button id="cron_tab_status_stop" class="time_btn time_btn_samll" style="background-color:#de5f5f;">停止</button>
+            <button id="id_time_btn" class="time_btn">创建任务</button>
+            <button id="id_time_btn" class="time_btn time_btn_samll">开始</button>
+            <button id="id_time_btn" class="time_btn time_btn_samll time_btn_red">停止</button>
         </div>
     </div>
 </div>
@@ -154,8 +154,28 @@
 
     $().ready(function () {
         loadTaskList();
+        getStatus();      
     });
 
+    function getStatus(){
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/status",
+            data:"",
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+            	console.log(data);
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+    
     function loadTaskList(){
         $.ajax({
             method: "POST",
@@ -185,8 +205,6 @@
                 alert("请求出错了,请稍候再试");
             }
         });
-
-
     }
 
     function addTask(){

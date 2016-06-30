@@ -36,8 +36,8 @@ class Daemon
 
     public function status()
     {
-        $data = json_decode(file_get_contents($this->deamon_json));
-        var_dump($data);
+        $data = json_decode(file_get_contents($this->deamon_json),true);      
+        return $data;
     }
            
     public function stop()
