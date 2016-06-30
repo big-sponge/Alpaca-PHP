@@ -33,7 +33,7 @@
                     <div class="checkbox"></div>
                 </label>
             </td>
-            <td class="delete">删除</td>
+            <td class="delete"><a href ="#" onclick="deleteTask({{=key}})">删除</a></td>
         </tr>
         {{ } }}
     </table>
@@ -216,21 +216,12 @@
         });
     }
 
-    function deleteTask(){
-        var json={
-            "NAME":"task",
-            "STATUS":"1",
-            "TYPE":"2",
-            "INTERVAL":"+10 second",//秒为单位
-            "BEGIN_TIME":"2016-06-29 17:00:00",
-            "NEXT_TIME":"",
-            "LAST_TIME":"",
-            "ACTION":"/crontab/index/job"
-        };
+    function deleteTask($id){
+
         $.ajax({
             method: "POST",
-            url: "/crontab/index/addtask",
-            data:JSON.stringify(json),
+            url: "/crontab/index/remove-task/"+$id,
+            data:'',
             timeout: 20000,
             beforeSend: function () {
             },
@@ -238,8 +229,6 @@
                 var code = data.result_code;
                 var msg = data.result_message;
                 if(code == 1){
-                    $("#id_alert").fadeOut();
-                    $("#mask").hide();
                     //刷新task列表
                     loadTaskList();
                 }else{

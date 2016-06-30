@@ -129,7 +129,7 @@ class IndexController
     public function removeTaskAction()
     {
         $result = [];
-        if(empty($this->params[0]))
+        if(!isset($this->params[0]))
         {
             $result['code'] = '0';
             $result['message'] = "请指定要删除任务的ID";
@@ -139,8 +139,8 @@ class IndexController
                
         $deleteResult = Crontab::crontab()->removeTask($id);
         
-        $result['code'] = '1';
-        $result['message'] = "任务[{$id}]删除。";
+        $result['result_code'] = '1';
+        $result['result_message'] = "任务[{$id}]删除。";
         $result['data'] = $deleteResult;
         return View::json($result);
     }
