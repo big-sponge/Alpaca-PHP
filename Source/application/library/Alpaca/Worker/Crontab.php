@@ -2,7 +2,7 @@
 namespace Alpaca\Worker;
 
 class Crontab
-{        
+{
     private $task_json = __DIR__.'/crontab.json';
     private $task_log = __DIR__.'/task_log.log';
     private static $instance;
@@ -32,7 +32,6 @@ class Crontab
     {
         $result["result_code"] = "1";
         $result["result_message"] = "添加成功";
-
         $tasks = json_decode(file_get_contents($this->task_json),true);
         $tasks[count($tasks)] = $task;
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
@@ -46,6 +45,17 @@ class Crontab
         $tasks[$index] = $task;
         file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
         return $tasks;
+    }
+
+    //编辑定时任务状态
+    public function editTaskStatus($index,$status)
+    {
+        $result_data["result_code"] = "1";
+        $result_data["result_message"] = "修改状态成功[".$status."]";
+        $tasks = json_decode(file_get_contents($this->task_json));
+        $tasks[$index]->STATUS = $status;
+        file_put_contents($this->task_json, json_encode($tasks), LOCK_EX);
+        return $result_data;
     }
 
     //删除定时任务
