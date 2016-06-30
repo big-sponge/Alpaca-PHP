@@ -65,36 +65,34 @@
                 <div class="oder_details_main_list">
                     <div class="m_label">名字：</div>
                     <div class="m_word">
-                        <input class="choose input" type="text"/>
+                        <input class="choose input" type="text" id="name"/>
                     </div>
                 </div>
                 <div class="oder_details_main_list">
                     <div class="m_label">类型：</div>
                     <div class="m_word">
-                        <select class="choose">
-                            <option>执行一次</option>
+                        <select class="choose" id="cronTabType" onchange="changeType()">
+                            <option value="1">执行一次</option>
+                            <option value="2">循环执行</option>
                         </select>
                     </div>
                 </div>
-                <div class="oder_details_main_list">
+                <div class="oder_details_main_list" id="intervalDiv">
                     <div class="m_label">时间间隔：</div>
                     <div class="m_word">
-                        <input class="choose">
+                        <input class="choose" id="interval">
                     </div>
                 </div>
                 <div class="oder_details_main_list">
                     <div class="m_label">开始时间：</div>
                     <div class="m_word">
-                        <input class="choose" type="text" value="2016/06/29 17:00" id="datetimepicker4" />
+                        <input class="choose" type="text" id="startTime" />
                     </div>
                 </div>
-                <div class="oder_details_main_list">
+                <div class="oder_details_main_list" id="endTimeDiv">
                     <div class="m_label">结束时间：</div>
                     <div class="m_word">
-                        <select class="choose">
-                            <option>now</option>
-                            <option>明天</option>
-                        </select>
+                        <input class="choose" type="text" id="endTime" />
                     </div>
                 </div>
                 <div class="alert_btn_box">
@@ -107,7 +105,8 @@
     <div class="alert_body" id="mask"></div>
 </div>
 <script>
-    $('#datetimepicker4').datetimepicker();  //日期插件
+    $('#startTime').datetimepicker();  //日期插件
+    $("endTime").datetimepicker();
 </script>
 <script>
     $(".close").click(function(){
@@ -130,6 +129,17 @@
     $("#id_sure_btn").click(function(){
         addTask();
     });
+
+    function changeType(){
+        if($("#cronTabType").val() == "1"){
+            $("#intervalDiv").css("display", "none");
+            $("#endTimeDiv").css("display", "none");
+        }
+        else {
+            $("#intervalDiv").css("display", "block");
+            $("#endTimeDiv").css("display", "block");
+        }
+    }
 
     $().ready(function () {
         loadTaskList();
