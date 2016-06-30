@@ -68,7 +68,7 @@ body{
     display: inline-block;
     vertical-align: middle;
     margin-right: 20px;
-    cursor: not-allowed;
+    cursor: default;
 }
 .small_light{
     width:14px;
