@@ -6,6 +6,9 @@ html{
     font-weight:500;
     font-size:14px;
 }
+button{
+    outline:none;
+}
 body{
     margin:0;
     padding:0;
@@ -39,6 +42,9 @@ body{
     float: right;
     margin-top: 16px;
 }
+.time_btn_gray{
+    background-color:#d6d6d6;
+}
 .time_btn{
     width:180px;
     height:50px;
@@ -53,6 +59,11 @@ body{
     cursor: pointer;
     margin-left: 10px;
     vertical-align: middle;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .time_btn_samll{
     width: 80px;
@@ -62,7 +73,7 @@ body{
     font-size: 14px;
 }
 .time_btn_samll:active{
-    opacity: 0.8;
+    opacity: 0.6;
 }
 .light_box{
     display: inline-block;
