@@ -105,6 +105,12 @@ td{
 .list_con span{
     margin-left:8px;
 }
+.delete{
+    color:#de5f5f;
+}
+.delete:hover{
+    text-decoration:underline;
+}
 
 /*分割线*/
 .detail{

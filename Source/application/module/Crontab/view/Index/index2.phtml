@@ -17,6 +17,7 @@
             <td>结束时间</td>
             <td>执行任务</td>
             <td>状态</td>
+            <td>删除</td>
         </tr>
         {{ for(var key in it) { }}
         <tr class="list_con">
@@ -27,6 +28,7 @@
             <td>{{=it[key].NEXT_TIME}}</td>
             <td>{{=it[key].LAST_TIME}}</td>
             <td>{{=it[key].STATUS}}</td>
+            <td class="delete">删除</td>
         </tr>
         {{ } }}
     </table>
