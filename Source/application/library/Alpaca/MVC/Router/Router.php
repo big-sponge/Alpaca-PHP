@@ -122,11 +122,11 @@ class Router
 
         $segments = explode('/', $path);
  
-        if (empty($segments[3])) {
+        if (empty($segments[1])) {
             array_splice($segments, 1, 0, $this->DefaultModule);
         }
         
-        if (empty($segments[3])) {
+        if (empty($segments[2])) {
             array_splice($segments, 2, 0, $this->DefaultController);
         }
 
@@ -163,23 +163,23 @@ class Router
         $this->Action = str_replace(' ', '', $this->Action);
         $this->Action = lcfirst($this->Action);        
         $this->ActionName = $this->Action.$this->ActionPostfix;
-                        
-        if(!class_exists($this->ModuleClassName)){
+        
+        if(!in_array($this->Module,$this->app->getModules())){
             $alpacaController = new AlpacaController();
-            $alpacaController->moduleNotFoundAction();
+            $alpacaController->moduleNotFoundAction($this->Module);
             return false;
         }
         
         if(!class_exists($this->ControllerClassName)){      
             $alpacaController = new AlpacaController();
-            $alpacaController->controllerNotFoundAction();
+            $alpacaController->controllerNotFoundAction($this->ControllerClassName);
             return false;
         }
         
         if(!method_exists(new $this->ControllerClassName(), $this->ActionName))
         {
             $alpacaController = new AlpacaController();
-            $alpacaController->actionNotFoundAction();
+            $alpacaController->actionNotFoundAction($this->ActionName);
             return false;
         }
         

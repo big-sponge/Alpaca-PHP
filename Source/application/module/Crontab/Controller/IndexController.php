@@ -57,13 +57,15 @@ class IndexController
                
     public function stopAction()
     {        
-        $result =  Daemon::deamon()->stop();        
+        $result =  Daemon::deamon()->stop();
+        sleep(2);
         return View::json($result);
     }
         
     public function startAction()
     {
-        Worker::worker()->action(['REQUEST_URI'=>"/crontab/index/start-daemon"]);
+        Worker::worker()->action(['REQUEST_URI'=>"/crontab/index/start-daemon"]);        
+        sleep(2);       
         $result["result_code"] = "1";
         $result["result_message"] = "操作成功";
         return View::json($result);

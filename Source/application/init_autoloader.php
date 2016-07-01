@@ -14,12 +14,13 @@ spl_autoload_register(function($class){
     }else{
         $moduleNames = null;
     }
-    if($moduleNames){
- 
+    if($moduleNames){ 
         $preg_moduleNames ="/(^({$moduleNames}))/";
         if(preg_match($preg_moduleNames,$className)){
             $className = "module/".$className.".php";
-            require_once($className);
+            if(file_exists(APP_PATH . '/application/'.$className)){
+                require_once($className);
+            }
             return;
         }
     }
@@ -35,7 +36,7 @@ spl_autoload_register(function($class){
         $preg_resourceNames ="/(^({$resourceNames}))/";
         if(preg_match($preg_resourceNames,$className)){
             $className = "resource/".$className.".php";
-            require_once($className);
+                require_once($className);
             return;
         }
     }
@@ -46,7 +47,7 @@ spl_autoload_register(function($class){
     if(preg_match($preg_serviceNames,$className)){       
         $className = lcfirst($className);        
         $className = $className.".php";
-        require_once($className);
+            require_once($className);
         return;
     }
     
@@ -61,7 +62,7 @@ spl_autoload_register(function($class){
         $preg_libraryNames ="/(^({$libraryNames}))/";
         if(preg_match($preg_libraryNames,$className)){
             $className = "library/".$className.".php";
-            require_once($className);
+                require_once($className);
             return;
         }   
     }
