@@ -17,10 +17,10 @@
             <td>结束时间</td>
             <td>执行任务</td>
             <td>状态</td>
-            <td>删除</td>
+            <td>操作</td>
         </tr>
         {{ for(var key in it) { }}
-        <tr class="list_con" onclick="editTask(this, {{=key}})">
+        <tr class="list_con">
             <td>{{=it[key].NAME}}</td>
             {{? it[key].TYPE == 1 }}
                 <td>执行一次</td>
@@ -42,7 +42,10 @@
                     {{?}}
                 </label>
             </td>
-            <td class="delete" onclick="deleteTask({{=key}})">删除</td>
+            <td class="delete">
+                <a href="#" onclick="editTask(this, {{=key}})">编辑</a>&nbsp
+                <a href="#" onclick="deleteTask({{=key}})">删除</a>                
+            </td>
         </tr>
         {{ } }}
     </table>
