@@ -349,6 +349,9 @@
         var index = $("#commitIndex").val();
         var nextTime = $("#nextTime").val();
         var lastTime = $("#lastTime").val();
+        if($("#cronTabType").val() == "1"){
+            nextTime = $("#startTime").val();
+        }
 
         var json={
             "INDEX":index,
