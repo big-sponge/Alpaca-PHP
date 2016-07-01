@@ -17,6 +17,7 @@ class ServerManager
     
     private static $instance;
 
+    private $classlib = [];
     
     public function __construct(array $factories = null)
     {
@@ -137,6 +138,23 @@ class ServerManager
     
         return $class;
     }
+    
+    public function setClassLib($className,$class)
+    {       
+        $this->classlib["$className"] = $class;
+        return $this;
+    }
+    
+    public function getClassLib($className)
+    {
+        $result = null;
+        if(!empty($this->classlib["$className"]))
+        {
+            $result = $this->classlib["$className"];
+        }
+        return $result;
+    }
+    
     
     public function create($className)
     {
