@@ -193,13 +193,14 @@
          timeout: 20000,
          beforeSend: function () {
              $("#system_switch").html("操作中");
-             $("#system_switch").addClass("time_btn_gray");
+             $("#system_switch").css("background-color","#d6d6d6");
              $("#system_switch").attr("disabled","disabled");
          },
          success: function (data) {
              start();
          },
          complete: function () {
+
          },
          error: function () {
              alert("请求出错了,请稍候再试");
@@ -280,21 +281,21 @@
                 var x = data.code;
                 //data.code=1001   未启动
                 //data.code=1000   启动   其他是系统错误
-                $("#system_switch").removeAttr("disabled","disabled");
-                $("#system_switch").removeClass("time_btn_gray");
                 if(x==1001){
                 	g_isStart = 0;
-                    $("#system_switch").removeClass("time_btn_red");
+                    $("#system_switch").css("background-color","#4fca72");
                     $("#system_switch").html("启动");
                     $(".small_light").removeClass("small_light_full");
                     $("#id_light_tip").html("未运行");//启动按钮变灰
+                    $("#system_switch").removeAttr("disabled","disabled");
                 }else if(x==1000){
 
                 	g_isStart = 1;
-                    $("#system_switch").addClass("time_btn_red");
+                    $("#system_switch").css("background-color","#de5f5f ");
                     $("#system_switch").html("停止");
                     $(".small_light").addClass("small_light_full");
                     $("#id_light_tip").html("运行中");//启动按钮变灰
+                    $("#system_switch").removeAttr("disabled","disabled");
                 }else{
                     alert("系统错误！");
                 }

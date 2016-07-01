@@ -75,9 +75,6 @@ body{
 .time_btn_samll:active{
     opacity: 0.6;
 }
-.time_btn_gray{
-    background-color:#d6d6d6;
-}
 .light_box{
     display: inline-block;
     vertical-align: middle;
@@ -101,10 +98,6 @@ body{
     margin-left:6px;
     vertical-align: middle;
     font-size: 14px;
-}
-.time_btn_red{
-    background-color:#de5f5f;
-    color:#fff;
 }
 .create_task{
     margin-left:70px;
