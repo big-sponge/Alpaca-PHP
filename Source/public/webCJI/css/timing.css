@@ -91,6 +91,7 @@ body{
 }
 .small_light_full{
     background-color:#54ff00;
+    box-shadow: 0 1px 2px #666;
 }
 .light_tip{
     color:#dedede;
@@ -114,7 +115,7 @@ body{
     position: relative;
 }
 .time_list{
-    width:1200px;
+    width:1400px;
     margin:0 auto;
     background-color:#fff;
     padding-top: 30px;
@@ -215,7 +216,7 @@ td{
     width: 120px;
     height: 36px;
 }
-.input{
+input{
     padding:0 8px;
 }
 .m_word span{
