@@ -162,7 +162,27 @@ td{
     color:#de5f5f;
 }
 .delete:hover{
-    text-decoration:underline;
+    /*text-decoration:underline;*/
+    color: #0000FF;
+    background-color: #FFFFFF;
+}
+
+.aTag{
+    color: green;
+}
+
+.aTag:link{
+    color: green;
+}
+
+.aTag:visited{
+    color: #0000FF;
+    background-color: #FFFFFF;
+}
+
+.aTag:active{
+    color: #0000FF;
+    background-color: #FFFFFF;
 }
 
 /*分割线*/

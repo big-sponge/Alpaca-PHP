@@ -58,14 +58,14 @@ class IndexController
     public function stopAction()
     {        
         $result =  Daemon::deamon()->stop();
-        sleep(2);
+        sleep(1);
         return View::json($result);
     }
         
     public function startAction()
     {
         Worker::worker()->action(['REQUEST_URI'=>"/crontab/index/start-daemon"]);        
-        sleep(2);       
+        sleep(1);       
         $result["result_code"] = "1";
         $result["result_message"] = "操作成功";
         return View::json($result);
@@ -100,7 +100,7 @@ class IndexController
     {
          $task= array(
          'NAME'=>$this->request_data->NAME,                             //NAME
-         'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
+         'STATUS'=>$this->request_data->STATUS,                          // 1-ENABLED,   2-DISABLE
          'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
          'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
          'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间
@@ -119,7 +119,7 @@ class IndexController
     {
         $task= array(
             'NAME'=>$this->request_data->NAME,                             //NAME
-            'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
+            'STATUS'=>$this->request_data->STATUS,                          // 1-ENABLED,   2-DISABLE
             'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
             'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
             'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间
