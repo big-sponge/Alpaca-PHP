@@ -98,13 +98,23 @@ class IndexController
     //添加定时任务
     public function addTaskAction()
     {
+        $begin_time = $this->request_data->BEGIN_TIME;
+        $interval = $this->request_data->INTERVAL;
+        $next_time = "";
+        if($this->request_data->TASK_TYPE == "1"){
+            $next_time = $this->request_data->BEGIN_TIME;
+        }
+        else{
+            $next_time = date('Y-m-d H:i:s',strtotime($interval, strtotime($begin_time)));
+        }
+
          $task= array(
          'NAME'=>$this->request_data->NAME,                             //NAME
          'STATUS'=>$this->request_data->STATUS,                          // 1-ENABLED,   2-DISABLE
          'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
-         'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
-         'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间
-         'NEXT_TIME'=>'',       //下次执行时间
+         'INTERVAL'=>$interval,                //year（年），month（月），hour（小时）minute（分），second（秒）
+         'BEGIN_TIME'=>$begin_time,   //开始时间
+         'NEXT_TIME'=>$next_time,       //下次执行时间
          'LAST_TIME'=>'',       //上次执行时间
          'ACTION'=>$this->request_data->ACTION,   //执行的ACTION
          'END_TIME'=>$this->request_data->END_TIME,   //执行的ACTION
@@ -123,8 +133,8 @@ class IndexController
             'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
             'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
             'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间
-            'NEXT_TIME'=>'',       //下次执行时间
-            'LAST_TIME'=>'',       //上次执行时间
+            'NEXT_TIME'=>$this->request_data->NEXT_TIME,       //下次执行时间
+            'LAST_TIME'=>$this->request_data->LAST_TIME,       //上次执行时间
             'ACTION'=>$this->request_data->ACTION,   //执行的ACTION
             'END_TIME'=>$this->request_data->END_TIME,   //执行的ACTION
         );
