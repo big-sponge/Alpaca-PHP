@@ -169,22 +169,18 @@ td{
 
 .aTag{
     color: green;
+    text-decoration: none;
 }
-
-.aTag:link{
-    color: green;
+.aTag:hover{
+    text-decoration: underline;
 }
-
-.aTag:visited{
-    color: #0000FF;
-    background-color: #FFFFFF;
+.a_blue{
+    color:#46b3ff;
 }
-
-.aTag:active{
-    color: #0000FF;
-    background-color: #FFFFFF;
+.a_red{
+    color:#de5f5f;
+    margin-left:4px;
 }
-
 /*分割线*/
 .detail{
     background-color:#eee;
