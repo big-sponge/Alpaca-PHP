@@ -104,6 +104,11 @@ class Crontab
             {
                 continue;
             }
+            
+            if(!empty($task['END_TIME']) && strtotime($now)>=strtotime($task['END_TIME'])){
+                $task['NEXT_TIME']='END';
+                continue;
+            }
     
             if($task['TYPE'] == 1 && empty($task['NEXT_TIME']) )
             {
@@ -137,7 +142,7 @@ class Crontab
 
                 if(strtotime($now)>=strtotime($task['NEXT_TIME'])){
                     $task['LAST_TIME']= $now;
-                    $task['NEXT_TIME']= date('Y-m-d H:i:s',strtotime($task['INTERVAL']) );                    
+                    $task['NEXT_TIME']= date('Y-m-d H:i:s',strtotime($task['INTERVAL']));
                     Worker::worker()->action(['REQUEST_URI'=>"{$task['ACTION']}"]);
                 }
                 continue;

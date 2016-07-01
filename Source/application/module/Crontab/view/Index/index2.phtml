@@ -143,6 +143,8 @@
             </div>
         </div>
         <input type="hidden" id="commitIndex">
+        <input type="hidden" id="nextTime">
+        <input type="hidden" id="lastTime">
     </div>
     <div class="alert_body" id="mask"></div>
 </div>
@@ -345,6 +347,12 @@
             interval = "+" + $("#intervalNum").val() + " " + $("#intervalType").val()
         }
         var index = $("#commitIndex").val();
+        var nextTime = $("#nextTime").val();
+        var lastTime = $("#lastTime").val();
+        if($("#cronTabType").val() == "1"){
+            nextTime = $("#startTime").val();
+        }
+
         var json={
             "INDEX":index,
             "NAME":$("#name").val(),
@@ -354,8 +362,8 @@
             "END_TIME":$("#endTime").val(),
             "ACTION":$("#action").val(),// /crontab/index/job
             "STATUS":$("#taskStatusDiv").val(),
-            "NEXT_TIME":"",
-            "LAST_TIME":""
+            "NEXT_TIME":nextTime,
+            "LAST_TIME":lastTime
         };
 
         var url = "/crontab/index/addtask";
@@ -450,6 +458,9 @@
                     $("#endTime").val(value.END_TIME);
                     $("#action").val(value.ACTION);
                     $("#taskStatusDiv").val(value.STATUS);
+
+                    $("#nextTime").val(value.NEXT_TIME);
+                    $("#lastTime").val(value.LAST_TIME);
 
                     changeType();
                     //显示
