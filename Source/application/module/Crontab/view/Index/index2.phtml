@@ -10,14 +10,16 @@
 <script id="cronTabCell" type="text/x-dot-template">
     <table class="time_tab m_time_tab">
         <tr class="list_log">
-            <td>任务名称</td>
-            <td>类型</td>
-            <td>间隔</td>
-            <td>开始时间</td>
-            <td>结束时间</td>
-            <td>执行任务</td>
-            <td>状态</td>
-            <td>操作</td>
+            <td width="10%">任务名称</td>
+            <td width="8%">类型</td>
+            <td width="6%">间隔</td>
+            <td width="13%">开始时间</td>
+            <td width="13%">结束时间</td>
+            <td width="13%">下次执行时间</td>
+            <td width="13%">上次执行时间</td>
+            <td width="11%">执行任务</td>
+            <td width="5%">状态</td>
+            <td width="8%">操作</td>
         </tr>
         {{ for(var key in it) { }}
         <tr class="list_con">
@@ -30,6 +32,8 @@
             <td>{{=it[key].INTERVAL}}</td>
             <td>{{=it[key].BEGIN_TIME}}</td>
             <td>{{=it[key].END_TIME}}</td>
+            <td>{{=it[key].NEXT_TIME}}</td>
+            <td>{{=it[key].LAST_TIME}}</td>
             <td>{{=it[key].ACTION}}</td>
             <td>
                 <label class="label_switch" id="status_switch">
@@ -315,14 +319,6 @@
                 var cronTabCellText = doT.template($("#cronTabCell").text());
                 $("#cronTabList").html(cronTabCellText(data));
                 console.log(data);
-//                $(".chooser").change(function(){
-//                    console.log($(this)[0].checked);
-//                    if($(this)[0].checked){
-//                        $(this).next(".checkbox").addClass("bg_checkbox change move ");
-//                    }else{
-//                        $(this).next(".checkbox").removeClass("bg_checkbox change move ");
-//                    }
-//                });
             },
             complete: function () {
             },
