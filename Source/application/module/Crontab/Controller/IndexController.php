@@ -100,7 +100,7 @@ class IndexController
     {
          $task= array(
          'NAME'=>$this->request_data->NAME,                             //NAME
-         'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
+         'STATUS'=>$this->request_data->STATUS,                          // 1-ENABLED,   2-DISABLE
          'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
          'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
          'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间
@@ -119,7 +119,7 @@ class IndexController
     {
         $task= array(
             'NAME'=>$this->request_data->NAME,                             //NAME
-            'STATUS'=>'1',                          // 1-ENABLED,   2-DISABLE
+            'STATUS'=>$this->request_data->STATUS,                          // 1-ENABLED,   2-DISABLE
             'TYPE'=>$this->request_data->TASK_TYPE,                            // 1-ONCE,      2-LOOP
             'INTERVAL'=>$this->request_data->INTERVAL,                //year（年），month（月），hour（小时）minute（分），second（秒）
             'BEGIN_TIME'=>$this->request_data->BEGIN_TIME,   //开始时间

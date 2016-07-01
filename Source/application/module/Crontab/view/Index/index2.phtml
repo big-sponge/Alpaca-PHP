@@ -46,9 +46,9 @@
                     {{?}}
                 </label>
             </td>
-            <td class="delete">
-                <a href="#" onclick="editTask(this, {{=key}})">编辑</a>&nbsp
-                <a href="#" onclick="deleteTask({{=key}})">删除</a>                
+            <td>
+                <a class="aTag" href="#" onclick="editTask(this, {{=key}})">编辑</a>&nbsp
+                <a class="aTag" href="#" onclick="deleteTask({{=key}})">删除</a>
             </td>
         </tr>
         {{ } }}
@@ -101,11 +101,11 @@
                     <div class="m_word">
                         <input class="interval" id="intervalNum">
                         <select class="intervalType" id="intervalType" onchange="">
-                            <option value="year">年（year）</option>
-                            <option value="month">月（month）</option>
-                            <option value="hour">小时（hour）</option>
-                            <option value="minute">分（minute）</option>
                             <option value="second">秒（second）</option>
+                            <option value="minute">分（minute）</option>
+                            <option value="hour">小时（hour）</option>
+                            <option value="month">月（month）</option>
+                            <option value="year">年（year）</option>
                         </select>
                     </div>
                 </div>
@@ -125,6 +125,15 @@
                     <div class="m_label">ACTION：</div>
                     <div class="m_word">
                         <input class="choose" type="text" id="action" placeholder="/crontab/index/job" />
+                    </div>
+                </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">状态：</div>
+                    <div class="m_word">
+                        <select class="intervalType" id="taskStatusDiv">
+                            <option value="1">开启</option>
+                            <option value="2">关闭</option>
+                        </select>
                     </div>
                 </div>
                 <div class="alert_btn_box">
@@ -157,7 +166,8 @@
         $("#endTime").val("");
         $("#action").val("");
         $("#intervalNum").val("");
-        $("#intervalType").val("year");
+        $("#intervalType").val("second");
+        $("#taskStatusDiv").val("1");
         changeType();
         $("#mask").show();
         $(".title_word").html("创建任务")
@@ -342,7 +352,7 @@
             "BEGIN_TIME":$("#startTime").val(),
             "END_TIME":$("#endTime").val(),
             "ACTION":$("#action").val(),// /crontab/index/job
-            "STATUS":"1",
+            "STATUS":$("#taskStatusDiv").val(),
             "NEXT_TIME":"",
             "LAST_TIME":""
         };
@@ -438,6 +448,7 @@
                     $("#startTime").val(value.BEGIN_TIME);
                     $("#endTime").val(value.END_TIME);
                     $("#action").val(value.ACTION);
+                    $("#taskStatusDiv").val(value.STATUS);
 
                     changeType();
                     //显示
