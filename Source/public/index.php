@@ -1,5 +1,6 @@
 <?php
 
+use Alpaca\MVC\Application;
 /* 错误提示 */
 if (!empty($_SERVER['APPLICATION_ENV']) && $_SERVER['APPLICATION_ENV'] == 'development') {
     error_reporting(E_ALL);
@@ -19,8 +20,8 @@ $CONFIG = $config;
 require APP_PATH . '/application/init_autoloader.php';
 
 /* 启动Alpaca */
-$app =  Alpaca\MVC\Application::app($config);
-$app->bootstrap()->run();
+Application::app($config)->bootstrap()->run();
+
 
 
 
