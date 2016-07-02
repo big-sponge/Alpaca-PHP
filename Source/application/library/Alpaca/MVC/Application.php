@@ -6,24 +6,18 @@ use Alpaca\MVC\Router\Router;
 class Application
 {
     public $config;    
-    
-    public $router;
-    
+        
     private static $instance;
     
     public function __construct(array $config = null)
     {     
         $this->config = $config;
-
         return $this;
     }
         
     public function run()
     {        
-        $this->router = Router::router();
-        $this->router->app = $this;
-        
-        $this->router->start();
+        Router::router()->start();
     }
 
     public function bootstrap(){
@@ -36,9 +30,7 @@ class Application
         if(!$methods){
             return $this;
         }
-       
-        $bootstrap->app = $this;
-        
+               
         foreach ($methods as $method){
             if(preg_match("/(^(_init))/",$method)){
                 $bootstrap->$method();

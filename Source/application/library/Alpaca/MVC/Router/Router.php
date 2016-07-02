@@ -5,6 +5,7 @@ use Alpaca\MVC\Controller\AlpacaController;
 use Alpaca\MVC\View\View;
 use Alpaca\Factory\ServerManager;
 use Alpaca\MVC\View\Redirect;
+use Alpaca\MVC\Application;
 
 class Router
 {
@@ -88,9 +89,14 @@ class Router
         if($initResult instanceof Redirect){
             return $initResult;
         }
+        
+        $initView = null;
+        if($initResult instanceof View){
+            $initView = $initResult;
+        }
 
         //分发-执行Action 获取视图模型
-        $view = $this->dispatcher();
+        $view = $this->dispatcher($initView);
         
         return $view;
     }
@@ -137,6 +143,7 @@ class Router
         $this->Params = array_slice($segments, 4);
         
         if($this->pathSegments == $segments){
+            echo "Endless Loop ! Do not redirect in the same action.";
             return false;
         }
         
@@ -164,7 +171,7 @@ class Router
         $this->Action = lcfirst($this->Action);        
         $this->ActionName = $this->Action.$this->ActionPostfix;
         
-        if(!in_array($this->Module,$this->app->getModules())){
+        if(!in_array($this->Module,Application::app()->getModules())){
             $alpacaController = new AlpacaController();
             $alpacaController->moduleNotFoundAction($this->Module);
             return false;
@@ -185,13 +192,11 @@ class Router
         
         //设置Module、Controller
         $this->moduleClass = ServerManager::factory()->module($this->ModuleClassName);
-        $this->moduleClass->app = $this->app;
         $this->moduleClass->sm = ServerManager::factory();
         $this->moduleClass->params = $this->Params;   
         $this->moduleClass->redirect = Redirect::redirect();
         
         $this->controllerClass = ServerManager::factory()->controller($this->ControllerClassName);
-        $this->controllerClass->app = $this->app;
         $this->controllerClass->sm = ServerManager::factory();
         $this->controllerClass->params = $this->Params;
         $this->controllerClass->redirect = Redirect::redirect();
@@ -234,22 +239,22 @@ class Router
         return true;
     }
     
-    public function dispatcher()
+    public function dispatcher($view = null)
     {
         $controllerClass = $this->controllerClass;
         $moduleClass = $this->moduleClass;
-                        
-        View::$App = $this->app;
+        $action = $this->ActionName;
         
-        $action = $this->ActionName;         
-        $view = $controllerClass->$action();
-
+        if(empty($view)){
+            $view = $controllerClass->$action();
+        }
+        
         if($view instanceof Redirect){
             return $view;
         }
         
         //View
-        if(!$view){            
+        if(!$view){
             $getDefaultView ="getDefaultView";
             if(method_exists($controllerClass, $getDefaultView)){
                 $view = $controllerClass->$getDefaultView($view);

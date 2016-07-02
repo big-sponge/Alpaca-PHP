@@ -2,6 +2,7 @@
 namespace Alpaca\MVC\View;
 
 
+use Alpaca\MVC\Router\Router;
 class View
 {    
     const VIEW_TYPE_HTML = 1;
@@ -9,10 +10,7 @@ class View
     const VIEW_TYPE_JSON = 2;   
 
     const VIEW_TYPE_IMAGE = 3;
-    
-    
-    public static $App;
-    
+          
     public $CaptureTo = 'content';
       
     public $Template = '';
@@ -308,9 +306,9 @@ class View
     	
     public static function getDefaultViewTemplate()
     {
-        $module = self::$App->router->Module;
-        $controller = self::$App->router->Controller;
-        $action = self::$App->router->Action;
+        $module = Router::router()->Module;
+        $controller = Router::router()->Controller;
+        $action = Router::router()->Action;
         $templatePostfix = self::$TemplatePostfix;
         return APP_PATH."/application/module/{$module}/view/{$controller}/{$action}{$templatePostfix}";
     }
@@ -322,7 +320,7 @@ class View
     	
     public static function getDefaultLayoutTemplate()
     {       
-        $module = self::$App->router->Module;
+        $module = Router::router()->Module;
         $templatePostfix = self::$TemplatePostfix;
         return APP_PATH."/application/module/{$module}/view/Layout/layout{$templatePostfix}";
     }
