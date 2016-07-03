@@ -1,0 +1,84 @@
+<script type="text/javascript">
+	<?php $menuId= isset($this->menuId)? $this->menuId: 11;?>
+	var menuId ="<?php echo '#menuId-'.$this->menuId; ?>";
+	$(document).ready(function() {
+		$(".wx-menu_item").removeClass("wx-menu_item_select");
+		$(menuId).addClass("wx-menu_item_select");
+	});
+</script>
+
+<div class="menu_box ">
+	<dl class="wx-menu wx-menu-first">
+		<dt class="wx-menu_title">
+			<i class="wx-icon_menu" style="background:url(/adminCJI/img/icon-menu-admin-bank.png) no-repeat;"></i>银行配置
+		</dt>
+		<dd class="wx-menu_item " id="menuId-91">
+			<a href="/admin/admin/configuration">配置信息
+			</a>
+		</dd>
+
+		<dd class="wx-menu_item " id="menuId-92">
+			<a href="/admin/admin/add">添加
+			</a>
+		</dd>
+<!--		<dd class="wx-menu_item" id="menuId-93">-->
+<!--			<a href="/admin/edit">编辑-->
+<!--			</a>-->
+<!--		</dd>-->
+	</dl>
+
+	<dl class="wx-menu ">
+		<dt class="wx-menu_title">
+			<i class="wx-icon_menu" style="background:url(/adminCJI/img/icon-menu-admin-duizahng.png) no-repeat;"></i>日结/对账
+		</dt>
+
+	</dl>
+
+	<dl class="wx-menu ">
+		<dt class="wx-menu_title">
+			<i class="wx-icon_menu" style="background:url(/webCJI/img/icon-menu-admin-zhwh.png) no-repeat;"></i>账户维护
+		</dt>
+		<dd class="wx-menu_item" id="menuId-89">
+			<a href="/admin/admin/sup-open-account">监管账户开户</a>
+		</dd>
+		<dd class="wx-menu_item" id="menuId-96">
+			<a href="/admin/admin/supmaintain">监管账户维护</a>
+		</dd>
+		<dd class="wx-menu_item" id="menuId-98">
+			<a href="/admin/admin/submaintain">子账户维护</a>
+		</dd>
+		<dd class="wx-menu_item" id="menuId-107">
+			<a href="/admin/admin/open-merchant">商户开户</a>
+		</dd>
+		<dd class="wx-menu_item" id="menuId-108">
+			<a href="/admin/admin/show-all-merchant">商户维护</a>
+		</dd>
+	</dl>
+	<dl class="wx-menu ">
+		<dt class="wx-menu_title">
+			<i class="wx-icon_menu" style="background:url('/adminCJI/img/icon-menu-admin-news.png') no-repeat;"></i>系统信息
+		</dt>
+		<dd class="wx-menu_item" id="menuId-100">
+			<a href="/admin/admin/show-all-log-info">系统日志</a>
+		</dd>
+		<dd class="wx-menu_item" id="menuId-103">
+			<a href="/admin/admin/show-user-login-log">登录记录</a>
+		</dd>
+	</dl>
+	<dl class="wx-menu ">
+		<dt class="wx-menu_title">
+			<i class="wx-icon_menu" style="background:url('/adminCJI/img/icon-menu-admin-yh.png') no-repeat;"></i>用户信息
+		</dt>
+		<dd class="wx-menu_item" id="menuId-102">
+			<a href="/admin/admin/show-all-user">用户列表</a>
+		</dd>
+
+		<dd class="wx-menu_item" id="menuId-101">
+			<a href="/admin/admin/open-all-entity">金融实体</a>
+		</dd>
+
+		<dd class="wx-menu_item" id="menuId-104">
+			<a href="/admin/admin/show-user-operation-log">操作记录</a>
+		</dd>
+	</dl>
+</div>
