@@ -32,6 +32,8 @@ class View
     public $Layout = null;
     
     public $LayoutData = null;
+    
+    public $PartData = null;
         
     public $getTemplate = null;
     
