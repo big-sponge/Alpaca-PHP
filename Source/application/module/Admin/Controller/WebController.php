@@ -8,13 +8,13 @@ class WebController
     public function onDisplay($view)
     {       
         $view->setLayout(View::layout());
-        $view->setPart(View::part('leftMenu','name2'),['menuId'=>2]);
+        $view->setPart(View::part('leftMenu'));        
         return $view;
     }
 
     public function indexAction()
     {
-        return View::html()->setLayout(View::layout())->setFinal(true)->setPart(View::part('leftMenu','name2'),['menuId'=>2]);
+        return View::html()->setPartData('leftMenu', ['menuId'=>1]);
     }
 }
 

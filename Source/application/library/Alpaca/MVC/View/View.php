@@ -25,15 +25,15 @@ class View
     
     public $Children = array();
     
-    public $ChildrenData = array();
+    public $ChildData = array();
     
     public $UseLayout = false;
     
     public $Layout = null;
     
-    public $LayoutData = null;
+    public $LayoutData = array();
     
-    public $PartData = null;
+    public $PartData = array();
         
     public $getTemplate = null;
     
@@ -74,9 +74,9 @@ class View
             foreach ($this->Children as $child){               
                 $captureTo = $child->getCaptureTo();            
                 $childData = null;
-                if(!empty($this->ChildrenData[(string) $captureTo])){
-                    $childData = $this->ChildrenData[(string) $captureTo];
-                }              
+                if(!empty($this->ChildData[(string) $captureTo])){
+                    $childData = $this->ChildData[(string) $captureTo];
+                }
                 $this->$captureTo = $child->render($childData);
             }
         }
@@ -187,7 +187,7 @@ class View
 
     public function setLayoutDataOne($name, $value)
     {
-        $this->Layout->Data[(string) $name] = $value;
+        $this->LayoutData[$name]= $value;
         return $this;
     }
     
@@ -208,9 +208,9 @@ class View
         return $this;
     }
 
-    public function setPartDataOne($part,$name, $value)
+    public function setPartDataOne($capture, $name, $value)
     {
-        $this->Layout->childData[(string) $part][(string) $name] = $value;
+        $this->PartData[$capture][$name]= $value;
         return $this;
     }
         
@@ -235,7 +235,7 @@ class View
     
     public function setChildDataOne($child,$name, $value)
     {
-        $this->childData[(string) $child][(string) $name] = $value;
+        $this->ChildData[(string) $child][(string) $name] = $value;
         return $this;
     }
     
@@ -334,6 +334,15 @@ class View
     public function displayToHtml()
     {
         if($this->UseLayout){
+            if($this->LayoutData){
+                $this->Layout->setData($this->LayoutData);
+            }
+            if($this->PartData){
+                foreach ($this->PartData as $key => $value )
+                {
+                    $this->Layout->setChildData($key, $value);
+                }
+            }
             echo $this->Layout->render();
         }else{
             echo $this->render();
