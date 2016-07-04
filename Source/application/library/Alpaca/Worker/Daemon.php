@@ -36,7 +36,10 @@ class Daemon
 
     public function status()
     {
-        $data = json_decode(file_get_contents($this->deamon_json),true);      
+        $data = json_decode(file_get_contents($this->deamon_json),true);
+        if(empty($data)){
+            $data = array();
+        }
         return $data;
     }
            
