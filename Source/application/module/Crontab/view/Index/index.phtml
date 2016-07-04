@@ -163,9 +163,9 @@
 <!--删除弹框-->
 <script>
     function showFunction(me){
+        hideFunction();
         $(me).next(".remove").fadeIn();
     }
-
     function hideFunction(){
         $(".remove").fadeOut();
     }
