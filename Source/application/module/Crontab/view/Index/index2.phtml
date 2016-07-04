@@ -159,6 +159,8 @@
     </div>
     <div class="alert_body" id="mask"></div>
 </div>
+
+<!--删除弹框-->
 <script>
     function showFunction(me){
        $(me).next(".remove").fadeIn();
@@ -168,10 +170,13 @@
         $(".remove").fadeOut();
     }
 </script>
+
+<!--日期插件-->
 <script>
     $('#startTime').datetimepicker();  //日期插件
     $("#endTime").datetimepicker();
 </script>
+
 <script>
 
     var g_isStart = 0; //0 - 未启动 ， 1-启动

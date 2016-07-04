@@ -1,0 +1,394 @@
+html{
+    font-size:82px;!important;
+}
+*{
+    font-family:"微软雅黑";
+    font-weight:500;
+    font-size:14px;
+}
+button{
+    outline:none;
+}
+body{
+    margin:0;
+    padding:0;
+    background-color: #f6f6f6;
+}
+.time_margin{
+    margin:0 20px;
+    height: 800px;
+    overflow: auto;
+    border: 1px solid #03979d;
+}
+.time_title{
+    background-color:#2a8de9;
+    width:100%;
+}
+.time_title_box{
+    margin-left:auto;
+    margin-right:auto;
+    max-width:1400px;
+    min-width: 600px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: #2a8de9;
+}
+.logo{
+    vertical-align: bottom;
+}
+.time_title_left{
+    float: left;
+}
+.time_title_right{
+    float: right;
+    margin-top: 16px;
+    text-overflow: ellipsis;
+}
+.time_btn{
+    width:180px;
+    height:50px;
+    background-color:#46b3ff;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    border:none;
+    color:#fff;
+    font-size:16px;
+    box-shadow:0 2px 4px #216fb8;
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.time_btn_samll{
+    width: 80px;
+    height: 40px;
+    background-color:#4fca72;
+    color:#fff;
+    font-size: 14px;
+}
+.time_btn_samll:active{
+    opacity: 0.6;
+}
+.light_box{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    cursor: default;
+}
+.small_light{
+    width:14px;
+    height:14px;
+    border-radius: 14px;
+    background-color:#b1b1b1;
+    display: inline-block;
+    vertical-align: middle;
+}
+.small_light_full{
+    background-color:#54ff00;
+    box-shadow: 0 1px 2px #666;
+}
+.light_tip{
+    color:#dedede;
+    margin-left:6px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+.create_task{
+    margin-left:70px;
+}
+.create_task:hover,.create_task:active{
+    opacity: 0.8;
+}
+.time_content{
+    width:100%;
+    background-color:#f6f6f6;
+    position: relative;
+}
+.time_list{
+    max-width:1400px;
+    min-width: 600px;
+    margin:0 auto;
+    background-color:#fff;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    height:100%;
+}
+.time_tab{
+     margin: 0;
+     padding: 0;
+     border-collapse: collapse;
+     width: 100%;
+     color: #666;
+     font-family: "微软雅黑";
+     font-size: 14px;
+ }
+td{
+    white-space:nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+.list_log td{
+    height:68px;
+    font-size:16px;
+}
+ .list_log{
+     background-color: #e2f1f2;
+     font-size: 14px;
+     color: #222;
+     font-weight: bold;
+ }
+ .list_con{
+     border-bottom: 1px dashed #e2f1f2;
+     cursor: pointer;
+     height:50px;
+ }
+.list_con:active{
+    background-color: #f5f5f5;
+}
+.list_con:hover{
+    background-color:#f5f5f5;
+}
+.list_con span{
+    margin-left:8px;
+}
+.delete{
+    color:#de5f5f;
+}
+.delete:hover{
+    /*text-decoration:underline;*/
+    color: #0000FF;
+    background-color: #FFFFFF;
+}
+
+.aTag{
+    color: green;
+    text-decoration: none;
+}
+.aTag:hover{
+    text-decoration: underline;
+}
+.a_blue{
+    color:#46b3ff;
+}
+.a_red{
+    color:#de5f5f;
+    margin-left:4px;
+}
+/*分割线*/
+.detail{
+    background-color:#eee;
+}
+.show_pay_content{
+    width:100%;
+}
+.show_pay_content_box{
+    width:950px;
+    margin:0 auto;
+}
+.oder_details{
+    padding:20px 20px;
+    overflow: hidden;
+}
+.oder_details_main{
+    overflow: hidden;
+}
+.oder_details div{
+    color:#323232;
+    line-height:28px;
+    overflow: hidden;
+}
+.oder_details_main div{
+    font-size:14px;
+}
+.oder_details_main_list{
+    font-size:14px;
+}
+.oder_details_main_btn{
+    float: right;
+    font-size:14px;
+}
+.m_word{
+    float: left;
+    height:50px;
+}
+.choose{
+    width:440px;
+    height: 36px;
+}
+.interval{
+    width: 100px;
+    height: 36px;
+}
+.intervalType{
+    width: 120px;
+    height: 36px;
+}
+input{
+    padding:0 8px;
+}
+.m_word span{
+    font-size:24px;
+    color:#fc760c;
+}
+.m_label{
+    float: left;
+    width: 80px;
+    text-align: right;
+    margin-right: 12px;
+}
+.oder_details .m_xq{
+    color:#0099cc;
+    font-size:12px;
+    cursor: pointer;
+}
+.oder_details_de_list{
+
+}
+.oder_details_de{
+    overflow: hidden;
+}
+.oder_details_de div{
+    font-size:13px;
+}
+.alert_body{
+    opacity: 0;
+    background-color: #000;
+    position:fixed;
+    top:0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+    display: none;
+
+}
+.alert_cont{
+    width:600px;
+    background-color:#fff;
+    z-index: 999;
+    position: absolute;
+    top:50%;
+    left:50%;
+    box-shadow: 1px 1px 24px #888888;
+    display: none;
+
+}
+.alert_title{
+    overflow: hidden;
+    padding:10px 20px;
+    background-color:#2a8de9;
+    color:#fff;
+}
+.title_word{
+    float: left;
+    font-size:16px;
+}
+.close_btn{
+   width:16px;
+    float: right;
+    cursor: pointer;
+}
+.close_btn:hover{
+    opacity:0.5;
+}
+.alert_btn_box{
+    float: right;
+    margin-right: 30px;
+    margin-top:10px;
+}
+.alert_btn_box button{
+    width: 98px;
+    height: 34px;
+    margin-left: 18px;
+    border:none;
+    cursor: pointer;
+    background-color:#c7ccd1;
+}
+.alert_btn_box button:active{
+    background-color:#84909c;
+}
+.alert_btn_box .sure_btn{
+    background-color:#2a8de9;
+    border:none;
+    color:#fff;
+}
+/*按钮开关样式-----开始*/
+.label_switch{
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.6rem;
+    height: 0.34rem;
+}
+.label_switch input{
+    width:0.2rem;
+    display: none;
+}
+.checkbox{
+    width:0.6rem;
+    height:0.34rem;
+    background-color:#e5e5e5;
+    -webkit-border-radius:0.34rem;
+    -moz-border-radius:0.34rem;
+    border-radius:0.34rem;
+    z-index:0;
+    margin:0;
+    padding:0;
+    border:none;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition-duration: 300ms;
+    -moz-transition-duration: 300ms;
+    -ms-transition-duration: 300ms;
+    -o-transition-duration: 300ms;
+    transition-duration: 300ms;
+}
+.bg_checkbox{
+    background-color:#4cd964;
+}
+.checkbox:before{
+    content:"";
+    width: 0.54rem;
+    height: 0.28rem;
+    background-color: #fff;
+    border: 1px solid #fff;
+    position: absolute;
+    z-index:1;
+    top: 0.02rem;
+    left: 0.02rem;
+    border-radius: 0.5rem;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.checkbox.change:before{
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.checkbox:after{
+    content:"";
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 0.32rem;
+    box-shadow: 0 0.02rem 0.06rem rgba(0, 0, 0, 0.4);
+    position: absolute;
+    background-color: #fff;
+    top: 0.02rem;
+    left: 0.02rem;
+    z-index:99;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+}
+.checkbox.move:after{
+    -webkit-transform: translateX(0.28rem);
+    transform: translateX(0.28rem);
+}
+/*按钮开关样式-----结束*/

@@ -45,8 +45,7 @@ class IndexController
     //index
     public function indexAction()
     {
-        die('Welcome !');
-        return View::json();
+        return View::html();
     }
     
     public function statusAction()
@@ -91,10 +90,7 @@ class IndexController
     public function  checkTaskAction(){
         return View::html();
     }
-    public function  index2Action(){
-        return View::html();
-    }
-    
+        
     //添加定时任务
     public function addTaskAction()
     {

@@ -5,6 +5,7 @@ use Alpaca\MVC\Controller\AlpacaController;
 use Alpaca\MVC\View\View;
 use Alpaca\Factory\ServerManager;
 use Alpaca\MVC\View\Redirect;
+use Alpaca\MVC\Application;
 
 class Router
 {
@@ -88,9 +89,14 @@ class Router
         if($initResult instanceof Redirect){
             return $initResult;
         }
+        
+        $initView = null;
+        if($initResult instanceof View){
+            $initView = $initResult;
+        }
 
         //分发-执行Action 获取视图模型
-        $view = $this->dispatcher();
+        $view = $this->dispatcher($initView);
         
         return $view;
     }
@@ -137,6 +143,7 @@ class Router
         $this->Params = array_slice($segments, 4);
         
         if($this->pathSegments == $segments){
+            echo "Endless Loop ! Do not redirect in the same action.";
             return false;
         }
         
@@ -164,7 +171,7 @@ class Router
         $this->Action = lcfirst($this->Action);        
         $this->ActionName = $this->Action.$this->ActionPostfix;
         
-        if(!in_array($this->Module,$this->app->getModules())){
+        if(!in_array($this->Module,Application::app()->getModules())){
             $alpacaController = new AlpacaController();
             $alpacaController->moduleNotFoundAction($this->Module);
             return false;
@@ -185,13 +192,11 @@ class Router
         
         //设置Module、Controller
         $this->moduleClass = ServerManager::factory()->module($this->ModuleClassName);
-        $this->moduleClass->app = $this->app;
         $this->moduleClass->sm = ServerManager::factory();
         $this->moduleClass->params = $this->Params;   
         $this->moduleClass->redirect = Redirect::redirect();
         
         $this->controllerClass = ServerManager::factory()->controller($this->ControllerClassName);
-        $this->controllerClass->app = $this->app;
         $this->controllerClass->sm = ServerManager::factory();
         $this->controllerClass->params = $this->Params;
         $this->controllerClass->redirect = Redirect::redirect();
@@ -234,39 +239,41 @@ class Router
         return true;
     }
     
-    public function dispatcher()
+    public function dispatcher($view = null)
     {
         $controllerClass = $this->controllerClass;
         $moduleClass = $this->moduleClass;
-                        
-        View::$App = $this->app;
+        $action = $this->ActionName;
         
-        $action = $this->ActionName;         
-        $view = $controllerClass->$action();
-
+        if(empty($view)){
+            $view = $controllerClass->$action();
+        }
+                
         if($view instanceof Redirect){
             return $view;
         }
-        
-        //View
-        if(!$view){            
-            $getDefaultView ="getDefaultView";
-            if(method_exists($controllerClass, $getDefaultView)){
-                $view = $controllerClass->$getDefaultView($view);
-            }elseif(method_exists($moduleClass, $getDefaultView)){
-                $view = $moduleClass->$getDefaultView($view);
-            }else{
-                return null;
-            }        
-        }
                 
+        //View     
+        if(!empty($view)){
+            $defaultView ="defaultView";
+            if(method_exists($controllerClass, $defaultView)){
+                $view = $controllerClass->$defaultView($view);
+            }elseif(method_exists($moduleClass, $defaultView)){
+                $view = $moduleClass->$defaultView($view);
+            }
+        }
+
+        if(empty($view)){
+            return null;
+        }
+        
         //View - Template
         if(!$view->Template){
-            $getDefaultViewTemplate ="getDefaultViewTemplate";
-            if(method_exists($controllerClass, $getDefaultViewTemplate)){
-                $view->Template = $controllerClass->$getDefaultViewTemplate();
-            }else if(method_exists($moduleClass, $getDefaultViewTemplate)){
-                $view->Template = $moduleClass->$getDefaultViewTemplate();
+            $defaultViewTemplate ="defaultViewTemplate";
+            if(method_exists($controllerClass, $defaultViewTemplate)){
+                $view->Template = $controllerClass->$defaultViewTemplate();
+            }else if(method_exists($moduleClass, $defaultViewTemplate)){
+                $view->Template = $moduleClass->$defaultViewTemplate();
             }else{
                 $view->Template = View::getDefaultViewTemplate();
             }
@@ -274,11 +281,11 @@ class Router
         	
         //View - CaptureTo
         if(!$view->CaptureTo){
-            $getDefaultViewCaptureTo ="getDefaultViewCaptureTo";
-            if(method_exists($controllerClass, $getDefaultViewCaptureTo)){
-                $view->CaptureTo = $controllerClass->$getDefaultViewCaptureTo();
-            }else if(method_exists($moduleClass, $getDefaultViewCaptureTo)){
-                $view->CaptureTo = $moduleClass->$getDefaultViewCaptureTo();
+            $defaultViewCaptureTo ="defaultViewCaptureTo";
+            if(method_exists($controllerClass, $defaultViewCaptureTo)){
+                $view->CaptureTo = $controllerClass->$defaultViewCaptureTo();
+            }else if(method_exists($moduleClass, $defaultViewCaptureTo)){
+                $view->CaptureTo = $moduleClass->$defaultViewCaptureTo();
             }else{
                 $view->CaptureTo =View::getDefaultViewCaptureTo();
             }
@@ -299,7 +306,7 @@ class Router
             }
         
             //Layout - Template
-            if(!$view->Layout->Template){               
+            if(!$view->Layout->Template){
                 $getDefaultLayoutTemplate ="getDefaultLayoutTemplate";
                 if(method_exists($controllerClass, $getDefaultLayoutTemplate)){
                     $view->Layout->Template = $controllerClass->$getDefaultLayoutTemplate();
@@ -323,8 +330,8 @@ class Router
         }
         	
         //执行模块onDisplay方法，如果该方法存在
-        if(method_exists($controllerClass, $onDisplay)){
-            $view = $controllerClass->$onDisplay($view);
+        if(method_exists($moduleClass, $onDisplay)){
+            $view = $moduleClass->$onDisplay($view);
         }
            
         return $view;

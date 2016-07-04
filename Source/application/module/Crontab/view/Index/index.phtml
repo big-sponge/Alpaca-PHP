@@ -1,2 +1,525 @@
-<div>OK I'm Here! <?php echo $this->name?></div>
-<div>asdasdasdas</div>
+<html>
+<head>
+    <link href="/crontabCJI/css/timing.css" rel="stylesheet" type="text/css" />
+    <link href="/crontabCJI/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <script src="/crontabCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="/crontabCJI/js/jquery.datetimepicker.js" type="text/javascript"></script>
+    <script src="/crontabCJI/dotjs/dot.js" type="text/javascript"></script>    
+</head>
+<body>
+<script id="cronTabCell" type="text/x-dot-template">
+    <table class="time_tab m_time_tab">
+        <tr class="list_log">
+            <td width="10%">任务名称</td>
+            <td width="8%">类型</td>
+            <td width="6%">时间间隔</td>
+            <td width="13%">开始时间</td>
+            <td width="13%">结束时间</td>
+            <td width="13%">下次执行时间</td>
+            <td width="13%">上次执行时间</td>
+            <td width="11%">执行任务</td>
+            <td width="5%">状态</td>
+            <td width="8%">操作</td>
+        </tr>
+        {{ for(var key in it) { }}
+        <tr class="list_con">
+            <td>{{=it[key].NAME}}</td>
+            {{? it[key].TYPE == 1 }}
+                <td>执行一次</td>
+            {{??}}
+                <td>循环执行</td>
+            {{?}}
+            <td>{{=it[key].INTERVAL}}</td>
+            <td>{{=it[key].BEGIN_TIME}}</td>
+            <td>{{=it[key].END_TIME}}</td>
+            <td>{{=it[key].NEXT_TIME}}</td>
+            <td>{{=it[key].LAST_TIME}}</td>
+            <td>{{=it[key].ACTION}}</td>
+            <td>
+                <label class="label_switch" id="status_switch">
+                    {{? it[key].STATUS == 1 }}
+                    <input type="checkbox" class="chooser" onchange="statusChange(this, {{=key}})">
+                    <div class="checkbox bg_checkbox change move" id="statusDiv"></div>
+                    {{??}}
+                    <input type="checkbox" class="chooser" checked onchange="statusChange(this, {{=key}})">
+                    <div class="checkbox" id="statusDiv"></div>
+                    {{?}}
+                </label>
+            </td>
+            <td>
+                <a class="aTag a_blue" href="#" onclick="editTask(this, {{=key}})">编辑</a>&nbsp
+                <a class="aTag a_red" href="#" onclick="deleteTask({{=key}})">删除</a>
+            </td>
+        </tr>
+        {{ } }}
+    </table>
+</script>
+<div class="time_title">
+    <div class="time_title_box">
+        <div class="time_title_left">
+            <img src="/webCJI/img/logo.png" class="logo">
+            <button id="add_task_btn" class="time_btn create_task">创建任务</button>
+        </div>
+        <div class="time_title_right">
+            <div class="light_box">
+                <i class="small_light"></i>
+                <span class="light_tip" id="id_light_tip">未运行</span>
+            </div>
+            <button id="system_switch" class="time_btn time_btn_samll">启动</button>
+        </div>
+    </div>
+</div>
+<div class="time_content">
+    <div class="time_list">
+        <div class="time_margin" id="cronTabList"></div>
+    </div>
+    <!--弹出框-->
+    <div id="id_alert" class="alert_cont" style="margin-left:-300px; margin-top:-300px;">
+        <div class="alert_title">
+            <div class="title_word"></div>
+            <div class="close"><img src="/webCJI/img/btn_close_layer.png" class="close_btn" /></div>
+        </div>
+        <div class="detail">
+            <div class="oder_details">
+                <div class="oder_details_main_list">
+                    <div class="m_label">任务名称：</div>
+                    <div class="m_word">
+                        <input class="choose input" type="text" id="name"/>
+                    </div>
+                </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">类型：</div>
+                    <div class="m_word">
+                        <select class="choose" id="cronTabType" onchange="changeType()">
+                            <option value="1">执行一次</option>
+                            <option value="2">循环执行</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="oder_details_main_list" id="intervalDiv">
+                    <div class="m_label">时间间隔：</div>
+                    <div class="m_word">
+                        <input class="interval" id="intervalNum">
+                        <select class="intervalType" id="intervalType" onchange="">
+                            <option value="second">秒（second）</option>
+                            <option value="minute">分（minute）</option>
+                            <option value="hour">小时（hour）</option>
+                            <option value="month">月（month）</option>
+                            <option value="year">年（year）</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">开始时间：</div>
+                    <div class="m_word">
+                        <input class="choose" type="text" id="startTime" />
+                    </div>
+                </div>
+                <div class="oder_details_main_list" id="endTimeDiv">
+                    <div class="m_label">结束时间：</div>
+                    <div class="m_word">
+                        <input class="choose" type="text" id="endTime" />
+                    </div>
+                </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">执行任务：</div>
+                    <div class="m_word">
+                        <input class="choose" type="text" id="action" placeholder="/crontab/index/job" />
+                    </div>
+                </div>
+                <div class="oder_details_main_list">
+                    <div class="m_label">状态：</div>
+                    <div class="m_word">
+                        <select class="intervalType" id="taskStatusDiv">
+                            <option value="1">开启</option>
+                            <option value="2">关闭</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="alert_btn_box">
+                    <button class="sure_btn" id="id_sure_btn">确定</button>
+                    <button class="close">取消</button>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="commitIndex">
+        <input type="hidden" id="nextTime">
+        <input type="hidden" id="lastTime">
+    </div>
+    <div class="alert_body" id="mask"></div>
+</div>
+<script>
+    $('#startTime').datetimepicker();  //日期插件
+    $("#endTime").datetimepicker();
+</script>
+<script>
+
+    var g_isStart = 0; //0 - 未启动 ， 1-启动
+
+    $(".close").click(function(){
+        $("#id_alert").fadeOut();
+        $("#mask").hide();
+    });
+
+    $("#add_task_btn").click(function(){
+        $("#name").val("");
+        $("#cronTabType").val("1");
+        $("#startTime").val("");
+        $("#endTime").val("");
+        $("#action").val("");
+        $("#intervalNum").val("");
+        $("#intervalType").val("second");
+        $("#taskStatusDiv").val("1");
+        changeType();
+        $("#mask").show();
+        $(".title_word").html("创建任务")
+        $("#id_alert").fadeIn();
+
+        $("#commitIndex").val("-999");
+    });
+
+    $("#id_sure_btn").click(function(){
+        addTask();
+    });
+
+    $("#system_switch").click(function(){
+    	system_switch();
+    });
+
+    function system_switch(){
+    	var url = '';     
+    	if(g_isStart == 0){
+        	//没有启动 , 点击后启动
+    		url = "/crontab/index/start";
+        }else if(g_isStart == 1){
+            //启动状态, 点击后停止
+        	url = "/crontab/index/stop";
+        }else{
+            return;
+        }
+
+   	    $.ajax({
+         method: "POST",
+         url: url,
+         data:'',
+         timeout: 20000,
+         beforeSend: function () {
+             $("#system_switch").html("操作中");
+             $("#system_switch").css("background-color","#d6d6d6");
+             $("#system_switch").attr("disabled","disabled");
+         },
+         success: function (data) {
+             start();
+         },
+         complete: function () {
+
+         },
+         error: function () {
+             alert("请求出错了,请稍候再试");
+         }
+        });
+           
+    };
+    
+    
+    function changeType(){
+        if($("#cronTabType").val() == "1"){
+            $("#intervalDiv").css("display", "none");
+            $("#endTimeDiv").css("display", "none");
+        }
+        else {
+            $("#intervalDiv").css("display", "block");
+            $("#endTimeDiv").css("display", "block");
+        }
+    }
+
+    function statusChange(chooser, key){
+        var open;
+        //按钮开关事件
+        console.log(chooser.checked);
+        if(chooser.checked){
+            open = false;
+            chooser.nextElementSibling.classList.remove("bg_checkbox", "change", "move");
+        } else {
+            open = true;
+            chooser.nextElementSibling.classList.add("bg_checkbox", "change", "move");
+        }
+        var json = {
+            "index" : key,
+            "status" : open?1:2
+        };
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/changetaskstatus",
+            data:JSON.stringify(json),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                if(code != 1){
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
+    $().ready(function () {
+    	start();
+    });
+
+    function start(){
+        loadTaskList();
+        getStatus();
+    };
+
+    
+    function getStatus(){
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/status",
+            data:"",
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+            	console.log(data);
+                var x = data.code;
+                //data.code=1001   未启动
+                //data.code=1000   启动   其他是系统错误
+                if(x==1001){
+                	g_isStart = 0;
+                    $("#system_switch").css("background-color","#4fca72");
+                    $("#system_switch").html("启动");
+                    $(".small_light").removeClass("small_light_full");
+                    $("#id_light_tip").html("未运行");//启动按钮变灰
+                    $("#system_switch").removeAttr("disabled","disabled");
+                }else if(x==1000){
+
+                	g_isStart = 1;
+                    $("#system_switch").css("background-color","#de5f5f ");
+                    $("#system_switch").html("停止");
+                    $(".small_light").addClass("small_light_full");
+                    $("#id_light_tip").html("运行中");//启动按钮变灰
+                    $("#system_switch").removeAttr("disabled","disabled");
+                }else{
+                    alert("系统错误！");
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+    
+    function loadTaskList(){
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/listtask",
+            data:"",
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var cronTabCellText = doT.template($("#cronTabCell").text());
+                $("#cronTabList").html(cronTabCellText(data));
+                console.log(data);
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
+    function addTask(){
+        var interval = "";
+        if($("#cronTabType").val() != "1"){
+            interval = "+" + $("#intervalNum").val() + " " + $("#intervalType").val()
+        }
+        var index = $("#commitIndex").val();
+        var nextTime = $("#nextTime").val();
+        var lastTime = $("#lastTime").val();
+        if($("#cronTabType").val() == "1"){
+            nextTime = $("#startTime").val();
+        }
+
+        var json={
+            "INDEX":index,
+            "NAME":$("#name").val(),
+            "TASK_TYPE":$("#cronTabType").val(),
+            "INTERVAL":interval,//秒为单位
+            "BEGIN_TIME":$("#startTime").val(),
+            "END_TIME":$("#endTime").val(),
+            "ACTION":$("#action").val(),// /crontab/index/job
+            "STATUS":$("#taskStatusDiv").val(),
+            "NEXT_TIME":nextTime,
+            "LAST_TIME":lastTime
+        };
+
+        var url = "/crontab/index/addtask";
+        if(index != -999){
+            url = "/crontab/index/edittask";
+        }
+        $.ajax({
+            method: "POST",
+            url: url,
+            data:JSON.stringify(json),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                if(code == 1){
+                    $("#id_alert").fadeOut();
+                    $("#mask").hide();
+                    //刷新task列表
+                    start();
+                }else{
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
+    function deleteTask(key){
+        var json={
+            "index":key
+        };
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/removetask",
+            data:JSON.stringify(json),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                if(code == 1){
+                    //刷新task列表
+                    loadTaskList();
+                }else{
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
+    function editTask(tr, index){
+        var indexJson = {
+            "index":index
+        };
+        $.ajax({
+            method: "POST",
+            url: "/crontab/index/getindextask",
+            data:JSON.stringify(indexJson),
+            timeout: 20000,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var code = data.result_code;
+                var msg = data.result_message;
+                var value = data.result_data;
+                if(code == 1){
+                    //修改弹出页面数值
+                    var interval = value.INTERVAL;
+                    if(interval != null && interval != ""){
+                        var temp = interval.split(" ");
+                        var iNumTemp = temp[0];
+                        var iType = temp[1];
+                        var iNum = iNumTemp.replace("+", "");
+                        $("#intervalNum").val(iNum);
+                        $("#intervalType").val(iType);
+                    }
+                    $("#name").val(value.NAME);
+                    $("#cronTabType").val(value.TYPE);
+                    $("#startTime").val(value.BEGIN_TIME);
+                    $("#endTime").val(value.END_TIME);
+                    $("#action").val(value.ACTION);
+                    $("#taskStatusDiv").val(value.STATUS);
+
+                    $("#nextTime").val(value.NEXT_TIME);
+                    $("#lastTime").val(value.LAST_TIME);
+
+                    changeType();
+                    //显示
+                    $("#mask").show();
+                    $(".title_word").html("修改任务");
+                    $("#id_alert").fadeIn();
+                    $(".list_con").css({"background-color":"#fff","color":"#666"});
+                    tr.style.backgroundColor = "#43a5ff";
+                    tr.style.color = "#fff";
+
+                    $("#commitIndex").val(index);
+                }else{
+                    alert(msg);
+                }
+            },
+            complete: function () {
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
+        });
+    }
+
+    function timeToStr(interval, intervalTd){
+        var result;
+        if(interval == null || interval == ""){
+            result = "";
+        }
+        else {
+            var temp = interval.split(" ");
+            var iNumTemp = temp[0];
+            var iType = temp[1];
+            var iNum = iNumTemp.replace("+", "");
+            var str = "";
+            switch (iType){
+                case "year":
+                    str = "（年）";
+                    break;
+                case "month":
+                    str = "（月）";
+                    break;
+                case "hour":
+                    str = "（小时）";
+                    break;
+                case "minute":
+                    str = "（分）";
+                    break;
+                case "second":
+                    str = "（秒）";
+                    break;
+                default:
+                    break;
+            }
+            result = iNum + str;
+        }
+        intervalTd.html(result);
+        console.log(result);
+    }
+
+</script>
+</body>
+</html>

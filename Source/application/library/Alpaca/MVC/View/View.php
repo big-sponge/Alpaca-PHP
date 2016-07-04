@@ -2,6 +2,7 @@
 namespace Alpaca\MVC\View;
 
 
+use Alpaca\MVC\Router\Router;
 class View
 {    
     const VIEW_TYPE_HTML = 1;
@@ -9,10 +10,7 @@ class View
     const VIEW_TYPE_JSON = 2;   
 
     const VIEW_TYPE_IMAGE = 3;
-    
-    
-    public static $App;
-    
+          
     public $CaptureTo = 'content';
       
     public $Template = '';
@@ -159,8 +157,13 @@ class View
         return $this;
     }
     
-    public function setLayout($layout)
+    public function setLayout(View $layout, array $data = null)
     {        
+        if($data != null){
+            $layout->setData($data);
+        }
+        
+        $this->setUseLayout(true);
         $this->Layout= $layout;
         $this->Layout->addChild($this); 
         return $this;
@@ -179,18 +182,27 @@ class View
         }
         return $this;
     }
-    
-    public function setSisterDataOne($sister,$name, $value)
+
+    public function setPart(View $part,array $data = null)
     {
-        $this->Layout->childData[(string) $sister][(string) $name] = $value;
+        if($data != null){
+            $part->setData($data);
+        }
+        $this->Layout->addChild($part);
         return $this;
-    }
+    }    
     
-    public function setSisterData($sister, array $data)
+    public function setPartData($part, array $data)
     {
         foreach ($data as $key => $value) {
-            $this->setSisterDataOne($sister,$key, $value);
+            $this->setSisterDataOne($part,$key, $value);
         }
+        return $this;
+    }
+
+    public function setPartDataOne($part,$name, $value)
+    {
+        $this->Layout->childData[(string) $part][(string) $name] = $value;
         return $this;
     }
         
@@ -243,7 +255,6 @@ class View
             echo $this->Data['json'];
         }    
     }
-
  
     public function displayToHtml()
     {
@@ -308,25 +319,50 @@ class View
     	
     public static function getDefaultViewTemplate()
     {
-        $module = self::$App->router->Module;
-        $controller = self::$App->router->Controller;
-        $action = self::$App->router->Action;
+        $module = Router::router()->Module;
+        $controller = Router::router()->Controller;
+        $action = Router::router()->Action;
         $templatePostfix = self::$TemplatePostfix;
         return APP_PATH."/application/module/{$module}/view/{$controller}/{$action}{$templatePostfix}";
     }
-    	
+
+    public static function part($name,$captureTo = null)
+    {
+        $view = new View();
+        if($captureTo == null){
+            $captureTo = $name;
+        }
+        $view->setCaptureTo($captureTo);
+        $view->setTemplate($view->getDefaultPartTemplate($name));
+        return $view;
+    }
+    
+    public static function layout()
+    {
+        $view = new View();
+        $view->setTemplate($view->getDefaultLayoutTemplate());       
+        return $view;
+    }
+    
     public static function getDefaultLayout()
     {
-        return new View();
+        return self::layout();
     }
     	
     public static function getDefaultLayoutTemplate()
     {       
-        $module = self::$App->router->Module;
+        $module = Router::router()->Module;
         $templatePostfix = self::$TemplatePostfix;
         return APP_PATH."/application/module/{$module}/view/Layout/layout{$templatePostfix}";
     }
-    	
+
+    public static function getDefaultPartTemplate($name)
+    {
+        $module = Router::router()->Module;
+        $templatePostfix = self::$TemplatePostfix;
+        return APP_PATH."/application/module/{$module}/view/Layout/Part/{$name}{$templatePostfix}";
+    }
+    
     public static function getDefaultLayoutCaptureTo()
     {
         return self::$DefaultViewCaptureTo;
