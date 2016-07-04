@@ -1,10 +1,10 @@
 <html>
 <head>
-    <link href="/crontabCJI/css/timing.css" rel="stylesheet" type="text/css" />
-    <link href="/crontabCJI/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
-    <script src="/crontabCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
-    <script src="/crontabCJI/js/jquery.datetimepicker.js" type="text/javascript"></script>
-    <script src="/crontabCJI/dotjs/dot.js" type="text/javascript"></script>    
+    <link href="/webCJI/css/timing.css" rel="stylesheet" type="text/css" />
+    <link href="/webCJI/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <script src="/webCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="/webCJI/js/jquery.datetimepicker.js" type="text/javascript"></script>
+    <script src="/webCJI/dotjs/dot.js" type="text/javascript"></script>
 </head>
 <body>
 <script id="cronTabCell" type="text/x-dot-template">
@@ -25,9 +25,9 @@
         <tr class="list_con">
             <td>{{=it[key].NAME}}</td>
             {{? it[key].TYPE == 1 }}
-                <td>执行一次</td>
+            <td>执行一次</td>
             {{??}}
-                <td>循环执行</td>
+            <td>循环执行</td>
             {{?}}
             <td>{{=it[key].INTERVAL}}</td>
             <td>{{=it[key].BEGIN_TIME}}</td>
@@ -46,9 +46,20 @@
                     {{?}}
                 </label>
             </td>
-            <td>
+            <td class="edit">
                 <a class="aTag a_blue" href="#" onclick="editTask(this, {{=key}})">编辑</a>&nbsp
-                <a class="aTag a_red" href="#" onclick="deleteTask({{=key}})">删除</a>
+                <a href="#" class="aTag a_blue func" onclick="showFunction(this)">删除</a>
+                <div class="remove">
+                    <div class="remove_inner">
+                        <div class="remove_content">确定删除这个定时？</div>
+                        <div class="remove_bar">
+                            <a href="#" class="btn btn_primary" onclick="deleteTask({{=key}})">确定</a>
+                            <a href="#" class="btn btn_default" onclick="hideFunction()">取消</a>
+                        </div>
+                    </div>
+                    <i class="remove_arrow remove_arrow_out"></i>
+                    <i class="remove_arrow remove_arrow_in"></i>
+                </div>
             </td>
         </tr>
         {{ } }}
@@ -148,10 +159,24 @@
     </div>
     <div class="alert_body" id="mask"></div>
 </div>
+
+<!--删除弹框-->
+<script>
+    function showFunction(me){
+        $(me).next(".remove").fadeIn();
+    }
+
+    function hideFunction(){
+        $(".remove").fadeOut();
+    }
+</script>
+
+<!--日期插件-->
 <script>
     $('#startTime').datetimepicker();  //日期插件
     $("#endTime").datetimepicker();
 </script>
+
 <script>
 
     var g_isStart = 0; //0 - 未启动 ， 1-启动
@@ -183,45 +208,45 @@
     });
 
     $("#system_switch").click(function(){
-    	system_switch();
+        system_switch();
     });
 
     function system_switch(){
-    	var url = '';     
-    	if(g_isStart == 0){
-        	//没有启动 , 点击后启动
-    		url = "/crontab/index/start";
+        var url = '';
+        if(g_isStart == 0){
+            //没有启动 , 点击后启动
+            url = "/crontab/index/start";
         }else if(g_isStart == 1){
             //启动状态, 点击后停止
-        	url = "/crontab/index/stop";
+            url = "/crontab/index/stop";
         }else{
             return;
         }
 
-   	    $.ajax({
-         method: "POST",
-         url: url,
-         data:'',
-         timeout: 20000,
-         beforeSend: function () {
-             $("#system_switch").html("操作中");
-             $("#system_switch").css("background-color","#d6d6d6");
-             $("#system_switch").attr("disabled","disabled");
-         },
-         success: function (data) {
-             start();
-         },
-         complete: function () {
+        $.ajax({
+            method: "POST",
+            url: url,
+            data:'',
+            timeout: 20000,
+            beforeSend: function () {
+                $("#system_switch").html("操作中");
+                $("#system_switch").css("background-color","#d6d6d6");
+                $("#system_switch").attr("disabled","disabled");
+            },
+            success: function (data) {
+                start();
+            },
+            complete: function () {
 
-         },
-         error: function () {
-             alert("请求出错了,请稍候再试");
-         }
+            },
+            error: function () {
+                alert("请求出错了,请稍候再试");
+            }
         });
-           
+
     };
-    
-    
+
+
     function changeType(){
         if($("#cronTabType").val() == "1"){
             $("#intervalDiv").css("display", "none");
@@ -271,7 +296,7 @@
     }
 
     $().ready(function () {
-    	start();
+        start();
     });
 
     function start(){
@@ -279,7 +304,7 @@
         getStatus();
     };
 
-    
+
     function getStatus(){
         $.ajax({
             method: "POST",
@@ -289,21 +314,21 @@
             beforeSend: function () {
             },
             success: function (data) {
-            	console.log(data);
+                console.log(data);
                 var x = data.code;
                 //data.code=1001   未启动
                 //data.code=1000   启动   其他是系统错误
                 if(x==1001){
-                	g_isStart = 0;
-                    $("#system_switch").css("background-color","#4fca72");
+                    g_isStart = 0;
+                    $("#system_switch").css("background-color","#de5f5f" );
                     $("#system_switch").html("启动");
                     $(".small_light").removeClass("small_light_full");
                     $("#id_light_tip").html("未运行");//启动按钮变灰
                     $("#system_switch").removeAttr("disabled","disabled");
                 }else if(x==1000){
 
-                	g_isStart = 1;
-                    $("#system_switch").css("background-color","#de5f5f ");
+                    g_isStart = 1;
+                    $("#system_switch").css("background-color","#4fca72" );
                     $("#system_switch").html("停止");
                     $(".small_light").addClass("small_light_full");
                     $("#id_light_tip").html("运行中");//启动按钮变灰
@@ -319,7 +344,7 @@
             }
         });
     }
-    
+
     function loadTaskList(){
         $.ajax({
             method: "POST",
@@ -519,7 +544,6 @@
         intervalTd.html(result);
         console.log(result);
     }
-
 </script>
 </body>
 </html>
