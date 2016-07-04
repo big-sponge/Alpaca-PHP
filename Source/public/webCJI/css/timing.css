@@ -19,6 +19,7 @@ body{
     height: 800px;
     overflow: auto;
     border: 1px solid #03979d;
+    position: relative;
 }
 .time_title{
     background-color:#2a8de9;
@@ -82,9 +83,9 @@ body{
     cursor: default;
 }
 .small_light{
-    width:14px;
-    height:14px;
-    border-radius: 14px;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
     background-color:#b1b1b1;
     display: inline-block;
     vertical-align: middle;
@@ -173,6 +174,9 @@ td{
 }
 .aTag:hover{
     text-decoration: underline;
+}
+.aTag:active{
+
 }
 .a_blue{
     color:#46b3ff;
@@ -392,3 +396,74 @@ input{
     transform: translateX(0.28rem);
 }
 /*按钮开关样式-----结束*/
+
+.edit{
+    position: relative;
+}
+.remove{
+    position: absolute;
+    top:46px;
+    right:10px;
+    background-color: #fff;
+    display: none;
+    z-index: 99;
+    box-shadow: 0 2px 4px rgba(0,0,0,.3);
+}
+.remove_arrow{
+    position: absolute;
+    left: 50%;
+    margin-left: 100px;
+    margin-top: -8px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-width: 8px;
+    border-style: dashed;
+    border-color: transparent;
+    border-top-width: 0;
+    border-bottom-color: #d9dadc;
+    border-bottom-style: solid;
+}
+.remove .remove_arrow_in{
+    top:1px;
+    border-bottom-color: #fff;
+}
+.remove .remove_arrow_out{
+    top:0;
+}
+.remove_inner{
+    border:1px solid #d9dadc;
+    padding:20px;
+}
+.remove_bar{
+    margin-top:20px;
+    background-color:#fff;
+}
+.remove_bar .btn_primary{
+    background-color:#46b3ff;
+    color:#fff;
+    border:1px solid transparent;
+}
+.btn_primary:hover{
+    background-color:#089aff;
+}
+.btn{
+    width:100px;
+    line-height:32px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    border:1px solid #c7ccd1;
+    color:#222;
+    display: inline-block;
+    text-decoration: none;
+}
+.btn_default{
+    margin-left:10px;
+}
+.btn_default:hover{
+    background-color: #f4f4f4;
+}
+.remove_content{
+    text-align: left;
+}

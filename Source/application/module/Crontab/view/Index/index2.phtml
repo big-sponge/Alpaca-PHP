@@ -46,9 +46,20 @@
                     {{?}}
                 </label>
             </td>
-            <td>
+            <td class="edit">
                 <a class="aTag a_blue" href="#" onclick="editTask(this, {{=key}})">编辑</a>&nbsp
-                <a class="aTag a_red" href="#" onclick="deleteTask({{=key}})">删除</a>
+                <a href="#" class="aTag a_blue func" onclick="showFunction(this)">删除</a>
+                <div class="remove">
+                    <div class="remove_inner">
+                        <div class="remove_content">确定删除这个定时？</div>
+                        <div class="remove_bar">
+                            <a href="#" class="btn btn_primary" onclick="deleteTask({{=key}})">确定</a>
+                            <a href="#" class="btn btn_default" onclick="hideFunction()">取消</a>
+                        </div>
+                    </div>
+                    <i class="remove_arrow remove_arrow_out"></i>
+                    <i class="remove_arrow remove_arrow_in"></i>
+                </div>
             </td>
         </tr>
         {{ } }}
@@ -148,6 +159,15 @@
     </div>
     <div class="alert_body" id="mask"></div>
 </div>
+<script>
+    function showFunction(me){
+       $(me).next(".remove").fadeIn();
+    }
+
+    function hideFunction(){
+        $(".remove").fadeOut();
+    }
+</script>
 <script>
     $('#startTime').datetimepicker();  //日期插件
     $("#endTime").datetimepicker();
@@ -295,7 +315,7 @@
                 //data.code=1000   启动   其他是系统错误
                 if(x==1001){
                 	g_isStart = 0;
-                    $("#system_switch").css("background-color","#4fca72");
+                    $("#system_switch").css("background-color","#de5f5f" );
                     $("#system_switch").html("启动");
                     $(".small_light").removeClass("small_light_full");
                     $("#id_light_tip").html("未运行");//启动按钮变灰
@@ -303,7 +323,7 @@
                 }else if(x==1000){
 
                 	g_isStart = 1;
-                    $("#system_switch").css("background-color","#de5f5f ");
+                    $("#system_switch").css("background-color","#4fca72" );
                     $("#system_switch").html("停止");
                     $(".small_light").addClass("small_light_full");
                     $("#id_light_tip").html("运行中");//启动按钮变灰
