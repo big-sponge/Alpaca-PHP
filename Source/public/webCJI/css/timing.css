@@ -407,7 +407,7 @@ input{
     background-color: #fff;
     display: none;
     z-index: 99;
-    box-shadow: 0 2px 4px rgba(0,0,0,.3);
+    box-shadow: 1px 2px 2px rgba(0,0,0,.2);
 }
 .remove_arrow{
     position: absolute;
@@ -425,7 +425,7 @@ input{
     border-bottom-style: solid;
 }
 .remove .remove_arrow_in{
-    top:1px;
+    top:2px;
     border-bottom-color: #fff;
 }
 .remove .remove_arrow_out{

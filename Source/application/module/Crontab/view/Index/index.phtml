@@ -163,9 +163,9 @@
 <!--删除弹框-->
 <script>
     function showFunction(me){
+        hideFunction();
         $(me).next(".remove").fadeIn();
     }
-
     function hideFunction(){
         $(".remove").fadeOut();
     }
@@ -314,8 +314,10 @@
             beforeSend: function () {
             },
             success: function (data) {
-                console.log(data);
-                var x = data.code;
+                var x = 1001;
+                if(data != null && data != ""){
+                    x = data.code;
+                }
                 //data.code=1001   未启动
                 //data.code=1000   启动   其他是系统错误
                 if(x==1001){
