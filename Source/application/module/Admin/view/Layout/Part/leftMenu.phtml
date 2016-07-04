@@ -1,0 +1,73 @@
+<script type="text/javascript">
+<?php $menuId= isset($this->menuId)? $this->menuId: 0;?>
+var menuId ="<?php echo '#menuId-'.$this->menuId; ?>";
+$(document).ready(function() { 
+	$(".c-menu-item").removeClass("c-menu-item-select");
+    $(menuId).addClass("c-menu-item-select"); 
+});
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function() { 
+	$(".c-menu-item").click(function(){
+		 var ahref = $(this).find("a").attr("href");
+		 window.location.href = ahref;
+	});
+}); 
+
+</script>
+<div class="m_line"></div>
+
+<div class="c-menu-item" id="menuId-1">
+	<a class="shiyanmei" href="/lender/index">
+		<div class="c-item-title m-lendericon">
+			<img class="icongray" src="/adminCJI/img/icon/icon_01.png"/>
+			<img class="iconwhite" src="/adminCJI/img/icon/g_icon_01.png"/>
+			<span>基础信息</span>
+		</div>
+	</a>
+</div>
+
+<div class="c-menu-item" id="menuId-2">
+	<a href="/lender/list-firm">
+		<div class="c-item-title m-lendericon">
+			<img class="icongray" src="/adminCJI/img/icon/icon_02.png"/>
+			<img class="iconwhite" src="/adminCJI/img/icon/g_icon_02.png"/>
+			<span>监管企业</span>
+		</div>
+	</a>
+</div>
+
+<div class="c-menu-item" id="menuId-3">
+	<a class="shiyanmei" href="/lender/list-loan">
+		<div class="c-item-title m-lendericon">
+			<img class="icongray" src="/adminCJI/img/icon/icon_03.png"/>
+			<img class="iconwhite" src="/adminCJI/img/icon/g_icon_03.png"/>
+			<span>贷款信息</span>
+		</div>
+	</a>
+</div>
+
+<div class="c-menu-item" id="menuId-4">
+	<a class="shiyanmei" href="/lender/my-info">
+		<div class="c-item-title m-lendericon">
+			<img class="icongray" src="/adminCJI/img/icon/icon_04.png"/>
+			<img class="iconwhite" src="/adminCJI/img/icon/g_icon_04.png"/>
+			<span>我的信息</span>
+		</div>
+	</a>
+</div>
+
+<div class="c-menu-item" id="menuId-5">
+	<a href="/lender/safe">
+		<div class="c-item-title m-lendericon" >
+ 
+			<img class="icongray" src="/adminCJI/img/icon/icon_05.png"/>
+			<img class="iconwhite" src="/adminCJI/img/icon/g_icon_05.png"/>
+ 
+			<span>安全管理</span>
+		</div>
+	</a>
+
+</div>
