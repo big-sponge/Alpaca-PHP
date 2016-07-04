@@ -14,7 +14,7 @@ class WebController
 
     public function indexAction()
     {
-        return View::html();
+        return View::html()->setLayout(View::layout())->setFinal(true)->setPart(View::part('leftMenu','name2'),['menuId'=>2]);
     }
 }
 

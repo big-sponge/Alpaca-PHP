@@ -209,7 +209,7 @@ class Router
         $controllerClass = $this->controllerClass;
         $moduleClass = $this->moduleClass;
                        
-        $init ="init";
+        $init ="OnInit";
         $initResult = null;
         
         //执行模块init方法，如果该方法存在
@@ -255,7 +255,7 @@ class Router
                 
         //View     
         if(!empty($view)){
-            $defaultView ="defaultView";
+            $defaultView ="onDefaultView";
             if(method_exists($controllerClass, $defaultView)){
                 $view = $controllerClass->$defaultView($view);
             }elseif(method_exists($moduleClass, $defaultView)){
@@ -269,25 +269,25 @@ class Router
         
         //View - Template
         if(!$view->Template){
-            $defaultViewTemplate ="defaultViewTemplate";
+            $defaultViewTemplate ="onDefaultViewTemplate";
             if(method_exists($controllerClass, $defaultViewTemplate)){
                 $view->Template = $controllerClass->$defaultViewTemplate();
             }else if(method_exists($moduleClass, $defaultViewTemplate)){
                 $view->Template = $moduleClass->$defaultViewTemplate();
             }else{
-                $view->Template = View::getDefaultViewTemplate();
+                $view->Template = View::defaultViewTemplate();
             }
         }
         	
         //View - CaptureTo
         if(!$view->CaptureTo){
-            $defaultViewCaptureTo ="defaultViewCaptureTo";
+            $defaultViewCaptureTo ="onDefaultViewCaptureTo";
             if(method_exists($controllerClass, $defaultViewCaptureTo)){
                 $view->CaptureTo = $controllerClass->$defaultViewCaptureTo();
             }else if(method_exists($moduleClass, $defaultViewCaptureTo)){
                 $view->CaptureTo = $moduleClass->$defaultViewCaptureTo();
             }else{
-                $view->CaptureTo =View::getDefaultViewCaptureTo();
+                $view->CaptureTo =View::defaultViewCaptureTo();
             }
         }
         
@@ -295,13 +295,13 @@ class Router
         if($view->UseLayout){
             //Layout
             if(!$view->Layout){
-                $getDefaultLayout ="getDefaultLayout";
+                $getDefaultLayout ="onDefaultLayout";
                 if(method_exists($controllerClass, $getDefaultLayout)){
                     $view->setLayout( $controllerClass->$getDefaultLayout() );
                 }else if(method_exists($moduleClass, $getDefaultLayout) ){
                     $view->setLayout( $moduleClass->$getDefaultLayout() );
                 }else{
-                    $view->setLayout( View::$getDefaultLayout() );
+                    $view->setLayout( View::layout());
                 }
             }
         
@@ -313,7 +313,7 @@ class Router
                 }else if(method_exists($moduleClass, $getDefaultLayoutTemplate)){
                     $view->Layout->Template = $moduleClass->$getDefaultLayoutTemplate();
                 }else{
-                    $view->Layout->Template =View::$getDefaultLayoutTemplate();
+                    $view->Layout->Template =View::defaultLayoutTemplate();
                 }
             }
         }
