@@ -17,7 +17,7 @@ class IndexController
 
     protected $return_data = [];
     
-    public function init()
+    public function onInit()
     {
         //过滤输入数据
         $this->dataFilter();
