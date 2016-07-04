@@ -312,10 +312,17 @@ class View
         $templatePostfix = self::$TemplatePostfix;
         return APP_PATH."/application/module/{$module}/view/{$controller}/{$action}{$templatePostfix}";
     }
-    	
+
+    public static function defaultLayout()
+    {
+        $view = new View();
+        $view->setTemplate($view->getDefaultLayoutTemplate());       
+        return $view;
+    }
+    
     public static function getDefaultLayout()
     {
-        return new View();
+        return self::defaultLayout();
     }
     	
     public static function getDefaultLayoutTemplate()

@@ -1,0 +1,1207 @@
+.c-lender-box{
+	width:100%;
+	min-width:1200px;
+	height: 100%;
+	min-height: 760px;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom:0;
+	right:0;
+	background: #f2f2f2;
+}
+
+.c-top-lender-box{
+	background-color: #0194dc;
+	height: 48px;
+	width:100%;
+	left: 0;
+	top: 0;
+	position: absolute;
+	overflow: hidden;
+}
+
+.c-main-lender-box{ 		
+	border:0;
+	background: #f4f4f4;
+	width:100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom:0;
+	right:0;
+	margin-top:48px;
+}
+
+.c-bottom-lender-box{
+	background-color: #f6f6f6;
+	position: absolute;
+	left: 0;
+	bottom:0;
+	height: 150px;
+	width:100%;
+	
+}
+
+
+
+.c-main-lender-left{
+	height: 100%;
+	width:220px;
+	float:left;
+	background-color: #2d384a;
+	overflow: hidden;
+}
+
+.c-main-lender-right{
+	height: 100%;
+	
+	float:left;	
+		
+	position: absolute;
+	left: 220px;
+	right:0;
+	
+	background-color: #eef1f7;
+	overflow:auto;
+}
+
+
+
+.c-main-full{
+	width:100%;
+	min-width:1200px;
+}
+
+
+.c-main-full .c-main-left-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  min-height: 760px;
+  min-width:1200px;
+  box-sizing : border-box ;
+  moz-box-sizing: border-box;
+}
+table {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: grey;
+}
+tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+tr{
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+}
+td, th {
+	display: table-cell;
+	vertical-align: inherit;
+}
+dl{
+	margin:0;
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+dd{
+	margin:0;
+	display: block;
+	-webkit-margin-start: 10px;
+}
+dt{
+	display: block;
+}
+h3{
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	margin:0;
+}
+ul{
+	padding-left:0;
+	list-style-type:none;
+}
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+*{
+	font-family:"微软雅黑";}
+
+
+
+
+
+
+
+
+
+
+/*顶部导航*/
+.m-body {
+	background-color: #272727;
+	width: 100%;
+}
+
+.m-titleBox {
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	line-height: 64px;
+}
+
+.m-tLeft {
+	float: left;
+}
+
+.m-tLeft a {
+	font-size: 16px;
+	color: #fff;
+	padding-right: 25px;
+	padding-left: 25px;;
+}
+
+.logo {
+	float: left;;
+}
+
+/*内容*/
+ul {
+	padding-left: 0;
+	list-style-type: none;
+	margin: 0;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+
+h4 {
+	display: block;
+	-webkit-margin-after: 1.33em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+dl {
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+input {
+	border: none;
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+.m-jrcontent {
+	width: 100%;
+	background-color: #f8f6f3;
+}
+
+.warp {
+	width: 1188px;
+	background-image: url(/webCJI/img/whitebg.png);
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.main {
+	width: 920px;
+	overflow: hidden;
+	float: left;
+}
+.m-listfirmmain{
+	margin-top: 30px;;
+}
+.news {
+	position: absolute;
+	z-index: 4;
+	float: left;
+	width: 232px;
+	border-right: 1px #dfdfdf solid;
+}
+
+.news ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background: #f8f1df;
+	padding-top: 10px;
+	height: 890px;
+	-webkit-box-shadow: 0 0 5px RGBA(182, 182, 182, 0.7);
+	-moz-box-shadow: 0 0 5px rgba(182, 182, 182, 0.7);
+	box-shadow: 0 0 5px RGBA(182, 182, 182, 0.7);
+}
+
+.news ul li {
+	width: 260px;
+	overflow: hidden;
+	cursor: pointer;;
+	vertical-align: middle;
+	background: url(/webCJI/img/bxd_01.png) no-repeat;
+	height: 66px;
+	line-height: 66px;
+	margin-top: 8px;
+	margin-left: 5px;
+	font-size: 16px;
+	text-indent: 5em;
+}
+
+.news ul li.on {
+	background: url(/webCJI/img/sdf.png) no-repeat;
+	color: #FFF;
+}
+
+.news span {
+	display: block;
+}
+
+.dis {
+    border: 2px solid #ff0000;
+	height: 800px;
+	margin-top: 60px;
+}
+
+.undis {
+	display: none;
+	height: 810px;
+	margin-top: 90px;
+}
+
+.biao {
+	width: 860px;
+	float: left;
+	margin-top: 46px;
+	border-bottom: 1px #CCC solid
+}
+
+.biao div {
+	width: 4px;
+	height: 30px;
+	background: #ffb800;
+	float: left;
+}
+
+.biao p {
+	display: block;
+	float: left;
+	margin-left: 10px;
+	font-size: 20px;
+	line-height: 40px;
+	color: #666;
+}
+
+.m-jrcontent {
+	padding-bottom: 20px;
+}
+
+.m-main-line {
+	width: 700px;
+	margin-top: 22px;
+}
+
+.m-main-line dt {
+	width: 90px;
+	display: table-cell;
+	white-space: nowrap;
+	color: #73777B;
+	text-align: right;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	font-size: 14px;
+}
+
+.m-change {
+	background: none;
+	display: block;
+	text-align: center;
+	width: 100px;
+	color: #0071ce;
+	padding: 10px 0;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	cursor: pointer;
+	font-family: "微软雅黑";
+}
+
+.m-btn-one>a:hover {
+	background: #428bca;
+	color: #FFFFFF;
+}
+
+.m-main-line dd {
+	display: table-cell;
+	padding-bottom: 20px;
+}
+
+.m-info-text {
+	display: inline-block;
+	font-size: 14px;
+	color: #333;
+	margin-left: 4px;;
+}
+
+.main p {
+	float: left;
+	margin-left: 20px;
+	font-size: 14px;
+	color: #73777B;
+	text-align: left;
+}
+
+.m-btn-one {
+	width: 200px;
+	overflow: hidden;
+	float: left;
+	margin-left: 46px;
+}
+
+.m-btn-one img {
+	display: block;
+	margin: 30px auto;
+}
+
+.m-search {
+	height: 36px;
+	background-color: #eeeeee;
+	font-family: "微软雅黑";
+}
+
+.m-searchBox {
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+.m-searchBox * {
+	float: left;
+	padding-left: 10px;;
+} /*搜索框里是浮动*/
+.m-tbtn {
+	background-image: url(/webCJI/img/sousuo.png);
+	width: 44px;
+	height: 36px;
+}
+/*更改密码*/
+.m-list {
+	margin-top: 40px;
+}
+
+.m-list input {
+	border: #e7e7eb 1px solid 1px;
+	height: 36px;
+	margin-bottom: 12px;
+}
+
+.name {
+	text-align: right;
+	width: 90px;
+	line-height: 30px;
+	vertical-align: top;
+	padding-right: 10px;
+	color: #333;
+	font-size: 14px;
+}
+
+.clear-input {
+	height: 36px;
+	width: 250px;
+	padding: 0 10px;
+}
+
+.m-querenbtn img {
+	margin-top: 10px;
+}
+
+
+/*list-finance样式*/
+.list-finance-content {
+	width: 940px;;
+}
+
+.finance-title {
+	font-size: 16px;
+	margin-top: 20px;
+	color: #666;
+}
+
+.finance-title span {
+	color: #333;
+}
+
+.finance-time {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	overflow: hidden;;
+}
+
+.finance-timeleft {
+	float: left;
+}
+
+.finance-timeright {
+	float: left;
+	margin-left: 30px;
+}
+
+.finance-listtitle {
+	font-size: 18px;
+	color: #666;
+	width: 92%;
+	margin: 0 auto;
+	line-height: 23px;
+}
+
+.finance-list {
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.finance-listtitle:before {
+	content: "\2022\20";
+	color: #ffb800;
+	padding-right: 5px;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+.finance-list01 {
+	overflow: hidden;
+}
+/*表格样式*/
+.tab {
+	margin: 0;
+	padding: 0; /*合并边线*/
+	border-collapse: collapse; /*宽高自定*/
+	color: #656565;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+
+.tab td {
+	border: solid 1px #d7d7d7;
+	text-align: center;
+}
+
+.m-mulu {
+	background-color: #f3f3f3;
+	font-weight: bold;
+}
+
+/*detail-firm样式*/
+.account_setting_area {
+	border: 1px solid #e7e7eb;
+	margin-top: 40px;
+	margin-bottom: 20px;;
+}
+.m-detailfirmbox .sub_title {
+	height: 40px;
+	line-height: 40px;
+	padding: 0 20px;
+	font-size: 14px;
+	font-weight: 400;
+	font-style: normal;
+	background-color: #f3f3f3;
+	margin-top:0;
+	margin-bottom:0;
+	color: #222;
+}
+.m-account_setting_item{
+	font-size: 14px;}
+.account_setting_item {
+	border-top: 1px solid #e7e7eb;
+	padding: 18px 20px;
+}
+
+.account_setting_item h4 {
+	float: left;
+	width: 100px;
+	margin-right: 20px;
+	font-weight: 400;
+	font-style: normal;
+	color: #8d8d8d;
+	margin-top:0;
+	margin-bottom:0;
+}
+
+.account_setting_item .meta_content {
+	display: table-cell;
+	vertical-align: top;
+	float: none;
+	width: auto;
+	word-wrap: break-word;
+	word-break: break-all;
+	font-size: 14px;
+}
+
+.m-biaoge {
+	margin-bottom: 20px;
+}
+
+.m-detailcatalog{
+	border-bottom:1px solid #e7e7eb;
+	margin-top:10px;
+	overflow: hidden;
+}
+.m-detailcatalog .m-business{
+	border-bottom:3px solid #0072ce;
+	font-size:14px;
+	color: #222;
+	padding:10px 20px;
+	float: left;
+}
+.m-detailcatalog .m-industry{
+	font-size:14px;
+	color: #222;
+	padding:10px 20px;
+	float: left;
+}
+.m-detailcatalog .m-industry:hover{
+	border-bottom:3px solid #a7a7a7;
+}
+
+/*industry-firm样式*/
+.m-detailcatalog02{
+	border-bottom:1px solid #e7e7eb;
+	margin-top:10px;
+	overflow: hidden;
+}
+.m-detailcatalog02  .m-industry02{
+	border-bottom:3px solid #0072ce;
+	font-size:14px;
+	color: #222;
+	padding:10px 20px;
+	float: left;
+}
+.m-detailcatalog02 .m-business02{
+	font-size:14px;
+	color: #222;
+	padding:10px 20px;
+	float: left;
+}
+.m-detailcatalog02 .m-business02:hover{
+	border-bottom:3px solid #a7a7a7;
+}
+
+/*list-firm样式*/
+.lisrfirmlab {
+	margin: 0;
+	padding: 0; /*合并边线*/
+	border-collapse: collapse; /*宽高自定*/
+	width: 920px;
+	olor: #656565;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+.lisrfirmlab td {
+	border: solid 1px #d7d7d7;
+	text-align: center;
+	padding:11px 0;
+}
+.m-mulu td{
+	border: solid 1px #d7d7d7;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+/*safe样式*/
+.safemain {
+	width:200px;
+	margin:0 auto;
+}
+.m-sefelist input{
+	margin-bottom: 8px;
+}
+.m-safebox{
+
+}
+.m-safebtnbox{
+	overflow: hidden;
+}
+.safebtn {
+	width: 200px;
+	line-height: 34px;
+	font-size: 14px;
+	color: #fff;
+	background: #56a66b;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	margin-top: 20px;
+	border:none;
+}
+.safebtn:hover{
+	background:#4d9560;
+}
+.m-list .m-safeinputadd{
+	display: block;
+	border:1px solid #e7e7eb;
+	height: 30px;
+	background-color: #f6f9ff;
+}
+.m-safetips{
+	display: block;
+	margin:0;
+	padding:0;
+	color: #8d8d8d;
+	font-size: 14px;
+	margin-bottom: 30px;
+}
+/*list-loan样式*/
+.m-list-one {
+	width: 920px;
+	height: 36px;
+	margin-top: 30px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.m-tijiaobox .c-upbt {
+	margin-left: 500px;
+}
+
+.m-listtab {
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+	width: 920px;
+	color: #666;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+.m-listtab a{
+	color: #0070cc;
+	cursor:pointer;
+}
+.m-listmulu {
+	background-color: #f3f3f3;
+	font-weight: bold;
+	font-size: 14px;
+	color: #666;
+}
+.m-listtab .m-listmulu td{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.m-list-shurubox * {
+	float: left;
+}
+
+.m-listtab td {
+	border: solid 1px #d7d7d7;
+	text-align: center;
+	padding:11px 0;
+}
+
+.m-listtab span {
+	text-decoration: underline;
+}
+
+/*lender-add-loan样式*/
+.m-addfinancelist {
+	margin-top: 44px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
+}
+
+.c-search-box {
+	width: 200px;
+	height: 34px;
+}
+
+.c-addloan-width-date {
+	width: 290px;
+}
+
+.c-addloan-width-select {
+	width: 302px;
+}
+
+.c-addloan-width {
+	width: 280px;
+}
+
+.m-addfinancelist>tbody>tr>td {
+	padding-bottom: 20px;
+}
+
+.c-addloan-submit {
+	background-color: #0072ce;
+	color: #FFFFFF;
+	border-radius: 0px;
+	width: 302px;
+	height: 38px;
+}
+.m-lederindexright a{
+	color:#1686ef;
+}
+/*lender-indx最新样式*/
+.m-lederindexbox *{ margin:0 auto; padding:0; font-family:"微软雅黑"; font-size:12px;}
+.m-lederindexwrap{
+	width:100%;
+	overflow:hidden;}
+.m-lederindexbox{
+	overflow:hidden;
+	text-indent:2em;
+	margin-left: 20px;
+}
+.m-lederindexbox_top{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	border-bottom:1px #d2dae2 solid;
+	padding-left: 20px;
+	font-size: 14px;
+	color: #222;}
+.m_tip{
+	border-bottom:5px solid #56a66b;
+	padding:0 20px 6px 20px;
+}
+.m-lederindexbox_top_center{
+	width:100%;
+	overflow:hidden;
+	padding:20px 0;
+	border-bottom:1px #d2dae2 solid;
+}
+.m-lederindexbox_top_center span{
+	width:120px;
+	font-size:12px;
+	float:left;
+	color:#4e515e;}
+.m_name{
+	float:left;
+}
+.m-lederindexbox_bottom{
+	border-bottom:1px #d2dae2 solid;
+	line-height:58px;
+	width:100%;
+	overflow:hidden;}
+.m-lederindexbox_bottom{
+	overflow: hidden;
+}
+.m-lederindexbox_bottom .m-lederindexright{
+	float: right;
+	margin-right: 40px;
+}
+.m-lederindexright{
+	text-align:right;
+	margin-right: 40px;
+	float: right;}
+.m-lederindexbox_bottom span{
+	width:100px;
+	float:left;
+	font-size:12px;
+	color:#4e515e;}
+.m-lederindexbox_bottom div{
+	float:left;
+	color:#4e515e;}
+
+
+/*侧导航icon公共样式*/
+.m-lendericon img{
+	float: left;
+	width:22px;
+	height:22px;}
+
+
+
+/*改稿金融首页样式--lender-index*/
+.c-main-full .lender-box-padding{
+	padding-right:0;
+	padding-left:0;
+	padding-top:0;
+
+}
+.content-company{
+	border-bottom: 1px solid #d2dae2;
+	line-height: 60px;
+}
+.c-main-left-content .sub-content-company{
+	border-bottom: 1px solid #d2dae2;
+}
+.my_info{
+	border-bottom:none;
+}
+.g-index-content{
+	padding-left:20px;
+	padding-right:10px;
+}
+.index-content-box{
+	width:100%;
+	margin-bottom: 20px;
+}
+.g-index-icon01{
+	width:16px;
+	height:16px;
+}
+.company{
+	padding-left:20px;
+	color: #333;
+	font-size:17px;
+}
+.g-indext-title-box{
+	overflow: hidden;
+}
+.g-indext-title{
+	font-size:14px;
+	color: #333;
+	float: left;
+	margin-left: 10px;
+}
+.g-indext-first{
+	margin-top:20px;
+}
+.g-indext-title-box{
+	line-height:41px;
+	background-color:#f5f7fc;
+	border-bottom:1px solid #eff1f4;
+}
+.g-indext-doubt{
+	float: right;
+	margin-right: 10px;
+}
+.g-indext-doubt img{
+	width:16px;
+	height:16px;
+}
+
+             /*金融首页--数据列表样式*/
+.ui-trendgrid{
+	table-layout: fixed;
+	position: relative;
+	width: 100%;
+	margin: 20px 0;
+}
+.g-index-form-box{
+	background-color:#fff;
+}
+.g-form-content{
+	border:1px solid #fff;
+}
+.g-last{
+	border-right:0 none;
+}
+.ui-trendgrid td{
+	height:130px;
+}
+.g-ui-trendgrid-item{
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+.ui-trendgrid-chart{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 1px;
+}
+.ui-trendgrid dl{
+	display: inline-block;
+	margin-top: 0;
+	padding: 0;
+	text-align: left;
+	position: relative;
+	z-index: 2;
+}
+.ui-trendgrid dt {
+	padding-bottom: 20px;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: center;
+}
+.g-ui-trendgrid-item b{
+	font-weight: 500;
+	font-style: normal;
+	font-size: 14px;
+	color: #222;
+}
+.ui-trendgrid .ui-trendgrid-number {
+	text-align: center;
+	color: #676767;
+	font-size: 32px;
+	margin-right: 10px;
+	margin-bottom: 26px;
+}
+.ui-trendgrid-number strong {
+	font-weight: 500;
+	font-style: normal;
+}
+.ui_trendgrid_unit {
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 400;
+	font-style: normal;
+}
+.ui-trendgrid dd {
+	margin-top: 2px;
+	font-size: 14px;
+	line-height: 18px;
+	white-space: nowrap;
+	color: #222;
+}
+.icon-up{
+	margin-left: 10px;
+	position: relative;
+	top: -1px;
+	margin-right: 3px;
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: transparent url(/webCJI/img/lender-icon02.jpg);
+	vertical-align: middle;
+}
+.icon-up02{
+	margin-left: 10px;
+	position: relative;
+	top: -1px;
+	margin-right: 3px;
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: transparent url(/webCJI/img/lender-icon03.jpg);
+	vertical-align: middle;
+}
+.ui-trendgrid td {
+	height: 130px;
+	border-right: 1px solid #e7e7eb;
+}
+.ui-trendgrid .red-info{
+	border-right:none;
+}
+.icon-up-01{
+	margin-left: 10px;
+	position: relative;
+	top: -1px;
+	margin-right: 3px;
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: transparent url(/webCJI/img/lender-icon-red.jpg);
+	vertical-align: middle;
+}
+/*首页第二部分-系统消息*/
+.g-indext-title02{
+	color: #222;
+	font-size:18px;
+	margin:20px 0;
+}
+.g-mp-news-list{
+	border-bottom: 1px solid #e7e7eb;
+}
+.g-indext-second{
+	line-height:40px;
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
+	background-color:#fff;
+	border:1px solid #e7e7eb;
+}
+.g-title-bar{
+	padding:0 20px;
+	background-color:#f4f5f9;
+	border-bottom:1px solid #e7e7eb;
+}
+.g-title-bar h3{
+	font-size: 14px;
+	font-weight: 400;
+	font-style: normal;
+	color: #222;
+}
+.g-mp-news-item:first-child{
+	border-top-width:0;
+}
+.g-mp-news-item{
+	position: relative;
+	border-top: 1px solid #e7e7eb;
+	font-size: 14px;
+}
+.g-mp-news-item a{
+	display: block;
+	padding-right: 10em;
+	padding-left: 20px;
+	color: #222;
+	text-decoration: none;
+	cursor: pointer;
+}
+.g-mp-news-item a strong{
+	display: block;
+	font-weight: 400;
+	font-style: normal;
+	width: 52em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+.g-icon-common{
+	margin-left: 6px;
+	background: url("/webCJI/img/lender-icon04.jpg");
+	width: 20px;
+	height: 12px;
+	vertical-align: middle;
+	display: inline-block;
+	line-height: 100px;
+	overflow: hidden;
+}
+.g-mp-news-item .read-more{
+	position: absolute;
+	right: 20px;
+	top: 0;
+	color: #8d8d8d;
+	text-decoration: none;
+}
+.g-mp-news-item strong:hover{
+	color:#0072cf;
+}
+.tcdPageCode-right{
+	text-align:right;
+	padding-right: 10px;
+	float: none;
+}
+
+/*改--系统信息----表格样式*/
+.sys_content_box{
+	border:1px solid #e7e7eb;
+	margin-top: 18px;
+}
+.sys_content_box:hover{
+	box-shadow: 0 0 20px #cbcdd0;
+	transition: background 0.3s ease-in-out;
+}
+.sys_content{
+
+}
+.sys_content .sys_table{
+	border-width:1px;
+}
+.sys_table{
+	width:100%;
+	font-size:14px;
+	text-align: center;
+	background-color:#fff;
+	border-spacing:0;
+}
+.sys_tbody .sys_table_cell{
+	border-bottom:1px solid #e7e7eb;
+}
+.sys_tbody tr:hover{
+	background-color:#daf3ff;
+	cursor:pointer;
+}
+.sys_thead{
+	background-color:#f5f7fc;
+}
+.sys_table_cell{
+	padding-left:20px;
+	padding-right:20px;
+	font-weight:500;
+	width:200px;
+	color:#222;
+	line-height: 40px;
+}
+
+.g-table_cell{
+	width:1024px;
+}
+.sys_tr{
+	text-align: right;
+	color: #8d8d8d;
+}
+.sys_table_cell02{
+	text-align: right;
+}
+.sys_table_cell:first-child{
+	text-align: left;
+}
+.sys_details{
+	color: #0071ce;
+	cursor: pointer;
+}
+.sys_details:hover{
+	text-decoration: underline;
+}
+.sys_table_words{
+	overflow: hidden;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	-ms-word-wrap:normal;
+	word-wrap:normal;
+	width:400px;
+	text-align: left;
+	white-space:nowrap;
+}
+.sys_table_words:hover{
+	color: #0072cf;
+}
+.sys_width{
+	width:500px;
+}
+.sys_table_words{
+}
+
+/*监管信息-----基础信息*/
+.m-lederindexbox02{
+	margin-top:20px;
+	margin-bottom:40px;
+}
+/*监管信息---行业比较--增加微调样式*/
+.m-lederindexbox_bottom .industry-title{
+	width:400px;
+	color: #333;
+	font-weight:bold;
+
+}
+.m-lederindexbox_bottom .industry-average{
+	width:470px;
+}
+.m-lederindexbox .industry-top{
+	width:260px;
+	text-align: left;
+}
+
+/*安全管理*/
+.m-sefelist{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

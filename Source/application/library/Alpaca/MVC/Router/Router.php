@@ -248,30 +248,32 @@ class Router
         if(empty($view)){
             $view = $controllerClass->$action();
         }
-        
+                
         if($view instanceof Redirect){
             return $view;
         }
-        
-        //View
-        if(!$view){
-            $getDefaultView ="getDefaultView";
-            if(method_exists($controllerClass, $getDefaultView)){
-                $view = $controllerClass->$getDefaultView($view);
-            }elseif(method_exists($moduleClass, $getDefaultView)){
-                $view = $moduleClass->$getDefaultView($view);
-            }else{
-                return null;
-            }        
-        }
                 
+        //View     
+        if(!empty($view)){
+            $defaultView ="defaultView";
+            if(method_exists($controllerClass, $defaultView)){
+                $view = $controllerClass->$defaultView($view);
+            }elseif(method_exists($moduleClass, $defaultView)){
+                $view = $moduleClass->$defaultView($view);
+            }
+        }
+
+        if(empty($view)){
+            return null;
+        }
+        
         //View - Template
         if(!$view->Template){
-            $getDefaultViewTemplate ="getDefaultViewTemplate";
-            if(method_exists($controllerClass, $getDefaultViewTemplate)){
-                $view->Template = $controllerClass->$getDefaultViewTemplate();
-            }else if(method_exists($moduleClass, $getDefaultViewTemplate)){
-                $view->Template = $moduleClass->$getDefaultViewTemplate();
+            $defaultViewTemplate ="defaultViewTemplate";
+            if(method_exists($controllerClass, $defaultViewTemplate)){
+                $view->Template = $controllerClass->$defaultViewTemplate();
+            }else if(method_exists($moduleClass, $defaultViewTemplate)){
+                $view->Template = $moduleClass->$defaultViewTemplate();
             }else{
                 $view->Template = View::getDefaultViewTemplate();
             }
@@ -279,11 +281,11 @@ class Router
         	
         //View - CaptureTo
         if(!$view->CaptureTo){
-            $getDefaultViewCaptureTo ="getDefaultViewCaptureTo";
-            if(method_exists($controllerClass, $getDefaultViewCaptureTo)){
-                $view->CaptureTo = $controllerClass->$getDefaultViewCaptureTo();
-            }else if(method_exists($moduleClass, $getDefaultViewCaptureTo)){
-                $view->CaptureTo = $moduleClass->$getDefaultViewCaptureTo();
+            $defaultViewCaptureTo ="defaultViewCaptureTo";
+            if(method_exists($controllerClass, $defaultViewCaptureTo)){
+                $view->CaptureTo = $controllerClass->$defaultViewCaptureTo();
+            }else if(method_exists($moduleClass, $defaultViewCaptureTo)){
+                $view->CaptureTo = $moduleClass->$defaultViewCaptureTo();
             }else{
                 $view->CaptureTo =View::getDefaultViewCaptureTo();
             }
@@ -304,7 +306,7 @@ class Router
             }
         
             //Layout - Template
-            if(!$view->Layout->Template){               
+            if(!$view->Layout->Template){
                 $getDefaultLayoutTemplate ="getDefaultLayoutTemplate";
                 if(method_exists($controllerClass, $getDefaultLayoutTemplate)){
                     $view->Layout->Template = $controllerClass->$getDefaultLayoutTemplate();
@@ -328,8 +330,8 @@ class Router
         }
         	
         //执行模块onDisplay方法，如果该方法存在
-        if(method_exists($controllerClass, $onDisplay)){
-            $view = $controllerClass->$onDisplay($view);
+        if(method_exists($moduleClass, $onDisplay)){
+            $view = $moduleClass->$onDisplay($view);
         }
            
         return $view;
