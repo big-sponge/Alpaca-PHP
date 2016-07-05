@@ -303,3 +303,7 @@ Stack trace:
 [23-Jun-2016 10:15:55 PRC] PHP Fatal error:  require_once(): Failed opening required 'library/Alpaca/MVC/Form/AlpacaForm.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 64
 [23-Jun-2016 10:17:14 PRC] PHP Warning:  require_once(module/Index/Form/View.php): failed to open stream: No such file or directory in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 22
 [23-Jun-2016 10:17:14 PRC] PHP Fatal error:  require_once(): Failed opening required 'module/Index/Form/View.php' (include_path='.;C:\php\pear') in C:\lideshun\www\Alpaca-php\Source\application\init_autoloader.php on line 22
+[05-Jul-2016 13:30:42 PRC] PHP Notice:  Undefined variable: result in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\IndexController.php on line 14
+[05-Jul-2016 13:30:51 PRC] PHP Notice:  Undefined variable: data in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\IndexController.php on line 12
+[05-Jul-2016 14:17:56 PRC] PHP Parse error:  syntax error, unexpected '$ch' (T_VARIABLE) in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\IndexController.php on line 72
+[05-Jul-2016 14:18:22 PRC] PHP Notice:  Undefined variable: array in C:\lideshun\www\Alpaca-php\Source\application\module\Index\Controller\IndexController.php on line 41
