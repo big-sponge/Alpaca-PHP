@@ -1,1 +1,21 @@
-<div>OK I'm Here!</div>
+<script src="/adminCJI/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+<script>
+ 
+	$(document).ready(function(){
+
+
+           var postData = "category_name=&factory_name=&material_name=&specification_name=&specification_name2=&warehouse_name=&order_by=0&page_index=2&page_size=20&areaid=&stock_type=&is_blocked=&cate=&product_line=20%2C15%2C10%2C25&keyword=";
+          	    
+			htmlobj= $.ajax({
+				type:"POST",
+				url:"http://mall.zhaogang.com/ajax/malllztdservice.ashx?method=getgoods",
+				data:postData,
+				dataType:"json",
+				async:false
+			});
+
+			alert(htmlobj);
+	});
+
+</script>

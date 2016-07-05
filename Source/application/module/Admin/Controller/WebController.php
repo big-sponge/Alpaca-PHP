@@ -6,15 +6,15 @@ use Alpaca\MVC\View\View;
 class WebController
 {    
     public function onDisplay($view)
-    {       
-        $view->setLayout(View::layout());
-        $view->setPart(View::part('leftMenu'));        
+    {
+        $view->setUseLayout(true);
+        $view->setPart(View::part('leftMenu'));
         return $view;
     }
 
     public function indexAction()
     {
-        return View::html()->setPartData('leftMenu', ['menuId'=>1]);
+        return View::html()->setPartData('leftMenu',['menuId'=>1]);
     }
 }
 
