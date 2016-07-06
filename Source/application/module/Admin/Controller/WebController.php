@@ -7,6 +7,6 @@ class WebController
 {    
     public function indexAction()
     {        
-        return View::html()->setData(['name'=>"Bob"])->setPartData("leftMenu", ['menuId'=>1]);
+        return View::html()->setData(['name'=>"Bob"]);
     }
 }

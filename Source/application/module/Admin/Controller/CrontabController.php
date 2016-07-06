@@ -7,8 +7,6 @@ class CrontabController
 {
     public function indexAction()
     {
-        return View::html()->setPartData("leftMenu", ['menuId'=>2]);
+        return View::html();
     }
 }
-
- 

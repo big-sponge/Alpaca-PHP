@@ -9,6 +9,11 @@ class SystemController
     {
         return View::html();
     }
+
+    public function logAction()
+    {
+        return View::html();
+    }
     
     public function safeAction()
     {

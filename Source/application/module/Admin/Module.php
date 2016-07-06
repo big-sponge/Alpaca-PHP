@@ -7,13 +7,14 @@ class Module
 {
     public function onInit()
     {
-        Router::router()->ControllerClass->testdata = 'asdasd';
+        Router::router()->ControllerClass->request_data = 'asdasd';
     }
     
     public function onDisplay($view)
     {
         $view->setLayout(View::layout());
-        $view->setPart(View::part('leftMenu')->setData(['menuId'=>1]));
+        $menuId =lcfirst(Router::router()->Controller).'-'.Router::router()->Action;
+        $view->setPart(View::part('leftMenu')->setData(['menuId'=>$menuId]));
         return $view;
     }
 }
