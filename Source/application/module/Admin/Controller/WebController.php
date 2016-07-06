@@ -7,14 +7,14 @@ class WebController
 {    
     public function onDisplay($view)
     {
-        $view->setUseLayout(true);
-        $view->setPart(View::part('leftMenu'));
+        $view->setLayout(View::layout('layout'));
+        $view->setPart(View::part('leftMenu')->setData(['menuId'=>3]));
         return $view;
     }
 
     public function indexAction()
     {
-        return View::html()->setPartData('leftMenu',['menuId'=>1]);
+        return View::html()->setPartData('leftMenu',['menuId'=>2]);
     }
 }
 

@@ -254,10 +254,10 @@ class View
         return $view;
     }
 
-    public static function layout()
+    public static function layout($name = null)
     {
         $view = new View();
-        $view->setTemplate(static::defaultLayoutTemplate());
+        $view->setTemplate(static::defaultLayoutTemplate($name));
         return $view;
     }
     
@@ -291,11 +291,14 @@ class View
         return APP_PATH."/application/module/{$module}/view/{$controller}/{$action}{$templatePostfix}";
     }
     
-    public static function defaultLayoutTemplate()
+    public static function defaultLayoutTemplate($name = null)
     {       
+        if(!$name){
+            $name = "layout";
+        }        
         $module = Router::router()->Module;
         $templatePostfix = self::$TemplatePostfix;
-        return APP_PATH."/application/module/{$module}/view/Layout/layout{$templatePostfix}";
+        return APP_PATH."/application/module/{$module}/view/Layout/{$name}{$templatePostfix}";
     }
 
     public static function defaultPartTemplate($name)

@@ -16,9 +16,9 @@ class IndexController
         //var_dump($array);
         
         $url = 'http://mall.zhaogang.com/ajax/malllztdservice.ashx?method=getgoods';
-        
+
         //$url ="http://127.0.0.18/index/index/index2";
-        
+
         $post_data = array(
             'category_name'=>'',
             'factory_name'=>'',
@@ -28,7 +28,7 @@ class IndexController
             'warehouse_name'=>'',
             'order_by'=>'0',
             'page_index'=>'1',
-            'page_size'=>'20',
+            'page_size'=>'500',
             'areaid'=>'',
             'stock_type'=>'',
             'is_blocked'=>'',
@@ -36,24 +36,31 @@ class IndexController
             'product_line'=>"20,15,10,25",
             'keyword'=>'',         
         );
-        
-        $r = $this->post($url,$post_data);
+
+        $r = $this->post($url,http_build_query($post_data));
         var_dump($r);
-        
+        $result = base64_decode($r);
+        var_dump($result);
+
+        $array = json_decode($result,true);
+
+        var_dump($array);
+
         die;
- 
+
         return View::html();
     }
     
     
     public function post($url, $post_data = '', $timeout = 20)     //curl
-    {               
+    {             
+        $count = strlen($post_data);
         $header = array(
             "Accept:text/html */*; q=0.01",
             "Accept-Encoding:gzip, deflate",
             "Accept-Language:zh-CN,zh;q=0.8",
             "Connection:keep-alive",
-            "Content-Length:215",
+            "Content-Length:{$count}",
             "Content-Type:application/x-www-form-urlencoded",
             "Origin:http://mall.zhaogang.com",
             "Referer:http://mall.zhaogang.com/",
@@ -61,14 +68,9 @@ class IndexController
             "X-Requested-With:XMLHttpRequest",        
         );
 
-        $cookie ="ASP.NET_SessionId=v3oznqeg2mwrld0q1wuxqiai;
-        CNZZDATA4154814=cnzz_eid%3D334791448-1467696061-http%253A%252F%252Fwww.zhaogang.com%252F%26ntime%3D1467696061;COMPANY=;CityID=61;Hm_lpvt_7095823a86d6dc6659dc6097398f3290=1467696690;
-        Hm_lvt_7095823a86d6dc6659dc6097398f3290=1467696135;LOGINNAME=13702028462;
-        MEMBERID=1Rd6UZ8%2blzqQJwcsi1AVqA%3d%3d;MOBILE=13702028462;MYSEACHLOGAll=%7B%22Factory%22%3A%5B%5D%2C%22Category%22%3A%5B%5D%2C%22Material%22%3A%5B%5D%2C%22Specification%22%3A%5B%5D%2C%22Warehouse%22%3A%5B%5D%2C%22ThicknessOne%22%3A%5B%5D%2C%22ThicknessTwo%22%3A%5B%5D%2C%22WitchOne%22%3A%5B%5D%2C%22WitchTwo%22%3A%5B%5D%2C%22LongOne%22%3A%5B%5D%2C%22LongTwo%22%3A%5B%5D%7D;
-        REALNAME=%e9%98%bf%e4%bb%80%e6%89%93%e6%92%92;SERVERID=10-90-24-102;
-        WebID=1;_zg_ay=10;_zg_ccode;_zg_cid_=0;_zg_is_aa_=False;_zga=100361266;guestid=c9c4a306-c47c-49a4-affa-385f802f0094;
-        index_validate_code=04T6;";
-                
+        //$cookie ="ASP.NET_SessionId=v3oznqeg2mwrld0q1wuxqiai;CNZZDATA4154814=cnzz_eid%3D334791448-1467696061-http%253A%252F%252Fwww.zhaogang.com%252F%26ntime%3D1467696061;COMPANY=;CityID=61;Hm_lpvt_7095823a86d6dc6659dc6097398f3290=1467696690;Hm_lvt_7095823a86d6dc6659dc6097398f3290=1467696135;LOGINNAME=13702028462;MEMBERID=1Rd6UZ8%2blzqQJwcsi1AVqA%3d%3d;MOBILE=13702028462;MYSEACHLOGAll=%7B%22Factory%22%3A%5B%5D%2C%22Category%22%3A%5B%5D%2C%22Material%22%3A%5B%5D%2C%22Specification%22%3A%5B%5D%2C%22Warehouse%22%3A%5B%5D%2C%22ThicknessOne%22%3A%5B%5D%2C%22ThicknessTwo%22%3A%5B%5D%2C%22WitchOne%22%3A%5B%5D%2C%22WitchTwo%22%3A%5B%5D%2C%22LongOne%22%3A%5B%5D%2C%22LongTwo%22%3A%5B%5D%7D;REALNAME=%e9%98%bf%e4%bb%80%e6%89%93%e6%92%92;SERVERID=10-90-24-102;WebID=1;_zg_ay=10;_zg_ccode;_zg_cid_=0;_zg_is_aa_=False;_zga=100361266;guestid=c9c4a306-c47c-49a4-affa-385f802f0094;index_validate_code=04T6;";
+
+        $cookie='CityID=61; WebID=1; guestid=f87b0296-222d-4eb1-b172-7cecb5aeefd9; SERVERID=srvgdwinweb7-1; LOGINNAME=13802034562; MEMBERID=c1RCIgFr15PyunIiqX08sA%3d%3d; _zga=100361188; REALNAME=%e5%bc%b9%e7%b0%a7; MOBILE=13802034562; _zg_cid_=0; _zg_is_aa_=False; _zg_ay=10; COMPANY=; _zg_ccode=; _zg_h_r=1; index_validate_code=DRXL; Hm_lvt_7095823a86d6dc6659dc6097398f3290=1467684099; Hm_lpvt_7095823a86d6dc6659dc6097398f3290=1467695502; Feature.Zhaogang.SearchLog.SearchBehaviorGuid=2d3d05c2-6fe0-4536-a4cd-23082061bafc; MYSEACHLOGAll=%7B%22Factory%22%3A%5B%5D%2C%22Category%22%3A%5B%5D%2C%22Material%22%3A%5B%5D%2C%22Specification%22%3A%5B%5D%2C%22Warehouse%22%3A%5B%5D%2C%22ThicknessOne%22%3A%5B%5D%2C%22ThicknessTwo%22%3A%5B%5D%2C%22WitchOne%22%3A%5B%5D%2C%22WitchTwo%22%3A%5B%5D%2C%22LongOne%22%3A%5B%5D%2C%22LongTwo%22%3A%5B%5D%7D';
         $ch = curl_init();
     
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -79,7 +81,6 @@ class IndexController
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         }
            
-
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 
