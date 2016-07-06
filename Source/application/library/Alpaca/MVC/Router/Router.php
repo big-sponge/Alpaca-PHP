@@ -39,9 +39,9 @@ class Router
     
     public $Params = Array();
     
-    private $controllerClass = null;
+    public $ControllerClass = null;
     
-    private $moduleClass = null;
+    public $ModuleClass = null;
     
     private $pathSegments = null;
     
@@ -191,23 +191,23 @@ class Router
         }
         
         //设置Module、Controller
-        $this->moduleClass = ServerManager::factory()->module($this->ModuleClassName);
-        $this->moduleClass->sm = ServerManager::factory();
-        $this->moduleClass->params = $this->Params;   
-        $this->moduleClass->redirect = Redirect::redirect();
+        $this->ModuleClass = ServerManager::factory()->module($this->ModuleClassName);
+        $this->ModuleClass->sm = ServerManager::factory();
+        $this->ModuleClass->params = $this->Params;   
+        $this->ModuleClass->redirect = Redirect::redirect();
         
-        $this->controllerClass = ServerManager::factory()->controller($this->ControllerClassName);
-        $this->controllerClass->sm = ServerManager::factory();
-        $this->controllerClass->params = $this->Params;
-        $this->controllerClass->redirect = Redirect::redirect();
+        $this->ControllerClass = ServerManager::factory()->controller($this->ControllerClassName);
+        $this->ControllerClass->sm = ServerManager::factory();
+        $this->ControllerClass->params = $this->Params;
+        $this->ControllerClass->redirect = Redirect::redirect();
                
         return true;
     }
 
     public function init()
     {
-        $controllerClass = $this->controllerClass;
-        $moduleClass = $this->moduleClass;
+        $controllerClass = $this->ControllerClass;
+        $moduleClass = $this->ModuleClass;
                        
         $init ="OnInit";
         $initResult = null;
@@ -241,8 +241,8 @@ class Router
     
     public function dispatcher($view = null)
     {
-        $controllerClass = $this->controllerClass;
-        $moduleClass = $this->moduleClass;
+        $controllerClass = $this->ControllerClass;
+        $moduleClass = $this->ModuleClass;
         $action = $this->ActionName;
         
         if(empty($view)){
@@ -339,9 +339,9 @@ class Router
   
     public function release()
     {
-        $controllerClass = $this->controllerClass;
-        $moduleClass = $this->moduleClass;
-        $release ="release";
+        $controllerClass = $this->ControllerClass;
+        $moduleClass = $this->ModuleClass;
+        $release ="onRelease";
         $releaseResult = null;
         
         //执行模块init方法，如果该方法存在
