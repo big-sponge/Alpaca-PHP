@@ -155,12 +155,6 @@ class AdminAuth
                 return $result;
             }
 
-            if($method == 'indexAction'){
-                $result["state"] = "2";
-                $result["msg"] = "没有登录！";
-                return $result;
-            }
-
             //检查用户是否有权限操作Action
             if ($this->checkPermission($method) == false){
                 $result["state"] = "3";
