@@ -156,10 +156,14 @@ class ServerManager
     }
     
     
-    public function create($className)
-    {
-        $class = new $className();
-        
+    public function create($className,$params = null)
+    {        
+        if($params){
+            $class = new $className($params);
+        }else{
+            $class = new $className();
+        }
+                    
         if(!empty($this->classEvent)){
             foreach ($this->classEvent as $key => $value){
                 $class->$key = $value;

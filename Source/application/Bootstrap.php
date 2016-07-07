@@ -1,5 +1,4 @@
 <?php
-use Zend\Db\Adapter\Adapter;
 use Alpaca\Factory\ServerManager; 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Alpaca\MVC\Router\Router;
@@ -27,21 +26,7 @@ class Bootstrap
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
     }
-    
-    public function _initDefaultService()
-    {
-        $factories = array(   
-                'Zend\Db\Adapter\Adapter' =>  function($sm) {
-                    if(empty($sm->getClassLib('Zend\Db\Adapter\Adapter'))){
-                        $config = $sm->get("config");
-                        $sm->setClassLib('Zend\Db\Adapter\Adapter',new Adapter($config['db']));
-                    }        
-                    return $sm->getClassLib('Zend\Db\Adapter\Adapter');
-                },
-        );
-        ServerManager::factory()->addFactories($factories);
-    }
-    
+        
     public function _initDefaultEntry()
     {
         Router::router()->DefaultModule ='Index';
