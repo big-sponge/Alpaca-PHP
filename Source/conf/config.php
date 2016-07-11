@@ -9,9 +9,9 @@ return array(
        
     'db' => array(
         'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=db_alpaca;host=localhost',
+        'dsn' => 'mysql:dbname=db_alpaca;host=123.56.190.70',
         'username' => 'root',
-        'password' => '123456',
+        'password' => 'mysql1010shuju',
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         )
@@ -22,7 +22,7 @@ return array(
         'host'      => '123.56.190.70',
         'database'  => 'db_passport',
         'username'  => 'root',
-        'password'  => 'root',
+        'password'  => 'mysql1010shuju',
         'charset'   => 'utf8',
         'collation' => 'utf8_unicode_ci',
         'prefix'    => '',
