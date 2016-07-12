@@ -26,7 +26,7 @@ class Bootstrap
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
     }
-        
+
     public function _initDefaultEntry()
     {
         Router::router()->DefaultModule ='Index';

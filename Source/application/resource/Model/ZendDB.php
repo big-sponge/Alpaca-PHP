@@ -8,8 +8,7 @@ use Alpaca\MVC\Application;
 use Zend\Db\Adapter\Adapter;
 
 class ZendDB
-{
-    
+{    
     private static $instance;
     
     private $adapter;
