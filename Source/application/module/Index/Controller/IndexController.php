@@ -38,17 +38,8 @@ class IndexController
         );
 
         $r = $this->post($url,http_build_query($post_data));
-        var_dump($r);
         $result = base64_decode($r);
-        var_dump($result);
-
-        $array = json_decode($result,true);
-
-        var_dump($array);
-
-        die;
-
-        return View::html();
+        return View::json($result);
     }
     
     
