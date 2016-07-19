@@ -246,14 +246,65 @@ class View
         }
         return $this;
     }   
-                   
+
+    public static function defaultViewCaptureTo()
+    {
+        return self::$DefaultViewCaptureTo;
+    }
+    
+    public static function ViewLayoutCaptureTo()
+    {
+        return self::$DefaultViewCaptureTo;
+    }
+    
+    public static function defaultViewTemplate()
+    {
+        $module = Router::router()->Module;
+        $controller = Router::router()->Controller;
+        $action = Router::router()->Action;
+        $templatePostfix = self::$TemplatePostfix;
+        return APP_PATH."/application/module/{$module}/view/{$controller}/{$action}{$templatePostfix}";
+    }
+    
+    public static function defaultLayoutTemplate($name = null)
+    {
+        if(!$name){
+            $name = "layout";
+        }
+        $module = Router::router()->Module;
+        $templatePostfix = self::$TemplatePostfix;
+        return APP_PATH."/application/module/{$module}/view/Layout/{$name}{$templatePostfix}";
+    }
+    
+    public static function defaultPartTemplate($name)
+    {
+        $module = Router::router()->Module;
+        $templatePostfix = self::$TemplatePostfix;
+        return APP_PATH."/application/module/{$module}/view/Layout/Part/{$name}{$templatePostfix}";
+    }
+       
     public static function view()
     {
         $view = new View();
         $view->setTemplate(static::defaultViewTemplate());
         return $view;
     }
-
+  
+    public static function html( $data = null , $type = self::VIEW_TYPE_HTML)
+    {
+        return new View($data, $type);
+    }
+    
+    public static function json( $data = null , $type = self::VIEW_TYPE_JSON)
+    {
+        return new View($data, $type);
+    }
+    
+    public static function image( $data = null , $type = self::VIEW_TYPE_IMAGE)
+    {
+        return new View($data, $type);
+    }
+    
     public static function layout($name = null)
     {
         $view = new View();
@@ -272,55 +323,15 @@ class View
         return $view;
     }
     
-    public static function defaultViewCaptureTo()
+    public static function child($name,$captureTo = null)
     {
-        return self::$DefaultViewCaptureTo;
-    }
-
-    public static function ViewLayoutCaptureTo()
-    {
-        return self::$DefaultViewCaptureTo;
-    }
-    
-    public static function defaultViewTemplate()
-    {
-        $module = Router::router()->Module;
-        $controller = Router::router()->Controller;
-        $action = Router::router()->Action;
-        $templatePostfix = self::$TemplatePostfix;
-        return APP_PATH."/application/module/{$module}/view/{$controller}/{$action}{$templatePostfix}";
-    }
-    
-    public static function defaultLayoutTemplate($name = null)
-    {       
-        if(!$name){
-            $name = "layout";
-        }        
-        $module = Router::router()->Module;
-        $templatePostfix = self::$TemplatePostfix;
-        return APP_PATH."/application/module/{$module}/view/Layout/{$name}{$templatePostfix}";
-    }
-
-    public static function defaultPartTemplate($name)
-    {
-        $module = Router::router()->Module;
-        $templatePostfix = self::$TemplatePostfix;
-        return APP_PATH."/application/module/{$module}/view/Layout/Part/{$name}{$templatePostfix}";
-    }   
-
-    public static function html( $data = null , $type = self::VIEW_TYPE_HTML)
-    {
-        return new View($data, $type);
-    }
-    
-    public static function json( $data = null , $type = self::VIEW_TYPE_JSON)
-    {
-        return new View($data, $type);
-    }
-    
-    public static function image( $data = null , $type = self::VIEW_TYPE_IMAGE)
-    {
-        return new View($data, $type);
+        $view = new View();
+        if($captureTo == null){
+            $captureTo = $name;
+        }
+        $view->setCaptureTo($captureTo);
+        $view->setTemplate($view->defaultPartTemplate($name));
+        return $view;
     }
     
     public function display()
