@@ -8,7 +8,7 @@ if (!empty($_SERVER['APPLICATION_ENV']) && $_SERVER['APPLICATION_ENV'] == 'devel
 } 
 
 /* 指向public的上一级 */
-define("APP_PATH",  realpath(dirname(__FILE__) . '/../')); 
+define("APP_PATH",  realpath(dirname(__FILE__) . '/../'));
 
 /* 加载系统配置文件*/
 global $CONFIG;

@@ -1,7 +1,6 @@
 <?php
 return array(   
     'application' => array(
-        "directory" => APP_PATH."/application/",
         "module" => 'Index,Crontab,Admin,Test',
         "resource" => 'Model',
         "library" => 'Alpaca,Zend',

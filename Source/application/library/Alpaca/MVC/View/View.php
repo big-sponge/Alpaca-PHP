@@ -383,7 +383,7 @@ class View
                 echo $this->Data['json'];
             }
         }
-    
+
         if(!$this->IsJsonp){
             echo $this->Data['json'];
         }

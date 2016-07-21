@@ -7,6 +7,6 @@ class WebController
 {    
     public function indexAction()
     {
-        return View::html()->setData(['name'=>"Bob"]);
+        return View::html()->setData(['name'=>"Bob"])->setFinal(true)->addChild(View::child('leftMenu','left'));
     }
 }

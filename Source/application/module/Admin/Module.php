@@ -12,8 +12,8 @@ class Module
     
     public function onDisplay($view)
     {
-        $view->setLayout(View::layout());
         $menuId =lcfirst(Router::router()->Controller).'-'.Router::router()->Action;
+        $view->setLayout(View::layout());
         $view->setPart(View::part('leftMenu')->setData(['menuId'=>$menuId]));
         return $view;
     }
