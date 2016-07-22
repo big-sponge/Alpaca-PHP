@@ -95,12 +95,16 @@ class IndexController
     public function addTaskAction()
     {
         $begin_time = $this->request_data->BEGIN_TIME;
-        $interval = $this->request_data->INTERVAL;
+        $interval = $this->request_data->INTERVAL;       
+        $now = date('Y-m-d H:i:s',time());       
         $next_time = "";
+               
         if($this->request_data->TASK_TYPE == "1"){
             $next_time = $this->request_data->BEGIN_TIME;
         }
-        else{
+        elseif( strtotime($now) < strtotime($begin_time)){                      
+            $next_time = $begin_time;
+        }else{
             $next_time = date('Y-m-d H:i:s',strtotime($interval, strtotime($begin_time)));
         }
 
@@ -126,11 +130,13 @@ class IndexController
         $begin_time = $this->request_data->BEGIN_TIME;
         $interval = $this->request_data->INTERVAL;
         $next_time = "";
-    
+        $now = date('Y-m-d H:i:s',time());
+        
         if($this->request_data->TASK_TYPE == "1"){
             $next_time = $this->request_data->BEGIN_TIME;
-        }
-        else{
+        }elseif( strtotime($now) < strtotime($begin_time)){                      
+            $next_time = $begin_time;
+        }else{
             $next_time = date('Y-m-d H:i:s',strtotime($interval, strtotime($begin_time)));
         }
     
