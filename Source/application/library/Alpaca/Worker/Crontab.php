@@ -4,7 +4,6 @@ namespace Alpaca\Worker;
 class Crontab
 {
     private $task_json = __DIR__.'/crontab.json';
-    private $task_log = __DIR__.'/task_log.log';
     private static $instance;
     
     public static function crontab()
@@ -19,7 +18,13 @@ class Crontab
         }
         return self::$instance;
     }
-
+    
+    public function setConfig($crontab)
+    {
+        $this->task_json = $crontab;
+        return $this;
+    }
+        
     //查看定时任务
     public function listTask()
     {
@@ -168,6 +173,9 @@ class Crontab
                     break;
                 case "month":
                     $str = "（月）";
+                    break;
+                case "month":
+                    $str = "（日）";
                     break;
                 case "hour":
                     $str = "（小时）";
