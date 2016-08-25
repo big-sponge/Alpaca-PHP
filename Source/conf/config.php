@@ -2,7 +2,7 @@
 return array(   
     'application' => array(
         "module" => 'Index,Crontab,Admin,Test',
-        "resource" => 'Model',
+        "resource" => 'Model,Redis',
         "library" => 'Alpaca,Zend',
      ), 
        
